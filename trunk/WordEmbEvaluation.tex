@@ -1,0 +1,222 @@
+%
+% File acl2013.tex
+%
+% Contact  navigli@di.uniroma1.it
+%%
+%% Based on the style files for ACL-2012, which were, in turn,
+%% based on the style files for ACL-2011, which were, in turn, 
+%% based on the style files for ACL-2010, which were, in turn, 
+%% based on the style files for ACL-IJCNLP-2009, which were, in turn,
+%% based on the style files for EACL-2009 and IJCNLP-2008...
+
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt]{article}
+\usepackage{acl2013}
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{color}
+
+
+
+\title{Evaluation of Word Embeddings for Sequence Tagging }
+
+\author{A Anonymous 
+   \\%NICTA / Locked Bag 8001, \\ Canberra ACT 2601, Australia \\
+   \\ %The Australian National University\\
+   \\ %University of Canberra \\
+  \\ % {\tt \small{hanna.suominen@nicta.com.au}} \\
+\And
+  B Anonymous
+   \\%NICTA / Locked Bag 8001, \\ Canberra ACT 2601, Australia \\
+   \\%The Australian National University\\ \\
+   \\ %{\tt \small{gabriela.ferraro@nicta.com.au}} \\
+}
+
+\date{2014}
+
+% Max 8 pp.
+
+\begin{document}
+\maketitle
+\begin{abstract}
+XXX
+\end{abstract}
+
+\section{Introduction}
+Word embedding learning methods are the new generation of distributional semantics models.
+As with other learning methods, it is well known that the performance of machine learning algorithms heavily depends on their parameters optimization, the training data used and the applications they target. 
+% the conextion between dist. semantics models and sequence taggin. 
+In this paper, we perform an extensive evaluation of three word embedding approaches under the same experiment conditions, and evaluate them in different
+sequence tagging tasks. 
+
+Expected contributions:
+\begin{itemize}
+\item[-] Fair comparison of different word embedding algorithms
+\item[-] Influence of word embeddings in the sequence tagging tasks with semi-supervised settings.
+\item[-] Complete evaluation of word embeddings in sequence tagging tasks.
+\item[-] Multi-word expressions identification using word embeddings.
+\end{itemize}
+
+
+\section{Background}
+In this section, we describe the three word embedding approaches we compared in the paper.
+
+{\color{blue}Explain what are word embeddings}
+Word embeddings models are the new generation of distributional semantics models (DSMs), where the vectors weights are set to optimally predict the contexts in which the corresponding word tend to appear.
+
+{\color{blue}Describe each of the following word embeddings approaches}
+\begin{itemize}
+\item[-] Glove \cite{pennington2014glove}
+\item[-] word2vec \cite{Mikolov13}
+\item[-] Brown cluster \cite{Brown92class-basedn-gram}
+\item[-] Pre-trained word embeddings \cite{Turian10wordrepresentations}
+% (http://metaoptimize.com/projects/wordreprs/)
+\end{itemize}
+
+The mentioned methods were chosen because they are recent state-of-the-art word embedding learning and because their their software is available.
+% Brown cluster is not new. Why we chose it?
+
+
+
+\section{Materials}
+We test the effectiveness of different word embeddings approaches on four different sequence labeling task, which are the following, 
+
+\begin{enumerate}
+\item[-] POS tagging for both twitter and WSJ.
+\item[-] Chunking on the CoNLL shared task data.
+\item[-] MWE identification with Nathan’s corpus %(http://www.ark.cs.cmu.edu/LexSem/).
+\item[-] Named entity recognition on CoNLL shared task data and MUC7.
+\end{enumerate}
+
+% We are not aware of other work that used word embeddings for learning MWE.
+
+%\begin{itemize}
+%\item One Billion Word Language Modelling Benchmark
+%\item UMBC
+%\item First billion characters from wikipedia
+%\item Latest wikipedia dump
+%\item Twiter?
+%\end{itemize}
+
+It is well known that the choice of a corpora have an important effect in the final accuracy of machine learning algorithms. 
+Thus, we select different corpora to learn the word embedding vectors (Table \ref{corpus}).
+The main reason of choosing these data set is that they are publicly available. 
+
+
+\begin{table}[h]
+\begin{center}
+\begin{small}
+\begin{tabular}{lll}
+\hline
+\textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
+One Billion 	& 4.1GB & 0.8 billions  \\
+UMBC 	& 48.1GB & 3 billions \\
+First billion wikipedia & 1GB & 1 billions \\
+Latest wikipedia dump & 49.6GB & 3 billions \\
+Twiter & &  \\ \hline
+\end{tabular}
+\end{small}
+\label{corpus}
+\caption{Corpus used to learn word embeddings}
+\end{center}
+\end{table}
+
+% Does the format implies any especial pre-preprocesing?  we have plain text and xml
+
+
+
+\section{Experiments setups}
+
+\subsection{Preprocessing}
+
+In order to make the comparison of different word embedding approaches across different applications, we applied the same preprocessing to the data sets used. 
+The preprocessing pipeline consist of a sentence splitter, a tokenizer, a POS-tagger and a lemmatizer. The pipeline is built with the UIMA architecture and the DKPro NLP tools. 
+
+
+\subsection{Parameters}
+
+The performance of each approach heavily depends on their parameters optimization.
+In an ideal machine learning setup, grid search or random search would be applied in order to search for the best hyperparameters, for each approach.
+But, that is too time taken. Instead, we look for the shared parameters along the three approaches and vary these parameters deterministically? 
+The rest of the parameters (the ones that are unique for each approach) are set to  their optimal reported values.
+The parameters that we vary are:
+
+%We consider the empirical evaluation in a semi-supervised setting because we conjecture that the word embeddings learned from unlabeled data could save a significant amount of labeled data.
+
+
+\begin{itemize}
+\item[-]\textbf{Word vector size}: 25, 50, 100, 200, 300, 600.
+\item[-]\textbf{Context window size}: 5, 10, 15.
+\item[-]\textbf{Training size}: +100 document.
+\end{itemize}
+
+The research question we want to answer with these experiments are: 
+How does the size of training data, the vector dimensionality and the context window influence the performance of sequence tagging?
+
+{\color{blue}Explain why we chose this parameters, why they are important?}
+
+As pointed out by \cite{•}, there is dependency between the size of training set and the vector size, in the sense that the performance does not improve when only one of these variables is increased, but when both are increase in parallel.
+Therefore, we measure the accuracy by incrementally augmenting the size of the training set at the same time as the word vector size.
+
+
+There are also some variations in how the learning algorithm used
+the word embedding vectors. In our experiments, we defined four different
+setup, which are:
+
+\begin{enumerate}
+\item CRF with random initialized word vectors.
+\item CRF with pre-trained word vectors but not update
+\item CRF with pre-trained word vectors and fine-tune the word vectors during training.
+\item  use all features from state-of-the-art sequence tagging models such as NICTA NER (like gazetteers).
+\end{enumerate}
+
+{\color{blue} why this variations matters? what we are expecting to happen?}
+The research question associated with it is: Could pre-trained word vectors improve the sequence tagging if there are unknown words in the test datasets?
+Trained on Penn Treebank and test on English tree bank
+Trained on CoNLL and test on MUC7
+
+
+
+
+
+
+
+% shoould we drop 25? 
+
+
+
+
+
+
+
+
+
+\section{Results}
+
+- Performance curves in the semi-supervised learning for each sequence tagging task.
+
+
+
+\section{Discussion}
+
+
+\section*{Acknowledgments}
+
+Anonymised\\
+Anonymised\\
+Anonymised\\
+Anonymised\\
+Anonymised\\
+Anonymised\\
+
+%NICTA is funded by the Australian Government as represented by the Department of Broadband, Communications and the Digital Economy and the Australian Research Council through the ICT Centre of Excellence program.
+
+\bibliographystyle{acl2013}
+\bibliography{biblio}
+
+\end{document}
