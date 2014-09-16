@@ -100,7 +100,7 @@ We test the effectiveness of different word embeddings approaches on four differ
 It is well known that the choice of a corpora have an important effect in the final accuracy of machine learning algorithms. 
 Thus, we select different corpora to learn the word embedding vectors (Table \ref{corpus}).
 The main reason of choosing these data set is that they are publicly available. 
-algo list
+
 
 \begin{table}[h]
 \begin{center}
@@ -118,6 +118,17 @@ Twiter & &  \\ \hline
 \caption{Corpus used to learn word embeddings}
 \end{center}
 \end{table}
+
+\subsection{Word Embedding Learning Algorithms}
+\begin{itemize}
+\item[-] Glove \cite{pennington2014glove}
+\item[-] Skig-gram \cite{Mikolov13}
+\item[-] CBOW \cite{Mikolov13}
+\item[-] Brown cluster \cite{Brown92class-basedn-gram}
+\item[-] Neural language model \cite{Turian10wordrepresentations}
+% (http://metaoptimize.com/projects/wordreprs/)
+\end{itemize}
+
 
 \subsection{Experimental Setup}
 
@@ -143,7 +154,7 @@ The parameters that we vary are:
 \item[-]\textbf{Context window size}: 5, 10, 15.
 \end{itemize}
 
-Number of clusters
+Brown clustering: Number of clusters
 
 % Does the format implies any especial pre-preprocesing?  we have plain text and xml
 
@@ -164,7 +175,7 @@ The research question associated with it is: Could pre-trained word vectors impr
 Trained on Penn Treebank and test on English tree bank
 Trained on CoNLL and test on MUC7
 
-\textbf{Training size}: +100 document.
+\textbf{Training size}: 10\% document.
 \subsection POS tagging for both twitter and WSJ.
 \subsection Chunking on the CoNLL shared task data.
 \subsection MWE identification with Nathan’s corpus %(http://www.ark.cs.cmu.edu/LexSem/).
