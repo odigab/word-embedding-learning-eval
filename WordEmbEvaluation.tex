@@ -63,7 +63,7 @@ Expected contributions:
 \end{itemize}
 
 
-\section{Background}
+\section{Related Work}
 In this section, we describe the three word embedding approaches we compared in the paper.
 
 {\color{blue}Explain what are word embeddings}
@@ -83,15 +83,9 @@ The mentioned methods were chosen because they are recent state-of-the-art word 
 
 
 
-\section{Materials}
+\section{Word Representations}
 We test the effectiveness of different word embeddings approaches on four different sequence labeling task, which are the following, 
 
-\begin{enumerate}
-\item[-] POS tagging for both twitter and WSJ.
-\item[-] Chunking on the CoNLL shared task data.
-\item[-] MWE identification with Nathan’s corpus %(http://www.ark.cs.cmu.edu/LexSem/).
-\item[-] Named entity recognition on CoNLL shared task data and MUC7.
-\end{enumerate}
 
 % We are not aware of other work that used word embeddings for learning MWE.
 
@@ -106,7 +100,7 @@ We test the effectiveness of different word embeddings approaches on four differ
 It is well known that the choice of a corpora have an important effect in the final accuracy of machine learning algorithms. 
 Thus, we select different corpora to learn the word embedding vectors (Table \ref{corpus}).
 The main reason of choosing these data set is that they are publicly available. 
-
+algo list
 
 \begin{table}[h]
 \begin{center}
@@ -116,7 +110,6 @@ The main reason of choosing these data set is that they are publicly available.
 \textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
 One Billion 	& 4.1GB & 0.8 billions  \\
 UMBC 	& 48.1GB & 3 billions \\
-First billion wikipedia & 1GB & 1 billions \\
 Latest wikipedia dump & 49.6GB & 3 billions \\
 Twiter & &  \\ \hline
 \end{tabular}
@@ -126,11 +119,7 @@ Twiter & &  \\ \hline
 \end{center}
 \end{table}
 
-% Does the format implies any especial pre-preprocesing?  we have plain text and xml
-
-
-
-\section{Experiments setups}
+\subsection{Experimental Setup}
 
 \subsection{Preprocessing}
 
@@ -152,17 +141,13 @@ The parameters that we vary are:
 \begin{itemize}
 \item[-]\textbf{Word vector size}: 25, 50, 100, 200, 300, 600.
 \item[-]\textbf{Context window size}: 5, 10, 15.
-\item[-]\textbf{Training size}: +100 document.
 \end{itemize}
 
-The research question we want to answer with these experiments are: 
-How does the size of training data, the vector dimensionality and the context window influence the performance of sequence tagging?
+Number of clusters
 
-{\color{blue}Explain why we chose this parameters, why they are important?}
+% Does the format implies any especial pre-preprocesing?  we have plain text and xml
 
-As pointed out by \cite{•}, there is dependency between the size of training set and the vector size, in the sense that the performance does not improve when only one of these variables is increased, but when both are increase in parallel.
-Therefore, we measure the accuracy by incrementally augmenting the size of the training set at the same time as the word vector size.
-
+\section{Sequence Tagging Tasks}
 
 There are also some variations in how the learning algorithm used
 the word embedding vectors. In our experiments, we defined four different
@@ -174,36 +159,34 @@ setup, which are:
 \item CRF with pre-trained word vectors and fine-tune the word vectors during training.
 \item  use all features from state-of-the-art sequence tagging models such as NICTA NER (like gazetteers).
 \end{enumerate}
-
 {\color{blue} why this variations matters? what we are expecting to happen?}
 The research question associated with it is: Could pre-trained word vectors improve the sequence tagging if there are unknown words in the test datasets?
 Trained on Penn Treebank and test on English tree bank
 Trained on CoNLL and test on MUC7
 
+\textbf{Training size}: +100 document.
+\subsection POS tagging for both twitter and WSJ.
+\subsection Chunking on the CoNLL shared task data.
+\subsection MWE identification with Nathan’s corpus %(http://www.ark.cs.cmu.edu/LexSem/).
+\subsection Named entity recognition on CoNLL shared task data and MUC7.
+
+\section{Experimental Results and Discussion}
 
 
+The research question we want to answer with these experiments are: 
+How does the size of training data, the vector dimensionality and the context window influence the performance of sequence tagging?
 
+{\color{blue}Explain why we chose this parameters, why they are important?}
 
+As pointed out by \cite{•}, there is dependency between the size of training set and the vector size, in the sense that the performance does not improve when only one of these variables is increased, but when both are increase in parallel.
+Therefore, we measure the accuracy by incrementally augmenting the size of the training set at the same time as the word vector size.
 
-
-% shoould we drop 25? 
-
-
-
-
-
-
-
-
-
-\section{Results}
 
 - Performance curves in the semi-supervised learning for each sequence tagging task.
 
 
 
-\section{Discussion}
-
+% shoould we drop 25? 
 
 \section*{Acknowledgments}
 
