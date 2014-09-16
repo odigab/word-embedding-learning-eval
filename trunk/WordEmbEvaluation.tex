@@ -159,45 +159,84 @@ Brown clustering: Number of clusters
 % Does the format implies any especial pre-preprocesing?  we have plain text and xml
 
 \section{Sequence Tagging Tasks}
+We evaluate different learning approaches of word embeddings in four different sequence tagging tasks: POS tagging, chunking, MWE identification, and name entity recognition. Because we can either update pre-trained word embeddings during training or not, through the evaluation, we want to answer the following questions:
+\begin{itemize}
+\item How well do different word embeddings perform in all tasks when supervised fine-tuning is \textit{not} performed?
+\item How well do different word embeddings perform in all tasks when supervised fine-tuning is performed?
+\item How does the size of labeled training data affect the experimental results?
+\item How well do the word embeddings perform for unknown words? 
+\item How do the key parameters of each word learning algorithms affect the experimental results?
+\end{itemize}
 
-There are also some variations in how the learning algorithm used
-the word embedding vectors. In our experiments, we defined four different
-setup, which are:
+For each task, we feed learned embeddings into the graph transformer trained with sentence tag criterion~\cite{turian2010word}. The graph transformer is equivalent to CRF, if we do not update word embeddings. For all tasks, we train Graph transformer with pre-trained word embeddings in the following two settings: 
+\begin{itemize}
+\item CRF with conventional features.
+\item Graph transformer \textit{does not} fine tune embeddings during training.
+\item Graph transformer fine tunes the embeddings during training.
+\end{itemize}
+For each task, we split the data into a training set, validation set, and a test set. The hyper parameters are tuned on the validation set with random search~\cite{bergstra2012random}. To be fair, for each model, we randomly choose 100 hyper parameter combinations and pick up the best one based on its performance on the validation set. Then each model is evaluated in a semi-supervised setting. We start with training models on 10\% of the training data, and evaluate them on the test dataset. Then we incrementally add another 10\% of the training data and evaluate them until all training data is used. We adopt per-word F1 scores as the evaluation metric for all tasks except POS tagging. We keep using per-word accuracy for POS tagging. In order to evaluate model performance on unknown words, we report also the average F1 scores for the words that do not occur in the training set.
 
-\begin{enumerate}
-\item CRF with random initialized word vectors.
-\item CRF with pre-trained word vectors but not update
-\item CRF with pre-trained word vectors and fine-tune the word vectors during training.
-\item  use all features from state-of-the-art sequence tagging models such as NICTA NER (like gazetteers).
-\end{enumerate}
-{\color{blue} why this variations matters? what we are expecting to happen?}
-The research question associated with it is: Could pre-trained word vectors improve the sequence tagging if there are unknown words in the test datasets?
-Trained on Penn Treebank and test on English tree bank
-Trained on CoNLL and test on MUC7
+In order to assess the influence of the key parameters of each word learning algorithms, we evaluate all embedding based models with varying key parameters on the full training set.{\color{blue} Do we evaluate also combinations of the key parameters ,e.g. we measure model performance by incrementally augmenting the size of the training set at the same time as the word vector size.?}
 
-\textbf{Training size}: 10\% document.
-\subsection POS tagging for both twitter and WSJ.
-\subsection Chunking on the CoNLL shared task data.
-\subsection MWE identification with Nathanâ€™s corpus %(http://www.ark.cs.cmu.edu/LexSem/).
-\subsection Named entity recognition on CoNLL shared task data and MUC7.
+\subsection{POS tagging}
+Almost the setting as~\cite{collobert2011natural}, except adding one more test set.
+\subsubsection{Option 1}
+\noindent
+Training set: 0-18 of WSJ.
+
+\noindent
+Validation set: 19-21 of WSJ.
+
+\noindent
+Test set: 22-24 of WSJ, and English Web Treebank. We report model performances on these two test sets respectively.
+
+\noindent
+Feature space: the same set as in~\cite{collobert2011natural}
+
+\subsubsection{Option 2}
+
+Use the experimental setting in~\cite{owoputi2013improved} for twitter POS tagging. All word embeddings will be learned from the twitter corpus provided by Scott.
+
+\subsection{Chunking} 
+The same setting as~\cite{turian2010word}\\
+
+\noindent
+Training set: WSJ train set.
+
+\noindent
+Validation set: Randomly sampled 1000 sentences from the train set for development.
+
+\noindent
+Test set: CoNLL2000 test set.
+
+\noindent
+Feature space: the same set as in~\cite{turian2010word}
+
+\subsection{MWE Identification}
+Training set: randomly sampled 500 documents from Nathana€™s corpus.
+
+\noindent
+Validation set: randomly sampled 100 documents from Nathana€™s corpus.
+
+\noindent
+Test set: remaining 123 documents from Nathana€™s corpus..
+
+\noindent
+Feature space: the same set as in~\cite{mwecorpus}
+
+\subsection{Named entity recognition}
+Training set: CoNLL03 train set.
+
+\noindent
+Validation set: CoNLL03 development set.
+
+\noindent
+Test set: CoNLL03 test set and MUC7. We report model performances on these two test sets respectively.
+
+\noindent
+Feature space: the same set as in~\cite{turian2010word}
 
 \section{Experimental Results and Discussion}
-
-
-The research question we want to answer with these experiments are: 
-How does the size of training data, the vector dimensionality and the context window influence the performance of sequence tagging?
-
-{\color{blue}Explain why we chose this parameters, why they are important?}
-
-As pointed out by \cite{â€¢}, there is dependency between the size of training set and the vector size, in the sense that the performance does not improve when only one of these variables is increased, but when both are increase in parallel.
-Therefore, we measure the accuracy by incrementally augmenting the size of the training set at the same time as the word vector size.
-
-
-- Performance curves in the semi-supervised learning for each sequence tagging task.
-
-
-
-% shoould we drop 25? 
 
 \section*{Acknowledgments}
 
