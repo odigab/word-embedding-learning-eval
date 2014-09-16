@@ -68,7 +68,7 @@ the cost of human annotation.
 Sequence labelling tasks is one of the meta problems NLP faced. Previous works have shown that learning word embeddings vector features improves the performance of sequence labelling task, but not fair and extensive comparison has been done so far. In this paper, we evaluated word embedding algorithms in several sequence labelling tasks and discuss their benefits, taking into account different aspects of sequence labelling problems such as row labelling (POS-tagging) and join segmentation and labelling (Named Entity Recognition). 
 
 \item[-] Multi-word expressions (MWE) identification using word embeddings. 
-As far as we known, there is no work yet that used word embeddings vectors to 
+As far as we known, current work only applies Brown clustering to 
 identify MWE. The experiments carry out in this paper will tell which is the best word embedding algorithm to solve for the identification of MWE. 
 \end{itemize}
 
@@ -109,7 +109,7 @@ The estimation of the word vectors can be carry out with different models archit
 \subsection{Word Embedding Learning Algorithms}
 \begin{itemize}
 \item[-] Glove \cite{pennington2014glove}
-\item[-] Skig-gram \cite{Mikolov13}
+\item[-] Skip-gram \cite{Mikolov13}
 \item[-] CBOW \cite{Mikolov13}
 \item[-] Brown cluster \cite{Brown92class-basedn-gram}
 \item[-] Neural language model \cite{Turian10wordrepresentations}
@@ -193,8 +193,10 @@ For each task, we split the data into a training set, validation set, and a test
 In order to assess the influence of the key parameters of each word learning algorithms, we evaluate all embedding based models with varying key parameters on the full training set.{\color{blue} Do we evaluate also combinations of the key parameters ,e.g. we measure model performance by incrementally augmenting the size of the training set at the same time as the word vector size.?}
 
 \subsection{POS tagging}
-Almost the setting as~\cite{collobert2011natural}, except adding one more test set.
+We could choose one of the options.
 \subsubsection{Option 1}
+Almost the same setting as~\cite{collobert2011natural}, except adding one more test set.
+
 \noindent
 Training set: 0-18 of WSJ.
 
