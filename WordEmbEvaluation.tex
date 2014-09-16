@@ -47,6 +47,8 @@
 XXX
 \end{abstract}
 
+
+
 \section{Introduction}
 Word embedding learning methods are the new generation of distributional semantics models.
 As with other learning methods, it is well known that the performance of machine learning algorithms heavily depends on their parameters optimization, the training data used and the applications they target. 
@@ -56,17 +58,26 @@ sequence tagging tasks.
 
 Expected contributions:
 \begin{itemize}
-\item[-] Fair comparison of different word embedding algorithms
-\item[-] Influence of word embeddings in the sequence tagging tasks with semi-supervised settings.
+\item[-] Fair comparison of different word embedding algorithms. This includes running different word embeddings algorithms under controlled conditions, for example, chose algorithms and data sets that are publicly available, apply the same NLP pre-processing to all data sets, trained the algorithms with the same data sets, apply the learned word vectors to well defined tasks sequence labeling tasks such as POS-tagging and Named Entity Recognition. 
+
+\item[-] Influence of word embeddings in the sequence tagging tasks with semi-supervised settings. We considered the empirical evaluation in a semi-supervised setting because we conjecture that the word embeddings learned from unlabelled data could save a significant amount of labelled data, and thus, alleviate
+the cost of human annotation. 
+% something about scalability?
+
 \item[-] Complete evaluation of word embeddings in sequence tagging tasks.
-\item[-] Multi-word expressions identification using word embeddings.
+Sequence labelling tasks is one of the meta problems NLP faced. Previous works have shown that learning word embeddings vector features improves the performance of sequence labelling task, but not fair and extensive comparison has been done so far. In this paper, we evaluated word embedding algorithms in several sequence labelling tasks and discuss their benefits, taking into account different aspects of sequence labelling problems such as row labelling (POS-tagging) and join segmentation and labelling (Named Entity Recognition). 
+
+\item[-] Multi-word expressions (MWE) identification using word embeddings. 
+As far as we known, there is no work yet that used word embeddings vectors to 
+identify MWE. The experiments carry out in this paper will tell which is the best word embedding algorithm to solve for the identification of MWE. 
 \end{itemize}
 
 
-\section{Related Work}
-In this section, we describe the three word embedding approaches we compared in the paper.
 
-{\color{blue}Explain what are word embeddings}
+
+\section{Related Work}
+In this section, we describe the four word embedding approaches we compared in the paper.
+
 Word embeddings models are the new generation of distributional semantics models (DSMs), where the vectors weights are set to optimally predict the contexts in which the corresponding word tend to appear.
 
 {\color{blue}Describe each of the following word embeddings approaches}
@@ -78,47 +89,23 @@ Word embeddings models are the new generation of distributional semantics models
 % (http://metaoptimize.com/projects/wordreprs/)
 \end{itemize}
 
-The mentioned methods were chosen because they are recent state-of-the-art word embedding learning and because their their software is available.
+The mentioned methods were chosen because they are recent state-of-the-art word embedding learning and because their software is available.
 % Brown cluster is not new. Why we chose it?
 
 
-
 \section{Word Representations}
-We test the effectiveness of different word embeddings approaches on four different sequence labeling task, which are the following, 
 
+%The statistics about word occurrences in a corpus is the primary source of information available to all supervised methods for learning word representations.
+%Traditionally, words were represented in a vocabulary index, were the is not notion about the similarity between words. 
 
-% We are not aware of other work that used word embeddings for learning MWE.
+Inspired by distributional semantics models, distributed word representation methods represent each word as a continuous vector, were similar words have a similar vector representation, therefore, capturing the similarity between words.
 
-%\begin{itemize}
-%\item One Billion Word Language Modelling Benchmark
-%\item UMBC
-%\item First billion characters from wikipedia
-%\item Latest wikipedia dump
-%\item Twiter?
-%\end{itemize}
+Example: 
 
-It is well known that the choice of a corpora have an important effect in the final accuracy of machine learning algorithms. 
-Thus, we select different corpora to learn the word embedding vectors (Table \ref{corpus}).
-The main reason of choosing these data set is that they are publicly available. 
+The resulting vectors can be used as features in many NLP applications and it has been shown that they outperform methods that treats words as atomic units \cite{}.
 
-
-\begin{table}[h]
-\begin{center}
-\begin{small}
-\begin{tabular}{lll}
-\hline
-\textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
-One Billion 	& 4.1GB & 0.8 billions  \\
-UMBC 	& 48.1GB & 3 billions \\
-Latest wikipedia dump & 49.6GB & 3 billions \\
-Twiter & &  \\ \hline
-\end{tabular}
-\end{small}
-\label{corpus}
-\caption{Corpus used to learn word embeddings}
-\end{center}
-\end{table}
-
+The estimation of the word vectors can be carry out with different models architectures. In this paper, we evaluate the word embedding learning methods presented in the next section and evaluate their utility in several sequence labelling tasks.
+ 
 \subsection{Word Embedding Learning Algorithms}
 \begin{itemize}
 \item[-] Glove \cite{pennington2014glove}
@@ -130,7 +117,33 @@ Twiter & &  \\ \hline
 \end{itemize}
 
 
+
+
+
 \subsection{Experimental Setup}
+
+\subsection{Materials}
+It is well known that the choice of a corpora have an important effect in the final accuracy of machine learning algorithms. 
+Thus, we select different corpora to learn the word embedding vectors (Table \ref{corpus}).
+The main reason of choosing these data set is that they are publicly available. 
+
+
+\begin{table}[h]
+\begin{center}
+\begin{small}
+\begin{tabular}{lll}
+\hline
+\textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
+UMBC 	& 48.1GB & 3 billions \\
+One Billion 	& 4.1GB & 0.8 billions  \\
+Latest wikipedia dump & 49.6GB & 3 billions \\
+Twiter & &  \\ \hline
+\end{tabular}
+\end{small}
+\label{corpus}
+\caption{Corpus used to learn word embeddings}
+\end{center}
+\end{table}
 
 \subsection{Preprocessing}
 
@@ -148,11 +161,12 @@ The parameters that we vary are:
 
 %We consider the empirical evaluation in a semi-supervised setting because we conjecture that the word embeddings learned from unlabeled data could save a significant amount of labeled data.
 
-
+\begin{small}
 \begin{itemize}
 \item[-]\textbf{Word vector size}: 25, 50, 100, 200, 300, 600.
 \item[-]\textbf{Context window size}: 5, 10, 15.
 \end{itemize}
+\end{small}
 
 Brown clustering: Number of clusters
 
