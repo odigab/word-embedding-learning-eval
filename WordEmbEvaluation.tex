@@ -47,7 +47,9 @@
 XXX
 \end{abstract}
 
-
+\newcommand{\gabi}[1]{\textcolor{blue}{#1}}
+\newcommand{\tim}[1]{\textcolor{red}{#1}}
+\newcommand{\lizhen}[1]{\textcolor{green}{#1}}
 
 \section{Introduction}
 Word embedding learning methods are the new generation of distributional semantics models.
@@ -190,7 +192,7 @@ For each task, we feed learned embeddings into the graph transformer trained wit
 \end{itemize}
 For each task, we split the data into a training set, validation set, and a test set. The hyper parameters are tuned on the validation set with random search~\cite{bergstra2012random}. To be fair, for each model, we randomly choose 100 hyper parameter combinations and pick up the best one based on its performance on the validation set. Then each model is evaluated in a semi-supervised setting. We start with training models on 10\% of the training data, and evaluate them on the test dataset. Then we incrementally add another 10\% of the training data and evaluate them until all training data is used. We adopt per-word F1 scores as the evaluation metric for all tasks except POS tagging. We keep using per-word accuracy for POS tagging. In order to evaluate model performance on unknown words, we report also the average F1 scores for the words that do not occur in the training set.
 
-In order to assess the influence of the key parameters of each word learning algorithms, we evaluate all embedding based models with varying key parameters on the full training set.{\color{blue} Do we evaluate also combinations of the key parameters ,e.g. we measure model performance by incrementally augmenting the size of the training set at the same time as the word vector size.?}
+In order to assess the influence of the key parameters of each word learning algorithms, we evaluate all embedding based models with varying key parameters on the full training set.\lizhen{Do we evaluate also combinations of the key parameters ,e.g. we measure model performance by incrementally augmenting the size of the training set at the same time as the word vector size.?}
 
 \subsection{POS tagging}
 We could choose one of the options.
