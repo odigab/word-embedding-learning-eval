@@ -23,7 +23,7 @@
 
 
 
-\title{Evaluation of Word Embeddings for Sequence Tagging }
+\title{Evaluation of Word Embeddings for Sequence Labelling Tasks}
 
 \author{A Anonymous 
    \\%NICTA / Locked Bag 8001, \\ Canberra ACT 2601, Australia \\
@@ -52,47 +52,90 @@ XXX
 \newcommand{\lizhen}[1]{\textcolor{green}{#1}}
 
 \section{Introduction}
-Word embedding learning methods are the new generation of distributional semantics models.
-As with other learning methods, it is well known that the performance of machine learning algorithms heavily depends on their parameters optimization, the training data used and the applications they target. 
+Word embedding learning methods are the new generation of distributional
+semantics models.  As with other learning methods, it is well known that
+the performance of machine learning algorithms heavily depends on
+parameter optimization, the training data used and the applications they
+target.
 % the conextion between dist. semantics models and sequence taggin. 
-In this paper, we perform an extensive evaluation of three word embedding approaches under the same experiment conditions, and evaluate them in different
-sequence tagging tasks. 
+In this paper, we perform an extensive evaluation of four word embedding
+approaches under fixed experiment conditions, and evaluate them over
+different sequence labelling tasks.
 
 Expected contributions:
 \begin{itemize}
-\item[-] Fair comparison of different word embedding algorithms. This includes running different word embeddings algorithms under controlled conditions, for example, chose algorithms and data sets that are publicly available, apply the same NLP pre-processing to all data sets, trained the algorithms with the same data sets, apply the learned word vectors to well defined tasks sequence labeling tasks such as POS-tagging and Named Entity Recognition. 
+\item[-] Fair comparison of different word embedding algorithms. This
+  includes running different word embeddings algorithms under controlled
+  conditions, for example, chose algorithms and data sets that are
+  publicly available, apply the same NLP pre-processing to all data
+  sets, trained the algorithms with the same data sets, apply the
+  learned word vectors to well defined tasks sequence labeling tasks
+  such as POS-tagging and Named Entity Recognition.
 
-\item[-] Influence of word embeddings in the sequence tagging tasks with semi-supervised settings. We considered the empirical evaluation in a semi-supervised setting because we conjecture that the word embeddings learned from unlabelled data could save a significant amount of labelled data, and thus, alleviate
-the cost of human annotation. 
+\item[-] Influence of word embeddings in the sequence tagging tasks with
+  semi-supervised settings. We considered the empirical evaluation in a
+  semi-supervised setting because we conjecture that the word embeddings
+  learned from unlabelled data could save a significant amount of
+  labelled data, and thus, alleviate the cost of human annotation.
 % something about scalability?
 
-\item[-] Complete evaluation of word embeddings in sequence tagging tasks.
-Sequence labelling tasks is one of the meta problems NLP faced. Previous works have shown that learning word embeddings vector features improves the performance of sequence labelling task, but not fair and extensive comparison has been done so far. In this paper, we evaluated word embedding algorithms in several sequence labelling tasks and discuss their benefits, taking into account different aspects of sequence labelling problems such as row labelling (POS-tagging) and join segmentation and labelling (Named Entity Recognition). 
+\item[-] Comprehensive evaluation of word embeddings in sequence
+  labelling tasks.  Sequence labelling tasks is one of the meta problems
+  NLP faced. Previous works have shown that learning word embeddings
+  vector features improves the performance of sequence labelling task,
+  but not fair and extensive comparison has been done so far. In this
+  paper, we evaluated word embedding algorithms in several sequence
+  labelling tasks and discuss their benefits, taking into account
+  different aspects of sequence labelling problems such as row labelling
+  (POS-tagging) and join segmentation and labelling (Named Entity
+  Recognition).
 
-\item[-] Multi-word expressions (MWE) identification using word embeddings. 
-As far as we known, current work only applies Brown clustering to 
-identify MWE. The experiments carry out in this paper will tell which is the best word embedding algorithm to solve for the identification of MWE. 
+\item[-] Multiword expressions (MWE) identification using word
+  embeddings.  To the best of our knowledge know, current work only
+  applies Brown clustering to identify MWE. The experiments carry out in
+  this paper will tell which is the best word embedding algorithm to
+  solve for the identification of MWE.
 \end{itemize}
 
 
 
 
 \section{Related Work}
-In this section, we describe the four word embedding approaches we compared in the paper.
+In this section, we describe the four word embedding approaches we compare in this paper.
 
-Word embeddings models are the new generation of distributional semantics models (DSMs), where the vectors weights are set to optimally predict the contexts in which the corresponding word tend to appear.
+Word embeddings models are a new generation of distributional semantic
+model (DSM), where the vectors weights are set to optimally predict the
+contexts in which the corresponding word tend to appear.
 
 {\color{blue}Describe each of the following word embeddings approaches}
 \begin{itemize}
 \item[-] Glove \cite{pennington2014glove}
 \item[-] word2vec \cite{Mikolov13}
-\item[-] Brown cluster \cite{Brown92class-basedn-gram}
 \item[-] Pre-trained word embeddings \cite{Turian10wordrepresentations}
+\item[-] Brown cluster \cite{Brown92class-basedn-gram}
 % (http://metaoptimize.com/projects/wordreprs/)
 \end{itemize}
 
-The mentioned methods were chosen because they are recent state-of-the-art word embedding learning and because their software is available.
+The first three methods were chosen because they are recent
+state-of-the-art word embedding methods and because their software is
+available. The final method (Brown clusters) was selected as a benchmark
+word representation which makes use of hard word clusters rather than
+a distributed representation.
 % Brown cluster is not new. Why we chose it?
+
+\tim{Rather than describing the word representations and learning
+  methods here, better to describe research which has made use of
+  distributed word representations, e.g.:
+  \begin{itemize}
+  \item \newcite{collobert2011natural}, \newcite{turian2010word}: results to show that distributed
+    word representations benefit POS tagging, chunk parsing, SRL, ...
+  \item \newcite{owoputi2013improved} and \newcite{Schneider+:2014}: results to show that Brown
+    clusters enhance Twitter POS tagging (also \newcite{turian2010word})
+    and MWE identification 
+  \item Also: word embeddings enhance dependency parsing
+    \cite{Bansal+:2014} but NOT constituency parsing \cite{Andreas:Klein:2014}
+  \end{itemize}}
+
 
 
 \section{Word Representations}
@@ -100,7 +143,10 @@ The mentioned methods were chosen because they are recent state-of-the-art word 
 %The statistics about word occurrences in a corpus is the primary source of information available to all supervised methods for learning word representations.
 %Traditionally, words were represented in a vocabulary index, were the is not notion about the similarity between words. 
 
-Inspired by distributional semantics models, distributed word representation methods represent each word as a continuous vector, were similar words have a similar vector representation, therefore, capturing the similarity between words.
+Inspired by distributional semantics models, distributed word
+representation methods represent each word as a continuous vector, where
+similar words have a similar vector representation, therefore, capturing
+the similarity between words.
 
 Example: 
 
@@ -113,8 +159,8 @@ The estimation of the word vectors can be carry out with different models archit
 \item[-] Glove \cite{pennington2014glove}
 \item[-] Skip-gram \cite{Mikolov13}
 \item[-] CBOW \cite{Mikolov13}
-\item[-] Brown cluster \cite{Brown92class-basedn-gram}
 \item[-] Neural language model \cite{Turian10wordrepresentations}
+\item[-] Brown cluster \cite{Brown92class-basedn-gram}
 % (http://metaoptimize.com/projects/wordreprs/)
 \end{itemize}
 
@@ -242,6 +288,8 @@ Test set: remaining 123 documents from Nathana€™s corpus..
 \noindent
 Feature space: the same set as in~\cite{mwecorpus}
 
+\tim{Worth contacting Nathan as possible co-author?}
+
 \subsection{Named entity recognition}
 Training set: CoNLL03 train set.
 
@@ -271,3 +319,4 @@ Anonymised\\
 \bibliography{biblio}
 
 \end{document}
+
