@@ -135,6 +135,44 @@ a distributed representation.
   \item Also: word embeddings enhance dependency parsing
     \cite{Bansal+:2014} but NOT constituency parsing \cite{Andreas:Klein:2014}
   \end{itemize}}
+  
+  
+\newcite{collobert2011natural} proposed a neuronal network architecture
+that learn word embeddings from a Wikipedia corpus of 631 million words
+and use them in POS-tagging, chunking, NER and SRL.
+they induced embeddings with 50 dimensions, over a window size of 5 grams.
+Other hyperparameters they optimize were: capital feature dimension, number of hidden units, and learning rate = 0.01. 
+%631 million words wikipedia. 221 million words
+
+
+Similarly, \newcite{turian2010word} explored the impact of using word
+features learned from cluster-based and word embeddings representations
+for NER and chunking. 
+They evaluate Brown clusters, and word embeddings from \newcite{Collobert2008} 
+and \newcite{Mnih2008}. Words representations were learned using the same data set (a sub-sample of the of the RCV1 corpus), of 37 millions words and a vocabulary size of 269K.
+They induced embeddings with 25, 50, 100, and 200 dimensions over 5-gram windows and 50 epochs for the algorithm from \cite{collobert2011natural}; 
+50 and 100 dimensions over 5-grams windows and 70 epochs for the algorithm from \cite{Mnih2008}; and clusters solutions of 100, 320, 3200 clusters.
+They conclude that unsupervised word representation improve NER and chunking, and that combining different word representations can further improve the performance.
+They also found that Brown clusters deals better with rare words, since...
+According to their experiments, the best scaling parameter, is 0.1.
+%they set/discovered the default (best) scaling parameter, which turn to be: 0.1
+
+%Because Brown clustering scales quadratically in the number of clusters, inducing 10000 clusters would have been prohibitive.)
+%They were trained for 50 epochs, not just 20 epochs (In comparison to Turian et al. (2009)); We initialized all embedding dimensions uniformly in the range
+
+\newcite{owoputi2013improved} demonstrated that Brown clusters enhance Twitter POS tagging. 
+They induced 1000 clusters using a data set of 847 millions of tokens (from 56 million unique tweets). Only units that appeared with a frequency higher than 40 were clustered, which results in a vocabulary size of 216,856.
+
+\newcite{Schneider+:2014} presented a MWE analyzer that, among other features,  used unsupervised word clusters. 
+Using words that appears at least 20 times in the Yelp Academic Dataset (21 million words), they applied the Brown clustering algorithm and induced 1000 clusters. They conclude that the clusters were useful for 
+for identifying words that usually to belong proper names.
+Nevertheless, they mentioned that it is difficult to measure the impact
+of these specific features, since other features may capture the same information.
+%( they considered proper names as MWE)
+
+Word embeddings enhance dependency parsing
+\cite{Bansal+:2014} but NOT constituency parsing \cite{Andreas:Klein:2014}
+
 
 
 
