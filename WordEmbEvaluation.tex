@@ -50,6 +50,7 @@ XXX
 \newcommand{\gabi}[1]{\textcolor{blue}{#1}}
 \newcommand{\tim}[1]{\textcolor{red}{#1}}
 \newcommand{\lizhen}[1]{\textcolor{green}{#1}}
+\newcommand{\nss}[1]{\textcolor{magenta}{#1}}
 
 \section{Introduction}
 Word embedding learning methods are the new generation of distributional
@@ -78,6 +79,8 @@ Expected contributions:
   learned from unlabelled data could save a significant amount of
   labelled data, and thus, alleviate the cost of human annotation.
 % something about scalability?
+\nss{See Guo et al., ``Revisiting Embedding Features for Simple Semi-Supervised Learning''
+(\url{http://ir.hit.edu.cn/~jguo/papers/emnlp2014-semiemb.pdf}).}
 
 \item[-] Comprehensive evaluation of word embeddings in sequence
   labelling tasks.  Sequence labelling tasks is one of the meta problems
@@ -136,7 +139,8 @@ a distributed representation.
     \cite{Bansal+:2014} but NOT constituency parsing \cite{Andreas:Klein:2014}
   \end{itemize}}
   
-  
+\nss{See also work by Mo Yu (\url{http://www.asiteof.me/yumo}) and Manaal Faruqui (\url{http://www.cs.cmu.edu/~mfaruqui/pubs.html}).}
+
 \newcite{collobert2011natural} proposed a neuronal network architecture
 that learn word embeddings from a Wikipedia corpus of 631 million words
 and use them in POS-tagging, chunking, NER and SRL.
@@ -320,13 +324,13 @@ Test set: CoNLL2000 test set.
 Feature space: the same set as in~\cite{turian2010word}
 
 \subsection{MWE Identification}
-Training set: randomly sampled 500 documents from Nathana€™s corpus.
+Training set: randomly sampled 500 documents from Nathanaï¿½ï¿½s corpus.
 
 \noindent
-Validation set: randomly sampled 100 documents from Nathana€™s corpus.
+Validation set: randomly sampled 100 documents from Nathanaï¿½ï¿½s corpus.
 
 \noindent
-Test set: remaining 123 documents from Nathana€™s corpus..
+Test set: remaining 123 documents from Nathanaï¿½ï¿½s corpus..
 
 \noindent
 Feature space: the same set as in~\cite{mwecorpus}
