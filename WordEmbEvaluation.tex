@@ -101,16 +101,7 @@ Expected contributions:
 \end{itemize}
 
 
-
-
-\section{Related Work}
-In this section, we describe the four word embedding approaches we compare in this paper.
-
-Word embeddings models are a new generation of distributional semantic
-model (DSM), where the vectors weights are set to optimally predict the
-contexts in which the corresponding word tend to appear.
-
-{\color{blue}Describe each of the following word embeddings approaches}
+{\color{blue} Describe each of the following word embeddings approaches}
 \begin{itemize}
 \item[-] Glove \cite{pennington2014glove}
 \item[-] word2vec \cite{Mikolov13}
@@ -124,30 +115,19 @@ state-of-the-art word embedding methods and because their software is
 available. The final method (Brown clusters) was selected as a benchmark
 word representation which makes use of hard word clusters rather than
 a distributed representation.
-% Brown cluster is not new. Why we chose it?
 
-\tim{Rather than describing the word representations and learning
-  methods here, better to describe research which has made use of
-  distributed word representations, e.g.:
-  \begin{itemize}
-  \item \newcite{collobert2011natural}, \newcite{turian2010word}: results to show that distributed
-    word representations benefit POS tagging, chunk parsing, SRL, ...
-  \item \newcite{owoputi2013improved} and \newcite{Schneider+:2014}: results to show that Brown
-    clusters enhance Twitter POS tagging (also \newcite{turian2010word})
-    and MWE identification 
-  \item Also: word embeddings enhance dependency parsing
-    \cite{Bansal+:2014} but NOT constituency parsing \cite{Andreas:Klein:2014}
-  \end{itemize}}
-  
-\nss{See also work by Mo Yu (\url{http://www.asiteof.me/yumo}) and Manaal Faruqui (\url{http://www.cs.cmu.edu/~mfaruqui/pubs.html}).}
+
+\section{Related Work}
+In the last years, distributed word representations have been applied
+to several NLP tasks. Their attractiveness relies in the ability to learn  word representations in an unsupervised way, thus directly providing lexical features from big amounts of unlabelled data.
+They have been found specially useful for connection out of vocabulary words to known ones, and for encouraging common behaviour among related in-vocabulary words.
+
 
 \newcite{collobert2011natural} proposed a neuronal network architecture
-that learn word embeddings from a Wikipedia corpus of 631 million words
-and use them in POS-tagging, chunking, NER and SRL.
-they induced embeddings with 50 dimensions, over a window size of 5 grams.
+that learn word embeddings and use them in POS-tagging, chunking, NER and SRL. They induced embeddings from a Wikipedia corpus of 631 millon words, with 50 dimensions, over a window size of 5 grams.
 Other hyperparameters they optimize were: capital feature dimension, number of hidden units, and learning rate = 0.01. 
-%631 million words wikipedia. 221 million words
-
+Without specializing their architecture for the mentioned tasks, they achieve close state-of-the-art performance. After including specialized features (e.g., word suffixes for POS-tagging;  Gazzeters for NER, etc.) and other tricks like cascading and ensambling classifiers, achieve competitive state-of-the-art performance.
+% they system is very fast too.
 
 Similarly, \newcite{turian2010word} explored the impact of using word
 features learned from cluster-based and word embeddings representations
@@ -156,26 +136,49 @@ They evaluate Brown clusters, and word embeddings from \newcite{Collobert2008}
 and \newcite{Mnih2008}. Words representations were learned using the same data set (a sub-sample of the of the RCV1 corpus), of 37 millions words and a vocabulary size of 269K.
 They induced embeddings with 25, 50, 100, and 200 dimensions over 5-gram windows and 50 epochs for the algorithm from \cite{collobert2011natural}; 
 50 and 100 dimensions over 5-grams windows and 70 epochs for the algorithm from \cite{Mnih2008}; and clusters solutions of 100, 320, 3200 clusters.
-They conclude that unsupervised word representation improve NER and chunking, and that combining different word representations can further improve the performance.
-They also found that Brown clusters deals better with rare words, since...
 According to their experiments, the best scaling parameter, is 0.1.
-%they set/discovered the default (best) scaling parameter, which turn to be: 0.1
-
-%Because Brown clustering scales quadratically in the number of clusters, inducing 10000 clusters would have been prohibitive.)
-%They were trained for 50 epochs, not just 20 epochs (In comparison to Turian et al. (2009)); We initialized all embedding dimensions uniformly in the range
+They conclude that unsupervised word representation improve NER and chunking, and that combining different word representations can further improve the performance.
+%They also found that Brown clusters deals better with rare words, since...
 
 \newcite{owoputi2013improved} demonstrated that Brown clusters enhance Twitter POS tagging. 
 They induced 1000 clusters using a data set of 847 millions of tokens (from 56 million unique tweets). Only units that appeared with a frequency higher than 40 were clustered, which results in a vocabulary size of 216,856.
 
 \newcite{Schneider+:2014} presented a MWE analyzer that, among other features,  used unsupervised word clusters. 
-Using words that appears at least 20 times in the Yelp Academic Dataset (21 million words), they applied the Brown clustering algorithm and induced 1000 clusters. They conclude that the clusters were useful for 
-for identifying words that usually to belong proper names.
+Using words that appears at least 20 times in the Yelp Academic Dataset (21 million words), they induced 1000 Brown clusters.
+They conclude that the clusters were useful for identifying words that usually belong to proper names.
 Nevertheless, they mentioned that it is difficult to measure the impact
-of these specific features, since other features may capture the same information.
-%( they considered proper names as MWE)
+of the word embeddings features, since other features may capture the same information.
 
-Word embeddings enhance dependency parsing
-\cite{Bansal+:2014} but NOT constituency parsing \cite{Andreas:Klein:2014}
+\newcite{Bansal+:2014} used word embeddings as features for dependency parsing. To built the vectors, they used the syntactic dependency context instead of the linear context in raw text.
+They found that simple attempts based on discretization of individual word vector dimensions do not improve parsing. 
+Only when performing hierarchical clustering of the continuous word vectors 
+then using features based on the hierarchy, they gain performance. 
+They also pointed out that ensemble of different word embeddings representations improved performance.
+An interesting observation the point out is that with large of window size words tend to topically group, and with small window size words tends to share the same POS-tag.
+Within the same aim, \cite{Andreas:Klein:2014} explores the used of word embeddings for constituency parsing. They mentioned that even word embeddings contain useful syntactic information, this information might be redundant  with the one acquire by a syntactic parser trained with a small amount of data. Their intuition is that, meanwhile word embeddings provides a level of syntactic abstraction useful for dependency parsing, that level of abstraction is already explicit in constituency representations.
+Others that boost the performance when including word emnbeddings representations for syntactic parsing includes \cite{Koo:2008,Koo:2010,Haffari:2011,Tratz:2011}.
+
+Word embedding have also been applied to other (non-sequential NLP) tasks
+such as super-sense tagging \cite{Grave:2013}; grammar induction \cite{Spitkovsky:2011} 
+
+% Koo, T., Carreras, X., & Collins, M. (2008). Simple semi-supervised dependency parsing. ACL (pp. 595?603).
+% Koo et al., 2008; http://cs.nyu.edu/~dsontag/papers/KooEtAl_emnlp10.pdf Dual Decomposition for Parsing with Non-Projective Head Automata - Dependency parsing.
+
+%Haffari et al., 2011; http://www.aclweb.org/anthology/P11-2125 Ensemble of different dependency parsing models, each model corresponding to a different syntactic/semantic word clustering annotation.
+
+% Supersense tagger (Grave et al., 2013) https://hal.inria.fr/hal-00833288/PDF/final-version.pdf
+
+% Grammar induction (Spitkovsky at el., 2013)
+
+Do we want to address the following questions:
+How embeddings interact with the applications, for example, vocabulary expansion hypothesis (out of vocabulary words); static share hypothesis (in vocabulary words, e.g., individual first names are also rare in the treebank, but tend to cluster together in distributional representations);
+embedding structure hypothesis (e.g., group words by definiteness, like each, this, every, few, most, etc.).
+
+Words embeddings are supposed to be useful for: 
+
+- connecting out of vocabulary words to known ones, 
+- encouraging common behaviour among related in-vocabulary words,
+- directly providing features for the lexicon
 
 
 
