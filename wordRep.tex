@@ -24,3 +24,27 @@ state-of-the-art word embedding methods and because their software is
 available. The final method (Brown clusters) was selected as a benchmark word representation, which makes use of hard word clusters rather than a distributed representation.
 
 {\color{red}Discuss here about fundamental differences between the above methods}
+
+\subsection{Datasets}
+It is well known that the choice of a corpora have an important effect in the final accuracy of machine learning algorithms. 
+Therefore, each word embedding method was trained with the same corpora (Table \ref{wordEmbedCorpora}). The main reason of choosing the corpora 
+is that they are publicly available. 
+
+\begin{table}[h]
+\begin{center}
+\begin{small}
+\begin{tabular}{lll}
+\hline
+\textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
+UMBC 	& 48.1GB & 3 billions \\
+One Billion 	& 4.1GB & 0.8 billions  \\
+Latest wikipedia dump & 49.6GB & 3 billions \\
+\end{tabular}
+\end{small}
+\caption{Corpora used to learn word embeddings}
+\label{wordEmbedCorpora}
+\end{center}
+\end{table}
+
+\subsection{Preprocessing}
+
