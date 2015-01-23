@@ -23,8 +23,6 @@ The first four methods were chosen because they are recent
 state-of-the-art word embedding methods and because their software is
 available. The final method (Brown clusters) was selected as a benchmark word representation, which makes use of hard word clusters rather than a distributed representation.
 
-
-
 \begin{table}
 \centering
 \begin{small}
@@ -32,10 +30,12 @@ available. The final method (Brown clusters) was selected as a benchmark word re
 \hline
 \textbf{Glove parameters}  & \textbf{Value} \\ \hline
 Size of word vectors &  \\
-Max skip length between words & 15 \\ 
+%Max skip length between words & 15 \\ 
 Discard words below frequency & 5 \\
 Number of training iterations & 25 \\
-Cut-off in weighting function & 100 \\ \hline
+%Cut-off in weighting function & 100 \\ 
+Max epochs & 50 \\
+Initial learning rate & 0.05\\ \hline
 \end{tabular}
 \label{glove}
 \caption{Glove algorithm parameters}
@@ -49,13 +49,32 @@ Cut-off in weighting function & 100 \\ \hline
 \begin{tabular}{lr}
 \hline
 \textbf{Skip-gram parameters}  & \textbf{Value} \\ \hline
-Size of word vectors &  \\
-Max skip length between words & 5 \\ 
+Word vector size &  \\
+Context window size & \\
+%Max skip length between words & 5 \\ 
+Learning algorithm &10 negative samples \\
 Discard words below frequency & 5 \\
-Number of training iterations & 5 \\
-Starting learning rate & 0.025 \\ \hline
+Max epochs & 50 \\
+Initial learning rate & 0.025 \\ \hline
 \end{tabular}
 \label{skip}
+\caption{Skip-gram algorithm parameters}
+\end{small}
+\end{table}
+
+\begin{table}
+\centering
+\begin{small}
+\begin{tabular}{lr}
+\hline
+\textbf{CBOW parameters}  & \textbf{Value} \\ \hline
+Word vector size &  \\
+Context window size & \\
+Discard words below frequency & 5 \\
+Max epochs & 50 \\
+Initial learning rate & 0.025 \\ \hline
+\end{tabular}
+\label{cbow}
 \caption{Skip-gram algorithm parameters}
 \end{small}
 \end{table}
@@ -67,12 +86,11 @@ Starting learning rate & 0.025 \\ \hline
 \begin{tabular}{lr}
 \hline
 \textbf{Brown cluster parameters}  & \textbf{Value} \\ \hline
-Clusters size & 4000 \\ 
-Size of word vectors &   \\
-Discard words below frequency & 5 \\
-Maximum length of a phrase & 1 \\
-Number to call srand with & 505123952 \\
-Collocations with most mutual information & 500 \\ \hline
+Number of clusters & \\ 
+Discard words below frequency & 5 \\ \hline
+%Maximum length of a phrase & 1 \\ \hline
+%Number to call srand with & 505123952 \\
+%Collocations with most mutual information & 500 \\ \hline
 %Collocations with most mutual information (output) & 500 \\ \hline
 \end{tabular}
 \label{brown}
@@ -105,4 +123,4 @@ Latest wikipedia dump & 49.6GB & 3 billions \\ \hline
 \end{table}
 
 \subsection{Preprocessing}
-
+All text are preprocessed with Stanford sentence splitter and tokeniser. All consecutive digit substrings are replaced by NUM\textit{f}, where \textit{f} is the length of the digit substring. For example, "10.20" is replaced by "NUM2.NUM2".

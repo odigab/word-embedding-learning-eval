@@ -1,20 +1,19 @@
 \section{Sequence Tagging Tasks}
 \label{sec:SeqTagging}
 
-We evaluate different word representations in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification. For each task, we feed learned word representations into a first order linear-chain graph transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. If we do not update word representations during training. The graph transformer is equivalent to a linear-chain CRF. For each model taking distributed word representations as word features, we consider two settings: 
+We evaluate different word representations in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification. For each task, we feed learned word representations into a first order linear-chain graph transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. If we do not update word representations during training, the graph transformer is equivalent to a linear-chain CRF. For each model taking distributed word representations as word features, we consider two settings: 
 \begin{small}
 \begin{itemize}
 \item[-] Graph transformer \textit{does not} fine tune word representations during training.
 \item[-] Graph transformer fine tunes the word representations during training.
 \end{itemize}
 \end{small}
-For each task, we consider also CRF models with conventional features, which use one-hot representation for each unigram.
+For each task, we consider also CRF models with hand-crafted features, which use one-hot representation for each unigram.
 
-For each task, we split the target corpus into a training set, validation set, and a test set (see Table \ref{datasplit}). If the corpus already provides fixed splits, we just reuse them. For POS tagging and NER, we also evaluate the models with a out-of-domain corpus, which has similar annotation schema as the respective training corpus.
-
+For each task, we split the task specific corpus into a training set, validation set, and a test set (see Table \ref{datasplit}). If a corpus already provides fixed splits, we reuse them. For POS tagging and NER, we also evaluate the models with a out-of-domain corpus, which has similar annotation schema as the respective training corpus.
 \begin{table*}
 \begin{small}
-\begin{tabular}{lllp{3cm}ll}
+\begin{tabular}{llp{3cm}lll}
 \hline
 			& \textbf{Training} & \textbf{Validation} & \textbf{Test} & \textbf{Feature space} \\ \hline
 \textbf{POS-Tagging} & 0-18 of WSJ & 19-21 of WSJ & 22-24 of WSJ and English Web Treebank & as in~\cite{collobert2011natural} \\
@@ -22,23 +21,22 @@ For each task, we split the target corpus into a training set, validation set, a
 \textbf{NER} & CoNLL2003 train set & CoNLL2003 dev. set & CoNLL2003 test set and MUC7 & as in~\cite{turian2010word} \\
 \textbf{MWE} & 500 documents from & 100 documents from & 123 documents & as in~\cite{mwecorpus}\\
 \hline
-\label{datasplit}
-\caption{Datasets and features for each task.}
 \end{tabular}
+\caption{Datasets and features for each task.}
+\label{datasplit}
 \end{small}
 \end{table*}
 
-In order to have a fair and reproducible experimental results, we tuned the hyperparameters with random search~\cite{bergstra2012random}. We randomly sample 50 distinct hyperparameter combinations with the same random seed for the models that do not update word embeddings, and sample 100 distinct hyperparameter sets for the models that update word embeddings, and pick up the best performed one based on its performance on the validation set. Note that, we consider word vector size, context window size, and number of brown clusters also as the hyperparameters of respective models. The range of these hyperparameters are given as follows:
-
+In order to have fair and reproducible experimental results, we tuned the hyperparameters with random search~\cite{bergstra2012random}. We randomly sampled 50 distinct hyperparameter sets with the same random seed for the models that do not update word embeddings, and sampled 100 distinct hyperparameter sets for the models that update word embeddings.  For each set of hyperparameters, we train a model on its training set and pick up the best one based on its performance on its validation set~\cite{turian2010word}. Note that, we also consider word vector size and context window size of distributed word representation, and number of clusters of brown clustering as the hyperparameters. This is achieved by mapping each possible hyperparameter combination to the word representation files trained with these parameters. Their ranges are listed below.
 \begin{small}
 \begin{itemize}
 \item[-]\textbf{Word vector size}: [25, 50, 100, 200].
 \item[-]\textbf{Context window size}: [5, 10, 15].
-\item[-]\textbf{Number of clusters}: [250, 500, 1000, 2000, 4000]. 
+\item[-]\textbf{Number of brown clusters}: [250, 500, 1000, 2000, 4000]. 
 \end{itemize}
 \end{small}
 
-Similar to~\cite{turian2010word}, all models are trained on their respective training sets. However, for the models that update word representations, we find that we consistently get under-performed hyperparameters after trying out all hyperparameter combinations, because they have more hyperparameters than the models that do not update word representations. Then for each distributed word representations, we reuse all hyperparameters fixed for the corresponding models that do not update word representations, only tune the hyperparameters of AdaGrad for the word representation layer. This method requires only 32 additional runs for each model and achieves consistently better results than 100 random draws.
+However, for the models that update word representations, we always found under-performed hyperparameters after trying out all hyperparameter combinations, because they have more hyperparameters than the models that do not update word representations. Then for each distributed word representations, we reuse all hyperparameters of the models that do not update word representations, only tune the hyperparameters of AdaGrad for the word representation layer. This method requires only 32 additional runs for each model updating embeddings and achieves consistently better results than 100 random draws.
 
 The final evaluation is carried out in a semi-supervised setting. We split the training set into 10 partitions at log scale. That means, the second smallest partition will be twice the size of the smallest partition. We created 10 training sets with incremental size by merging these partitions from the smallest one to the largest one, and evaluate them all on the same designated test sets. 
 
