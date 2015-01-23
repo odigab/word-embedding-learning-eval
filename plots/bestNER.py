@@ -95,7 +95,7 @@ for root, subdirs, files in os.walk(walk_dir):
 				for line in lines[1:]: 
 					p = line.split()	
 					x.append(float(p[0]))				
-					y.append(float(p[35]))
+					y.append(float(p[35]))   # F1: AJ
 				# convert to numpy array
 				print('x ', x)						
 				print('y ', y)			

@@ -59,31 +59,26 @@ for root, subdirs, files in os.walk(walk_dir):
 		print('\t- subdirectory ' + subdir)			
 	for filename in natsorted(files):  		
 		if filename in alist_filter: 
-			if re.match("unigram_best.txt", filename):
-				label = filename.replace("unigram_best.txt", "unigram")
+			if re.match("unigram_best.txt", filename): label = "unigram"
 			if re.match("glove_noupdated_best.txt", filename):
 				marker = noupMarker
-				label = filename.replace("glove_noupdated_best.txt", "glove_noup")
-			if re.match("glove_updated_best.txt", filename):					
-				label = filename.replace("glove_updated_best.txt", "glove_up")
+				label = "glove_noup"
+			if re.match("glove_updated_best.txt", filename): label = "glove_up"
 			elif re.match("cbow_noupdated_best.txt", filename):
 				marker = noupMarker
-				label = filename.replace("cbow_noupdated_best.txt", "cbow_noup")
-			elif re.match("cbow_updated_best.txt", filename):
-				label = filename.replace("cbow_updated_best.txt", "cbow_up") 
+				label = "cbow_noup"
+			elif re.match("cbow_updated_best.txt", filename): label = "cbow_up"
 			elif re.match("skipgram_noupdated_best.txt", filename):
 				marker = noupMarker
-				label = filename.replace("skipgram_noupdated_best.txt", "skip_gram_noup")
-			elif re.match("skipgram_updated_best.txt", filename):
-				label = filename.replace("skipgram_updated_best.txt", "skip_gram_up")
+				label = "skip_gram_noup"
+			elif re.match("skipgram_updated_best.txt", filename): label = "skip_gram_up"
 			elif re.match("cw_updated_best.txt", filename):
 				marker = noupMarker
-				label = filename.replace("cw_updated_best.txt", "cw_up")
+				label = "cw_up"
 			elif re.match("cw_noupdated_best.txt", filename):
 				marker = noupMarker
-				label = filename.replace("cw_noupdated_best.txt", "cw_noup")		
-			elif re.match("brown_cluster_v4000_best.txt", filename):
-				label = filename.replace("brown_cluster_v4000_best.txt", "brown_cluster")	
+				label = "cw_noup"
+			elif re.match("brown_cluster_v4000_best.txt", filename): label = "brown_cluster
 			filePath = os.path.join(root, filename)
 			print('\t- file %s (full path: %s)' % (filename, filePath))
 			with open(filePath, 'rb') as f:
@@ -92,12 +87,12 @@ for root, subdirs, files in os.walk(walk_dir):
 				# check the column title
 				titleLine = lines[0]
 				t = titleLine.split()				
-				print('column title', t[1] )		
+				print('column title', t[17] )		
 				# skip the first row with the titles
 				for line in lines[1:]: 
 					p = line.split()	
 					x.append(float(p[0]))				
-					y.append(float(p[1]))
+					y.append(float(p[17]))   # F1: R
 				# convert to numpy array
 				print('x ', x)						
 				print('y ', y)			
@@ -112,7 +107,7 @@ for root, subdirs, files in os.walk(walk_dir):
 				marker = ''
 	
 plt.xlabel('Training size')
-plt.ylabel('Accuracy')
+plt.ylabel('F1-Measure')
 
 plt.rcParams.update(legParams)
 plt.legend(loc='lower right')

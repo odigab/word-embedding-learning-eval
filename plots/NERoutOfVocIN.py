@@ -80,69 +80,75 @@ def sortedWalk(top, topdown=True, onerror=None):
         yield top, dirs, nondirs
 
 
+def returnold(folder):
+    matches = []
+    for root, dirnames, filenames in os.walk(folder):
+        for filename in fnmatch.filter(filenames, '*.*'):
+            matches.append(os.path.join(root, filename))
+    return min(matches, key=os.path.getmtime)
 
 files = sortedWalk(inputfolder)
 
 
 
-#for root, subdirs, files in os.walk(walk_dir):
+for root, subdirs, files in os.walk(walk_dir):
 	#print('--\nroot = ' + root)
-#	for subdir in sorted(subdirs):
-#		print('\t- subdirectory ' + subdir)			
-#	sortfiles = sorted(files)  
-for filename in files:  
-	if filename in alist_filter: 
-		if re.match("unigram_best.txt", filename): label = "unigram"
-		elif re.match("glove_noupdated_best.txt", filename): 
-			marker = noupMarker
-			label = "glove_noup"
-		elif re.match("glove_updated_incretuneparam.txt", filename): label = "glove_up"
-		elif re.match("cbow_negsam_noupdated_best.txt", filename):
-			marker = noupMarker
-			label = "cbow_negsam_noup"
-		elif re.match("cbow_negsam_updated_incretuneparam.txt", filename): label = "cbow_negsam_up"
-		elif re.match("skip_gram_negsam_noupdated_best.txt", filename):
-			marker = noupMarker
-			label = "skip_gram_negsam_noup"
-		elif re.match("skip_gram_negsam_updated_incretuneparam.txt", filename): label = "skip_gram_negsam_up"
-		elif re.match("cw_updated_incretuneparam.txt", filename): label = "cw_up"
-		elif re.match("cw_noupdated_best.txt", filename):
-			marker = noupMarker
-			label = "cw_noup"
-		elif re.match("brown_cluster_v4000_best.txt", filename): label = "brown_cluster"
-		filePath = os.path.join(root, filename)
-		print('\t- file %s (full path: %s)' % (filename, filePath))
-		with open(filePath, 'rb') as f:
-		        lines = f.readlines()
-			f.close	
-			# check the column title
-			titleLine = lines[0]
-			t = titleLine.split()				
-			print('column title:', t[2])		# IN DOMAIN CONLL_out-of-vocabulary_Accuracy
-			print('column title 2:', t[29])		# OUT OF DOMAIN MUC_out-of-vocabulary_Accuracy
-			# skip the first row with the titles
-			for line in lines[1:]: 
-				p = line.split()	
-				x.append(float(p[0]))				
-				y.append(float(p[2]))
-			# convert to numpy array
-			print('x ', x)						
-			print('y ', y)			
-			print('z', z) 
-			xv = np.array(x)
-			yv = np.array(y)
-			zv = np.array(z)
-			plt.plot(xv, yv, label = label + '_' + t[2].replace('_out-of-vocabulary_Accuracy', ''), linestyle=linestyle, marker=marker)	
-#				plt.plot(xv, zv, label = label + '_' + t[29].replace('_out-of-vocabulary_Accuracy', ''))		
-			x = []
-			y = []
-			z = []
-			xv = []
-			yv = []
-			zv = []
-			label = ''
-			marker = ''
-	
+	for subdir in sorted(subdirs):
+		print('\t- subdirectory ' + subdir)			
+	sortfiles = sorted(files)  
+	for filename in files:  
+		if filename in alist_filter: 
+			if re.match("unigram_best.txt", filename): label = "unigram"
+			elif re.match("glove_noupdated_best.txt", filename): 
+				marker = noupMarker
+				label = "glove_noup"
+			elif re.match("glove_updated_incretuneparam.txt", filename): label = "glove_up"
+			elif re.match("cbow_negsam_noupdated_best.txt", filename):
+				marker = noupMarker
+				label = "cbow_negsam_noup"
+			elif re.match("cbow_negsam_updated_incretuneparam.txt", filename): label = "cbow_negsam_up"
+			elif re.match("skip_gram_negsam_noupdated_best.txt", filename):
+				marker = noupMarker
+				label = "skip_gram_negsam_noup"
+			elif re.match("skip_gram_negsam_updated_incretuneparam.txt", filename): label = "skip_gram_negsam_up"
+			elif re.match("cw_updated_incretuneparam.txt", filename): label = "cw_up"
+			elif re.match("cw_noupdated_best.txt", filename):
+				marker = noupMarker
+				label = "cw_noup"
+			elif re.match("brown_cluster_v4000_best.txt", filename): label = "brown_cluster"
+			filePath = os.path.join(root, filename)
+			print('\t- file %s (full path: %s)' % (filename, filePath))
+			with open(filePath, 'rb') as f:
+			        lines = f.readlines()
+				f.close	
+				# check the column title
+				titleLine = lines[0]
+				t = titleLine.split()				
+				print('column title:', t[2])		# IN DOMAIN CONLL_out-of-vocabulary_Accuracy
+				print('column title 2:', t[29])		# OUT OF DOMAIN MUC_out-of-vocabulary_Accuracy
+				# skip the first row with the titles
+				for line in lines[1:]: 
+					p = line.split()	
+					x.append(float(p[0]))				
+					y.append(float(p[2]))
+				# convert to numpy array
+				print('x ', x)						
+				print('y ', y)			
+#				print('z', z) 
+				xv = np.array(x)
+				yv = np.array(y)
+#				zv = np.array(z)
+				plt.plot(xv, yv, label = label + '_' + t[2].replace('_out-of-vocabulary_Accuracy', ''), linestyle=linestyle, 	marker=marker)	
+	#				plt.plot(xv, zv, label = label + '_' + t[29].replace('_out-of-vocabulary_Accuracy', ''))		
+				x = []
+				y = []
+				z = []
+				xv = []
+				yv = []
+				zv = []
+				label = ''
+				marker = ''
+		
 plt.xlabel('Training size')
 plt.ylabel('F1-Measure')
 
