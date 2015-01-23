@@ -1,7 +1,7 @@
 \section{Sequence Tagging Tasks}
 \label{sec:SeqTagging}
 
-We evaluate different word representations in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification. For each task, we feed learned word representations into a first order linear-chain graph transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. If we do not update word representations during training. the graph transformer is equivalent to a linear-chain CRF. For each model taking distributed word representations as word features, we consider two settings: 
+We evaluate different word representations in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification. For each task, we feed learned word representations into a first order linear-chain graph transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. If we do not update word representations during training. The graph transformer is equivalent to a linear-chain CRF. For each model taking distributed word representations as word features, we consider two settings: 
 \begin{small}
 \begin{itemize}
 \item[-] Graph transformer \textit{does not} fine tune word representations during training.
@@ -28,7 +28,7 @@ For each task, we split the target corpus into a training set, validation set, a
 \end{small}
 \end{table*}
 
-In order to have a fair and reproducible experimental results, we tune the hyperparameters with random search~\cite{bergstra2012random}. We randomly sample 50 distinct hyperparameter combinations with the same random seed for the models that do not update word embeddings, and sample 100 distinct hyperparameter sets for the models that update word embeddings, and pick up the best performed one based on its performance on the validation set. Note that, we consider word vector size, context window size, and number of brown clusters also as the hyperparameters of respective models. The range of these hyperparameters are given as follows:
+In order to have a fair and reproducible experimental results, we tuned the hyperparameters with random search~\cite{bergstra2012random}. We randomly sample 50 distinct hyperparameter combinations with the same random seed for the models that do not update word embeddings, and sample 100 distinct hyperparameter sets for the models that update word embeddings, and pick up the best performed one based on its performance on the validation set. Note that, we consider word vector size, context window size, and number of brown clusters also as the hyperparameters of respective models. The range of these hyperparameters are given as follows:
 
 \begin{small}
 \begin{itemize}
