@@ -65,7 +65,8 @@ The resulting vectors can be used as features in many NLP applications and it ha
 Their attractiveness relies in the ability to learn word representations in an unsupervised way, thus directly providing lexical features from big amounts of unlabelled data 
 and, therefore, alleviating the cost of human annotations.
 It has been also claimed that word embeddings
-have the ability to connect out of vocabulary words to known ones, as well known as vocabulary expansion hypothesis. 
+have the ability to connect out of vocabulary words to known ones.
+%, as well known as vocabulary expansion hypothesis. 
 Hence, suggesting that word embeddings are a good resource 
 for applications that need to be adapted to a certain domain, 
 different from the one the application have been tuned for.
@@ -73,7 +74,7 @@ For example,...
 Another property attribute to word embeddings is their 
 capacity to encouraging common behaviour among related in-vocabulary words, for instance...
 
-Something about the architectures
+{\color{red}Short sentence about the architectures}
 
 As with other learning methods, it is well known that
 the performance of machine learning algorithms heavily depends on
@@ -95,12 +96,13 @@ In this paper, we perform an extensive evaluation of five word embedding approac
 NER and MWE (Multi Word Expression Identification), 
 within the following aims:
 (i) perform a fair comparison of different word embeddings
-algorithms. This includes running different word embeddings algorithms under controlled conditions, for example, use the same training set, the same preprocessing, etc.
-(ii) measure the influence of word embeddings in sequence labeling tasks in semi-supervised settings (fine-tuning)
-(iii) use word embeddings for MWE. To the best of our knowledge, 
-word embeddings have not been used for this task before.
-(iv) systematically compared the usefulness of word embedding versus
+algorithms. This includes running different word embeddings algorithms under controlled conditions, for example, use the same training set, the same preprocessing, etc.;
+(ii) measure the influence of word embeddings in sequence labeling tasks in semi-supervised settings (fine-tuning);
+(iii) systematically compared the usefulness of word embedding versus
 unigram features for sequence tagging.
+(iv) use word embeddings for MWE. To the best of our knowledge, 
+word embeddings have not been used for this task before;
+
 
 %(i) are word embeddings always better than unigram features? 
 %(ii) which word embeddings approach is the best? 
@@ -108,8 +110,8 @@ unigram features for sequence tagging.
 %(iv) how reliable are in labeling out-of-domain data and?
 
 % the conextion between dist. semantics models and sequence taggin. 
-static share hypothesis (in vocabulary words, e.g., individual first names are also rare in the treebank, but tend to cluster together in distributional representations);
-embedding structure hypothesis (e.g., group words by definiteness, like each, this, every, few, most, etc.).
+%static share hypothesis (in vocabulary words, e.g., individual first names are also rare in the treebank, but tend to cluster together in distributional representations);
+%embedding structure hypothesis (e.g., group words by definiteness, like each, this, every, few, most, etc.).
 
 
 
@@ -157,11 +159,10 @@ Word embedding have also been applied to other (non-sequential NLP) tasks such a
 Distributed word representation methods represent each word as a continuous vector, where similar words have a similar vector representation, therefore, capturing
 the similarity between words.
 
-Example
+{\color{red}Example}
 
-The estimation of the word vectors can be carry out with different models architectures. We evaluate five different methods, which are the following: 
+The estimation of the word vectors can be carry out with different models architectures. We evaluate five different word embeddings learning algorithms, which are the following: 
  
-\subsection{Word Embedding Learning Algorithms}
 \begin{itemize}
 \item[-] Glove \cite{pennington2014glove}
 \item[-] Skip-gram \cite{Mikolov13}
@@ -170,11 +171,11 @@ The estimation of the word vectors can be carry out with different models archit
 \item[-] Brown cluster \cite{Brown92class-basedn-gram}
 \end{itemize}
 
-The first three methods were chosen because they are recent
+The first four methods were chosen because they are recent
 state-of-the-art word embedding methods and because their software is
 available. The final method (Brown clusters) was selected as a benchmark word representation, which makes use of hard word clusters rather than a distributed representation.
 
-Discuss here about fundamental differences between the above methods
+{\color{red}Discuss here about fundamental differences between the above methods}
 
 
 \section{Experimental Setup}
@@ -196,8 +197,8 @@ One Billion 	& 4.1GB & 0.8 billions  \\
 Latest wikipedia dump & 49.6GB & 3 billions \\
 \end{tabular}
 \end{small}
+\caption{Corpora used to learn word embeddings}
 \label{corpus}
-\caption{Corpus used to learn word embeddings}
 \end{center}
 \end{table}
 
@@ -208,6 +209,8 @@ The preprocessing pipeline consist of a sentence splitter, a tokenizer, a POS-ta
 
 
 \subsection{Hyperparameters tuning}
+
+{\color{red} is this section still valid?}
 
 The performance of learning methods heavily depends on their parameters optimization. 
 In order to search for the best hyper-parameters, we look for the shared parameters across methods (methods specific parameters were set to their optimal reported values). The parameters we tuned are the followings:
@@ -220,7 +223,7 @@ In order to search for the best hyper-parameters, we look for the shared paramet
 \end{itemize}
 \end{small}
 
-For each task, we split the data into a training set, validation set, and a test set. The hyper parameters are tuned on the validation set with random search~\cite{bergstra2012random}. To be fair, for each model, we randomly choose 100 hyper parameter combinations and pick up the best one based on its performance on the validation set. Then each model is evaluated in a semi-supervised setting. We start with training models on 10\% of the training data, and evaluate them on the test dataset. Then we incrementally add another 10\% of the training data and evaluate them until all training data is used. We adopt per-word F1 scores as the evaluation metric for all tasks except POS tagging, for which we used per-word accuracy.
+For each task, we split the data into a training set, validation set, and a test set (\ref{datasplit}). The hyper parameters are tuned on the validation set with random search~\cite{bergstra2012random}. To be fair, for each model, we randomly choose 100 hyper parameter combinations and pick up the best one based on its performance on the validation set. Then each model is evaluated in a semi-supervised setting. We start with training models on 10\% of the training data, and evaluate them on the test dataset. Then we incrementally add another 10\% of the training data and evaluate them until all training data is used. We adopt per-word F1 scores as the evaluation metric for all tasks except POS tagging, for which we used per-word accuracy.
 In order to evaluate model performance on unknown words, we report also the average F1 scores for the words that do not occur in the training set.
 
 
@@ -249,12 +252,15 @@ We also set up experiments to verify that CRF/graph transformer requires differe
 \begin{table*}
 \begin{small}
 \begin{tabular}{lllp{3cm}ll}
-			& Training & Validation & Test & Feature space \\ \hline
+\hline
+			& \textbf{Training} & \textbf{Validation} & \textbf{Test} & \textbf{Feature space} \\ \hline
 \textbf{POS-Tagging} & 0-18 of WSJ & 19-21 of WSJ & 22-24 of WSJ and English Web Treebank & as in~\cite{collobert2011natural} \\
 \textbf{Chunking} & WSJ & 1000 sentences WSJ & CoNLL2000 & as~\cite{turian2010word}\\
 \textbf{NER} & CoNLL2003 train set & CoNLL2003 dev. set & CoNLL2003 test set and MUC7 & as in~\cite{turian2010word} \\
 \textbf{MWE} & 500 documents from & 100 documents from & 123 documents & as in~\cite{mwecorpus}\\
 \hline
+\label{datasplit}
+%\caption{Data split into training, validation and test set for each task}
 \end{tabular}
 \end{small}
 \end{table*}
@@ -295,21 +301,22 @@ Because we can either update pre-trained word embeddings during training or not,
 \item How do the key parameters of each word learning algorithms affect the experimental results?
 \end{itemize}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% BESTS
-
 \begin{figure*}
-\caption{Best results for each method for POS and Chunking}
+\caption{Best results for each method for POS-Tagging and Chunking}
 \centering
 \begin{subfigure}{.5\textwidth}
 	\centering
-    \includegraphics[width=0.8\textwidth]{plots/bestPOS.png}
+    \includegraphics[width=0.8\textwidth]{plots/bestPOS.png}    	
 	\label{fig:bestpos}
+	\subcaption{POS-Tagging results}	
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
 	\centering
     \includegraphics[width=0.8\textwidth]{plots/bestChunking.png}
 	\label{fig:bestchunking}
+	\subcaption{Chunking results}	
 \end{subfigure}
 \end{figure*}
 
@@ -319,11 +326,13 @@ Because we can either update pre-trained word embeddings during training or not,
 \begin{subfigure}{.5\textwidth}
 	\centering
     	\includegraphics[width=0.8\textwidth]{plots/bestNER.png}
+	\subcaption{NER results}	
 	\label{fig:bestner}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
 	\centering
     	\includegraphics[width=0.8\textwidth]{plots/bestMWE.png}
+    \subcaption{MWE results}	
 	\label{fig:bestmwe}
 \end{subfigure}  	
 \end{figure*}  	
@@ -333,18 +342,18 @@ Because we can either update pre-trained word embeddings during training or not,
 %%% OUT OF VOC POS
 
 \begin{figure*}
-\caption{Out-of-vocabulary-words for \textit{in domain} results for each method for POS}
+\caption{POS-Tagging out-of-vocabulary-words accuracy for \textit{in-domain} and \textit{out-of-domain} test sets}
 \centering
 \begin{subfigure}{.5\textwidth}
 	\centering
     	\includegraphics[width=0.8\textwidth]{plots/POSoutOfVocIN.png}
-    	\subcaption{\textit{In domain}}
+    	\subcaption{\textit{in domain} }
 	\label{fig:inpos}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
 	\centering
     	\includegraphics[width=0.8\textwidth]{plots/POSoutOfVocOUT.png}
-   	\subcaption{\textit{Out of domain}}
+   	\subcaption{\textit{out-of-domain}}
 	\label{fig:outpos}
 \end{subfigure}  	
 \end{figure*} 
@@ -355,18 +364,18 @@ Because we can either update pre-trained word embeddings during training or not,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% OUT OF VOC NER
 \begin{figure*}
-\caption{Out-of-vocabulary-words for \textit{in domain} results for each method for NER}
+\caption{NER out-of-vocabulary-words accuracy for \textit{in-domain} and \textit{out-of-domain} test sets}
 \centering
 \begin{subfigure}{.5\textwidth}
 	\centering
     	\includegraphics[width=0.8\textwidth]{plots/NERoutOfVocIN.png}
-    	\subcaption{\textit{In domain}}
+    	\subcaption{\textit{in-domain}}
 	\label{fig:inner}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
 	\centering
     	\includegraphics[width=0.8\textwidth]{plots/NERoutOfVocOUT.png}
-   	\subcaption{\textit{Out of domain}}
+   	\subcaption{\textit{out-of-domain}}
 	\label{fig:outner}
 \end{subfigure}  	
 \end{figure*}
@@ -375,7 +384,7 @@ Because we can either update pre-trained word embeddings during training or not,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% OUT OF VOC MWE
 \begin{figure*}
-\caption{Out-of-vocabulary-words for \textit{in domain} results for each method for MWE}
+\caption{MWE out-of-vocabulary-words accuracy for \textit{in-domain} test set}
 \centering
     	\includegraphics[width=0.5\textwidth]{plots/NERoutOfVocIN.png}    
 \label{fig:outmwe}
