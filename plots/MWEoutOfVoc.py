@@ -1,6 +1,7 @@
 #!/usr/bin/python
 from pylab import *
 from natsort import natsorted
+import re
 import os
 import glob
 import array
@@ -33,6 +34,12 @@ x = []
 y = []
 xv = []
 yv = []
+label = ''
+marker = ''
+linestyle = '-'
+noupMarker = 's'
+legParams = {'legend.fontsize': 10,
+          'legend.linewidth': 0.4}
 
 alist_filter = ['brown_cluster_v4000_best.txt', 'd_best.txt', 'unigram_best.txt']
 
@@ -41,9 +48,12 @@ for root, subdirs, files in os.walk(walk_dir):
 	print('--\nroot = ' + root)
 	for subdir in subdirs:
 		print('\t- subdirectory ' + subdir)			
-	for filename in files:  		
-		if filename in alist_filter or filename[-10:] in alist_filter:
+	for filename in natsorted(files):  		
+		if filename in alist_filter or filename[-10:] in alist_filter:	
+			if re.match('.*noupdated.*', filename):	
+				marker = noupMarker
 			label = filename.replace("_best.txt", "")		
+			label = label.replace('_v4000', '')
 			filePath = os.path.join(root, filename)
 			print('\t- file %s (full path: %s)' % (filename, filePath))
 			with open(filePath, 'rb') as f:
@@ -63,12 +73,13 @@ for root, subdirs, files in os.walk(walk_dir):
 				print('y ', y)			
 				xv = np.array(x)
 				yv = np.array(y)
-				plt.plot(xv, yv, label = label)
+				plt.plot(xv, yv, label = label, linestyle=linestyle, marker=marker)	
 				x = []
 				y = []
 				xv = []
 				yv = []
-
+				label = ''	
+				marker = ''
 
 plt.title('Out of vocabulary words')
 plt.xlabel('Training size')
