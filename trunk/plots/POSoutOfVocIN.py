@@ -58,31 +58,25 @@ for root, subdirs, files in os.walk(walk_dir):
 		print('\t- subdirectory ' + subdir)			
 	for filename in files:  		
 		if filename in alist_filter:
-			if re.match("unigram_best.txt", filename):
-				label = filename.replace("unigram_best.txt", "unigram")
+			if re.match("unigram_best.txt", filename): label = "unigram"
 			if re.match("glove_noupdated_best.txt", filename):
 				marker = noupMarker
-				label = filename.replace("glove_noupdated_best.txt", "glove_noup")
-			if re.match("glove_updated_incretuneparam.txt", filename):					
-				label = filename.replace("glove_updated_incretuneparam.txt", "glove_up")
+				label = "glove_noup"
+			if re.match("glove_updated_incretuneparam.txt", filename): label = "glove_up"
 			elif re.match("cbow_negsam_noupdated_best.txt", filename):
 				marker = noupMarker
-				label = filename.replace("cbow_negsam_noupdated_best.txt", "cbow_negsam_noup")
-			elif re.match("cbow_negsam_updated_incretuneparam.txt", filename):
-				label = filename.replace("cbow_negsam_updated_incretuneparam.txt", "cbow_negsam_up") 
+				label = "cbow_negsam_noup"
+			elif re.match("cbow_negsam_updated_incretuneparam.txt", filename): label = "cbow_negsam_up"
 			elif re.match("skip_gram_negsam_noupdated_best.txt", filename):
 				marker = noupMarker
-				label = filename.replace("skip_gram_negsam_noupdated_best.txt", "skip_gram_negsam_noup")
+				label = "skip_gram_negsam_noup"
 			elif re.match("skip_gram_negsam_updated_incretuneparam.txt", filename):
-				label = filename.replace("skip_gram_negsam_updated_incretuneparam.txt", "skip_gram_negsam_up")
-			elif re.match("cw_updated_incretuneparam.txt", filename):
-				marker = noupMarker
-				label = filename.replace("cw_updated_incretuneparam.txt", "cw_up")
+				label = "skip_gram_negsam_up"
+			elif re.match("cw_updated_incretuneparam.txt", filename): label = "cw_up"
 			elif re.match("cw_noupdated_best.txt", filename):
 				marker = noupMarker
-				label = filename.replace("cw_noupdated_best.txt", "cw_noup")		
-			elif re.match("brown_cluster_v4000_best.txt", filename):
-				label = filename.replace("brown_cluster_v4000_best.txt", "brown_cluster")			
+				label = "cw_noup"	
+			elif re.match("brown_cluster_v4000_best.txt", filename): label = "brown_cluster"
 			filePath = os.path.join(root, filename)
 			print('\t- file %s (full path: %s)' % (filename, filePath))
 			with open(filePath, 'rb') as f:
@@ -107,7 +101,7 @@ for root, subdirs, files in os.walk(walk_dir):
 				#yv = np.array(y)
 				zv = np.array(z)
 				#plt.plot(xv, yv, label = label + '_' + t[177].replace('_out-of-vocabulary_Accuracy', ''))
-				plt.plot(xv, zv, label = label + '_' + t[274].replace('_out-of-vocabulary_Accuracy', ''))		
+				plt.plot(xv, zv, label = label + '_' + t[274].replace('_out-of-vocabulary_Accuracy', ''), linestyle=linestyle, marker=marker)					
 				x = []
 				y = []
 				z = []
