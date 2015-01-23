@@ -15,13 +15,71 @@ The estimation of the word vectors can be carry out with different models archit
 \item[-] Glove \cite{pennington2014glove}
 \item[-] Skip-gram \cite{Mikolov13}
 \item[-] CBOW \cite{Mikolov13}
-\item[-] Neural language model \cite{turian2010word}
+\item[-] Neural language model \cite{collobert2011natural}
 \item[-] Brown cluster \cite{Brown92class-basedn-gram}
 \end{itemize}
 
 The first four methods were chosen because they are recent
 state-of-the-art word embedding methods and because their software is
 available. The final method (Brown clusters) was selected as a benchmark word representation, which makes use of hard word clusters rather than a distributed representation.
+
+
+
+\begin{table}
+\centering
+\begin{small}
+\begin{tabular}{lr}
+\hline
+\textbf{Glove parameters}  & \textbf{Value} \\ \hline
+Size of word vectors &  \\
+Max skip length between words & 15 \\ 
+Discard words below frequency & 5 \\
+Number of training iterations & 25 \\
+Cut-off in weighting function & 100 \\ \hline
+\end{tabular}
+\label{glove}
+\caption{Glove algorithm parameters}
+\end{small}
+\end{table}
+
+
+\begin{table}
+\centering
+\begin{small}
+\begin{tabular}{lr}
+\hline
+\textbf{Skip-gram parameters}  & \textbf{Value} \\ \hline
+Size of word vectors &  \\
+Max skip length between words & 5 \\ 
+Discard words below frequency & 5 \\
+Number of training iterations & 5 \\
+Starting learning rate & 0.025 \\ \hline
+\end{tabular}
+\label{skip}
+\caption{Skip-gram algorithm parameters}
+\end{small}
+\end{table}
+
+
+\begin{table}
+\centering
+\begin{small}
+\begin{tabular}{lr}
+\hline
+\textbf{Brown cluster parameters}  & \textbf{Value} \\ \hline
+Clusters size & 4000 \\ 
+Size of word vectors &   \\
+Discard words below frequency & 5 \\
+Maximum length of a phrase & 1 \\
+Number to call srand with & 505123952 \\
+Collocations with most mutual information & 500 \\ \hline
+%Collocations with most mutual information (output) & 500 \\ \hline
+\end{tabular}
+\label{brown}
+\caption{Brown algorithm parameters}
+\end{small}
+\end{table}
+
 
 {\color{red}Discuss here about fundamental differences between the above methods}
 
@@ -38,7 +96,7 @@ is that they are publicly available.
 \textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
 UMBC 	& 48.1GB & 3 billions \\
 One Billion 	& 4.1GB & 0.8 billions  \\
-Latest wikipedia dump & 49.6GB & 3 billions \\
+Latest wikipedia dump & 49.6GB & 3 billions \\ \hline
 \end{tabular}
 \end{small}
 \caption{Corpora used to learn word embeddings}
