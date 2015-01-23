@@ -1,0 +1,34 @@
+
+\section{Related Work}
+Word embedding learning methods are the new generation of distributional semantics models and have been applied to several 
+NLP tasks that we summaries in this section.
+
+\newcite{collobert2011natural} proposed a neuronal network architecture
+that learn word embeddings and use them in POS-tagging, chunking, NER and SRL. 
+Without specializing their architecture for the mentioned tasks, they achieve close state-of-the-art performance. After including specialized features (e.g., word suffixes for POS-tagging;  Gazzeters for NER, etc.) and other tricks like cascading and ensambling classifiers, achieve competitive state-of-the-art performance.
+% they system is very fast too.
+Similarly, \newcite{turian2010word} explored the impact of using word
+features learned from cluster-based and word embeddings representations
+for NER and chunking. 
+They conclude that unsupervised word representation improve NER and chunking, and that combining different word representations can further improve the performance.
+Word representation from Brown clusters have been also shown to enhance
+Twitter POS tagging \newcite{owoputi2013improved}. 
+
+\newcite{Schneider+:2014} presented a MWE analyser that, among other features, used unsupervised word clusters. 
+They observed that the clusters were useful for identifying words that usually belong to proper names, which are considered MWE in the data set used. Nevertheless, they mentioned that it is difficult to measure the impact of the word embeddings features, since other features may capture the same information. 
+%Further feature engineering should be carry out in order to find out the impact 
+
+Word embeddings have been also used as features for syntactic dependency parsing and constituent parsing. 
+\newcite{Bansal+:2014} used word embeddings as features for dependency parsing, which used the syntactic dependency context instead of the linear context in raw text. They found that simple attempts based on discretization of individual word vector dimensions do not improve parsing. Only when performing hierarchical clustering of the continuous word vectors then using features based on the hierarchy, they gain performance. They also pointed out that ensemble of different word embeddings representations improved performance.
+Within the same aim, \cite{Andreas:Klein:2014} explores the used of word embeddings for constituency parsing and conclude that the
+information they provide might be redundant with the one acquire by a syntactic parser trained with a small amount of data. Others that boost the performance when including word embeddings representations for syntactic parsing includes \cite{Koo:2008,Koo:2010,Haffari:2011,Tratz:2011}.
+
+Word embedding have also been applied to other (non-sequential NLP) tasks such as super-sense tagging \cite{Grave:2013}; grammar induction \cite{Spitkovsky:2011} and semantic task such as semantic relatedness, synonymy detection, concept categorization selection preferences and analogy \cite{baroni:2014}
+
+% Koo, T., Carreras, X., & Collins, M. (2008). Simple semi-supervised dependency parsing. ACL (pp. 595?603).
+% Koo et al., 2008; http://cs.nyu.edu/~dsontag/papers/KooEtAl_emnlp10.pdf Dual Decomposition for Parsing with Non-Projective Head Automata - Dependency parsing.
+
+%Haffari et al., 2011; http://www.aclweb.org/anthology/P11-2125 Ensemble of different dependency parsing models, each model corresponding to a different syntactic/semantic word clustering annotation.
+
+% Supersense tagger (Grave et al., 2013) https://hal.inria.fr/hal-00833288/PDF/final-version.pdf
+

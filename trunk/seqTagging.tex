@@ -1,0 +1,113 @@
+% sequence tagging
+
+
+
+\section{Experimental Setup}
+We evaluate different learning approaches of word embeddings in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification.
+
+\subsection{Materials}
+It is well known that the choice of a corpora have an important effect in the final accuracy of machine learning algorithms. 
+Therefore, each word embedding method was trained with the same corpora (Table \ref{corpus}). The main reason of choosing the corpora 
+is that they are publicly available. 
+
+\begin{table}[h]
+\begin{center}
+\begin{small}
+\begin{tabular}{lll}
+\hline
+\textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
+UMBC 	& 48.1GB & 3 billions \\
+One Billion 	& 4.1GB & 0.8 billions  \\
+Latest wikipedia dump & 49.6GB & 3 billions \\
+\end{tabular}
+\end{small}
+\caption{Corpora used to learn word embeddings}
+\label{corpus}
+\end{center}
+\end{table}
+
+\subsection{Preprocessing}
+
+In order to make the comparison of different word embedding approaches across different applications, we applied the same preprocessing to the data sets used. 
+The preprocessing pipeline consist of a sentence splitter, a tokenizer, a POS-tagger and a lemmatizer. The pipeline is built with the UIMA architecture and the DKPro NLP tools. 
+
+
+\subsection{Hyperparameters tuning}
+
+{\color{red} is this section still valid?}
+
+The performance of learning methods heavily depends on their parameters optimization. 
+In order to search for the best hyper-parameters, we look for the shared parameters across methods (methods specific parameters were set to their optimal reported values). The parameters we tuned are the followings:
+
+\begin{small}
+\begin{itemize}
+\item[-]\textbf{Word vector size}: [25, 50, 100, 200, 400, 800].
+\item[-]\textbf{Context window size}: [5, 10, 15].
+\item[-]\textbf{Number of clusters}: [250, 500, 1000, 2000, 4000]. 
+\end{itemize}
+\end{small}
+
+For each task, we split the data into a training set, validation set, and a test set (\ref{datasplit}). The hyper parameters are tuned on the validation set with random search~\cite{bergstra2012random}. To be fair, for each model, we randomly choose 100 hyper parameter combinations and pick up the best one based on its performance on the validation set. Then each model is evaluated in a semi-supervised setting. We start with training models on 10\% of the training data, and evaluate them on the test dataset. Then we incrementally add another 10\% of the training data and evaluate them until all training data is used. We adopt per-word F1 scores as the evaluation metric for all tasks except POS tagging, for which we used per-word accuracy.
+In order to evaluate model performance on unknown words, we report also the average F1 scores for the words that do not occur in the training set.
+
+
+\subsection{Training}
+For each task, we feed learned embeddings into the graph transformer trained with sentence tag criterion~\cite{turian2010word}. The graph transformer is equivalent to CRF, if we do not update word embeddings. For all tasks, we train graph transformer with pre-trained word embeddings in the following settings: 
+
+\begin{small}
+\begin{itemize}
+\item[-] CRF with conventional features.
+\item[-] Graph transformer \textit{does not} fine tune embeddings during training.
+\item[-] Graph transformer fine tunes the embeddings during training.
+\end{itemize}
+\end{small}
+
+We also set up experiments to verify that CRF/graph transformer requires different feature design for different kinds of pre-trained word embeddings. One kind of word embeddings is represented by~\cite{bengio2006neural}. It maximises the word sequence likelihood with a model based on a weighted linear combination of word embedding features. Another kind of word embeddings is skip-gram and its variants, which is based on the dot product of two word embeddings. Therefore, we compare at least two ways of representing context word embedding features for each token:
+
+\begin{small}
+\begin{itemize}
+\item[i] Concatenate word embeddings of context words within a fixed window as context features; 
+\item[ii] Concatenate the result of element-wise multiplication of current token embedding and each context word embedding as context features. 
+\end{itemize}
+\end{small}
+
+
+
+\begin{table*}
+\begin{small}
+\begin{tabular}{lllp{3cm}ll}
+\hline
+			& \textbf{Training} & \textbf{Validation} & \textbf{Test} & \textbf{Feature space} \\ \hline
+\textbf{POS-Tagging} & 0-18 of WSJ & 19-21 of WSJ & 22-24 of WSJ and English Web Treebank & as in~\cite{collobert2011natural} \\
+\textbf{Chunking} & WSJ & 1000 sentences WSJ & CoNLL2000 & as~\cite{turian2010word}\\
+\textbf{NER} & CoNLL2003 train set & CoNLL2003 dev. set & CoNLL2003 test set and MUC7 & as in~\cite{turian2010word} \\
+\textbf{MWE} & 500 documents from & 100 documents from & 123 documents & as in~\cite{mwecorpus}\\
+\hline
+\label{datasplit}
+%\caption{Data split into training, validation and test set for each task}
+\end{tabular}
+\end{small}
+\end{table*}
+
+
+%\subsection{POS tagging} We could choose one of the options. \subsubsection{Option 1} Almost the same setting as~\cite{collobert2011natural}, except adding one more test set.
+% \noindent Training set: 0-18 of WSJ.
+% \noindent Validation set: 19-21 of WSJ.
+% \noindent Test set: 22-24 of WSJ, and English Web Treebank. We report model performances on these two test sets respectively.
+% \noindent Feature space: the same set as in~\cite{collobert2011natural}
+
+% \subsection{Chunking} The same setting as~\cite{turian2010word}\\
+% \noindent Training set: WSJ train set.
+% \noindent Validation set: Randomly sampled 1000 sentences from the train set for development.
+% \noindent Test set: CoNLL2000 test set.
+% \noindent Feature space: the same set as in~\cite{turian2010word}
+
+% \subsection{MWE Identification} Training set: randomly sampled 500 documents from Nathana��s corpus. 
+% \noindent Validation set: randomly sampled 100 documents from Nathana��s corpus.
+% \noindent Test set: remaining 123 documents from Nathana��s corpus..
+% \noindent Feature space: the same set as in~\cite{mwecorpus}
+
+%\subsection{Named entity recognition} Training set: CoNLL03 train set.
+% \noindent Validation set: CoNLL03 development set.
+% \noindent Test set: CoNLL03 test set and MUC7. We report model performances on these two test sets respectively.
+% \noindent Feature space: the same set as in~\cite{turian2010word}
