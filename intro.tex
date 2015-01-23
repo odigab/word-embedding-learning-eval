@@ -1,0 +1,57 @@
+\section{Introduction}
+In the last years, distributed word representations
+have been applied to several NLP tasks.
+Inspired by distributional semantics models, distributed word
+representation methods represent each word as a continuous vector, where similar words have a similar vector representation, therefore, capturing the similarity between words.
+
+The resulting vectors can be used as features in many NLP applications and it has been shown that they outperform methods that treats words as atomic units \cite{}.  
+Their attractiveness relies in the ability to learn word representations in an unsupervised way, thus directly providing lexical features from big amounts of unlabelled data 
+and, therefore, alleviating the cost of human annotations.
+It has been also claimed that word embeddings
+have the ability to connect out of vocabulary words to known ones.
+%, as well known as vocabulary expansion hypothesis. 
+Hence, suggesting that word embeddings are a good resource 
+for applications that need to be adapted to a certain domain, 
+different from the one the application have been tuned for.
+For example,...
+Another property attribute to word embeddings is their 
+capacity to encouraging common behaviour among related in-vocabulary words, for instance...
+
+{\color{red}Short sentence about the architectures}
+
+As with other learning methods, it is well known that
+the performance of machine learning algorithms heavily depends on
+parameter optimization, the size of the training data used and the applications they target.
+For example, \cite{turian2010word} shows that the optimal word embedding dimensions are task specific.
+Moreover, there are several word embeddings methods, which used different algorithms and resources. 
+Some methods involve feedback from the end task when learning (or fine-tuning) the word representations and others do not. 
+Learning algorithm that involves fine-tuning are supposed
+to perform better since word representations become
+task-specific, at the cost of performing worst for out of vocabulary 
+words. But still, there is not systematic comparison between
+these two methods. 
+
+%6) How exactly should word representations be incorporated into feature-based sequence tagging models? (May have been answered by the Guo et al. paper.) 
+%I believe there is always a better way of doing this, empirical methods as in Guo’s paper or deep sequence neural networks are the ways to go. However, all of them treat the word embeddings trained with different methods in the same way. I conjecture that we should treat them differently based on how they are trained.
+
+
+In this paper, we perform an extensive evaluation of five word embedding approaches under fixed experiment conditions, and evaluate them over different sequence labelling tasks: POS-tagging, chunking, 
+NER and MWE (Multi Word Expression Identification), 
+within the following aims:
+(i) perform a fair comparison of different word embeddings
+algorithms. This includes running different word embeddings algorithms under controlled conditions, for example, use the same training set, the same preprocessing, etc.;
+(ii) measure the influence of word embeddings in sequence labeling tasks in semi-supervised settings (fine-tuning);
+(iii) systematically compared the usefulness of word embedding versus
+unigram features for sequence tagging.
+(iv) use word embeddings for MWE. To the best of our knowledge, 
+word embeddings have not been used for this task before;
+
+
+%(i) are word embeddings always better than unigram features? 
+%(ii) which word embeddings approach is the best? 
+%(iii) to what extend they word embeddings approaches are task specific?
+%(iv) how reliable are in labeling out-of-domain data and?
+
+% the conextion between dist. semantics models and sequence taggin. 
+%static share hypothesis (in vocabulary words, e.g., individual first names are also rare in the treebank, but tend to cluster together in distributional representations);
+%embedding structure hypothesis (e.g., group words by definiteness, like each, this, every, few, most, etc.).

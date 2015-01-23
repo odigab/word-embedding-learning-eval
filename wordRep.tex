@@ -1,0 +1,26 @@
+
+\section{Learning Word Representations}
+
+%The statistics about word occurrences in a corpus is the primary source of information available to all supervised methods for learning word representations.
+%Traditionally, words were represented in a vocabulary index, were the is not notion about the similarity between words. 
+
+Distributed word representation methods represent each word as a continuous vector, where similar words have a similar vector representation, therefore, capturing
+the similarity between words.
+
+{\color{red}Example}
+
+The estimation of the word vectors can be carry out with different models architectures. We evaluate five different word embeddings learning algorithms, which are the following: 
+ 
+\begin{itemize}
+\item[-] Glove \cite{pennington2014glove}
+\item[-] Skip-gram \cite{Mikolov13}
+\item[-] CBOW \cite{Mikolov13}
+\item[-] Neural language model \cite{turian2010word}
+\item[-] Brown cluster \cite{Brown92class-basedn-gram}
+\end{itemize}
+
+The first four methods were chosen because they are recent
+state-of-the-art word embedding methods and because their software is
+available. The final method (Brown clusters) was selected as a benchmark word representation, which makes use of hard word clusters rather than a distributed representation.
+
+{\color{red}Discuss here about fundamental differences between the above methods}
