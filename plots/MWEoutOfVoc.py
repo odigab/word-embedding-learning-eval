@@ -40,8 +40,7 @@ color = 'r'
 linestyle = '-'
 noupMarker = 's'
 walk_dir = inputfolder
-legParams = {'legend.fontsize': 10,
-          'legend.linewidth': 0.4}
+legParams = {'legend.fontsize': 10}
 
 alist_filter = ['brown_cluster_v4000_best.txt', 
 #	'cbow_negsam_noupdated_best.txt', 
@@ -157,7 +156,8 @@ plt.title('Out of vocabulary words')
 plt.xlabel('Training size')
 plt.ylabel('Accuracy')
 
-plt.legend(loc='best')
+plt.rcParams.update(legParams)
+plt.legend(loc='lower right')
 savefig(outputfile, bbox_inches='tight')
 #plt.show()
 
