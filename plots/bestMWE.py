@@ -30,10 +30,12 @@ x = []
 y = []
 xv = []
 yv = []
+color = 'r'
 label = ''
 marker = ''
 linestyle = '-'
 noupMarker = 's'
+walk_dir = inputfolder
 legParams = {'legend.fontsize': 10,
           'legend.linewidth': 0.4}
 
@@ -52,33 +54,74 @@ alist_filter = ['brown_cluster_v4000_best.txt',
 	'skipgram_noupdated_best.txt', 
 	'skipgram_updated_best.txt']
 
-walk_dir = inputfolder
-for root, subdirs, files in os.walk(walk_dir):
+
+# Walk into directories in filesystem
+# Ripped from os module and slightly modified
+# for alphabetical sorting
+#
+def sortedWalk(top, topdown=True, onerror=None):
+    from os.path import join, isdir, islink
+ 
+    names = os.listdir(top)
+    names.sort()
+    dirs, nondirs = [], []
+ 
+    for name in names:
+        if isdir(os.path.join(top, name)):
+            dirs.append(name)
+        else:
+            nondirs.append(name)
+ 
+    if topdown:
+        yield top, dirs, nondirs
+    for name in dirs:
+        path = join(top, name)
+        if not os.path.islink(path):
+            for x in sortedWalk(path, topdown, onerror):
+                yield x
+    if not topdown:
+        yield top, dirs, nondirs
+
+for root, subdirs, files in sortedWalk(walk_dir):
 	#print('--\nroot = ' + root)
-	for subdir in subdirs:
-		print('\t- subdirectory ' + subdir)			
-	for filename in natsorted(files):  		
-		if filename in alist_filter: 
-			if re.match("unigram_best.txt", filename): label = "unigram"
+	for subdir in sorted(subdirs):
+		print('\t- subdirectory ' + subdir)		
+	for filename in files:  		  		
+		if filename in alist_filter:
+			if re.match("unigram_best.txt", filename): 
+				color='r'
+				label = "unigram" 
 			if re.match("glove_noupdated_best.txt", filename):
+				color='b'
 				marker = noupMarker
 				label = "glove_noup"
-			if re.match("glove_updated_best.txt", filename): label = "glove_up"
+			if re.match("glove_updated_best.txt", filename):					
+				color='b'
+				label = "glove_up"
 			elif re.match("cbow_noupdated_best.txt", filename):
+				color='g'
 				marker = noupMarker
 				label = "cbow_noup"
-			elif re.match("cbow_updated_best.txt", filename): label = "cbow_up"
+			elif re.match("cbow_updated_best.txt", filename): 
+				color='g'
+				label = "cbow_up"
 			elif re.match("skipgram_noupdated_best.txt", filename):
+				color='y'
 				marker = noupMarker
-				label = "skip_gram_noup"
-			elif re.match("skipgram_updated_best.txt", filename): label = "skip_gram_up"
-			elif re.match("cw_updated_best.txt", filename):
-				marker = noupMarker
-				label = "cw_up"
+				label = "skip_gram_negsam_noup"
+			elif re.match("skipgram_updated_best.txt", filename): 
+				color='y'
+				label = "skip_gram_negsam_up"
+			elif re.match("cw_updated_best.txt", filename): 
+				color='k'
+				label =  "cw_up"
 			elif re.match("cw_noupdated_best.txt", filename):
+				color='k'
 				marker = noupMarker
 				label = "cw_noup"
-			elif re.match("brown_cluster_v4000_best.txt", filename): label = "brown_cluster
+			elif re.match("brown_cluster_v4000_best.txt", filename): 
+				color='m'
+				label = "brown_cluster"
 			filePath = os.path.join(root, filename)
 			print('\t- file %s (full path: %s)' % (filename, filePath))
 			with open(filePath, 'rb') as f:
@@ -98,7 +141,7 @@ for root, subdirs, files in os.walk(walk_dir):
 				print('y ', y)			
 				xv = np.array(x)
 				yv = np.array(y)
-				plt.plot(xv, yv, label=label, linestyle=linestyle, marker=marker)	
+				plt.plot(xv, yv, label=label, linestyle=linestyle, marker=marker, color=color)	
 				x = []
 				y = []
 				xv = []
@@ -109,7 +152,7 @@ for root, subdirs, files in os.walk(walk_dir):
 plt.xlabel('Training size')
 plt.ylabel('F1-Measure')
 
-plt.rcParams.update(legParams)
+#plt.rcParams.update(legParams)
 plt.legend(loc='lower right')
 savefig(outputfile, bbox_inches='tight')
 #plt.show()
