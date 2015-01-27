@@ -69,7 +69,7 @@ for(f in 1:length(files)){
 	fileName <- basename(files[f])
 	fileName <- gsub("_","+",fileName)
 	print(fileName)
-	colnames(out)[f+1] <- substr(fileName, 0, regexpr("+[^+]*$", fileName)-1)
+	colnames(out)[f+1] <- substr(fileName, 0, regexpr("+[^+]*$", fileName)-2)
 }
 write.csv(out, file = argsL$output, eol = "\n", quote=FALSE, row.names = FALSE)
 
