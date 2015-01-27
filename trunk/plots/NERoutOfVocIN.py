@@ -39,8 +39,7 @@ marker = ''
 linestyle = '-'
 noupMarker = 's'
 walk_dir = inputfolder
-legParams = {'legend.fontsize': 10,
-          'legend.linewidth': 0.4}
+legParams = {'legend.fontsize': 10}
 
 alist_filter = ['brown_cluster_v4000_best.txt', 
 	'cbow_negsam_noupdated_best.txt', 
@@ -156,7 +155,7 @@ for root, subdirs, files in sortedWalk(walk_dir):
 plt.xlabel('Training size')
 plt.ylabel('F1-Measure')
 
-# plt.rcParams.update(legParams)
+plt.rcParams.update(legParams)
 plt.legend(loc='lower right')
 savefig(outputfile, bbox_inches='tight')
 #plt.show()
