@@ -13,16 +13,16 @@ For each task, we consider also CRF models with hand-crafted features, which use
 For each task, we split the task specific corpus into a training set, validation set, and a test set (see Table \ref{datasplit}). If a corpus already provides fixed splits, we reuse them. For POS tagging and NER, we also evaluate the models with a out-of-domain corpus, which has similar annotation schema as the respective training corpus.
 \begin{table*}
 \begin{small}
-\begin{tabular}{llp{3cm}lll}
+\begin{tabular}{lllp{3cm}ll}
 \hline
 			& \textbf{Training} & \textbf{Validation} & \textbf{Test} & \textbf{Feature space} \\ \hline
-\textbf{POS-Tagging} & 0-18 of WSJ & 19-21 of WSJ & 22-24 of WSJ and English Web Treebank & as in~\cite{collobert2011natural} \\
-\textbf{Chunking} & WSJ & 1000 sentences WSJ & CoNLL2000 & as~\cite{turian2010word}\\
-\textbf{NER} & CoNLL2003 train set & CoNLL2003 dev. set & CoNLL2003 test set and MUC7 & as in~\cite{turian2010word} \\
+\textbf{POS-Tagging} & 0-18 WSJ & 19-21 WSJ & 22-24 of WSJ; English Web-Treebank & as in~\cite{collobert2011natural} \\
+\textbf{Chunking} & WSJ & 1000 sentences WSJ & CoNLL-2000 & as~\cite{turian2010word}\\
+\textbf{NER} & CoNLL-2003 train set & CoNLL-2003 dev. set & CoNLL-2003 test set; MUC7 & as in~\cite{turian2010word} \\
 \textbf{MWE} & 500 documents from & 100 documents from & 123 documents & as in~\cite{mwecorpus}\\
 \hline
 \end{tabular}
-\caption{Datasets and features for each task.}
+\caption{Datasets and features for each task}
 \label{datasplit}
 \end{small}
 \end{table*}
