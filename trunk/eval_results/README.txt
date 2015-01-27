@@ -19,7 +19,7 @@ MWE
 POS
 	key evaluation metric: Accuracy
         out of domain : EngWebTreebank_Accuracy
-	out of vocabulary metrics: WSJ_out-of-vocabulary_Accuracy EngWebTreebank_out-of-vocabulary_Accuracy
+	out of vocabulary metrics: WSJ_out.of.vocabulary_Accuracy EngWebTreebank_out.of.vocabulary_Accuracy
 
 LabelRank.R
 LabelRank.R is a R script to compare the differences of each individual evaluation metrics between two result files and rank them. It goes through each evaluation metric, computes the average absolute differences between the same metrics from the two files, and rank them in ascending order.
