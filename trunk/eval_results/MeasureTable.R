@@ -67,9 +67,11 @@ for(f in 1:length(files)){
 #	out <- cbind(out,as.data.frame(as.numeric(temp[,eval])))
 
 	fileName <- basename(files[f])
-	colnames(out)[f+1] <- substr(fileName, 0, regexpr("_[^_]*$", fileName)-1)
+	fileName <- gsub("_","+",fileName)
+	print(fileName)
+	colnames(out)[f+1] <- substr(fileName, 0, regexpr("+[^+]*$", fileName)-1)
 }
-write.csv(out, file = argsL$output, eol = "\n", row.names = FALSE)
+write.csv(out, file = argsL$output, eol = "\n", quote=FALSE, row.names = FALSE)
 
 
 
