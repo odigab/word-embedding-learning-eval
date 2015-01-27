@@ -1,4 +1,4 @@
-label,brown+cluster+v4000+,cw+noupdated+,cw+updated+,cbow+negsam+noupdated+,cbow+negsam+updated+,skip+gram+negsam+noupdated+,skip+gram+negsam+updated+,glove+noupdated+,glove+updated+
+label,brown+cluster+v4000,cw+noupdated,cw+updated,cbow+negsam+noupdated,cbow+negsam+updated,skip+gram+negsam+noupdated,skip+gram+negsam+updated,glove+noupdated,glove+updated
 38,0.6060,0.4962,0.4978,0.4420,0.4329,0.5264,0.4829,0.4150,0.4009
 113,0.6419,0.5446,0.5189,0.5022,0.4990,0.5946,0.5370,0.4831,0.4679
 262,0.6660,0.5589,0.5399,0.5624,0.5596,0.6374,0.5876,0.5287,0.5191

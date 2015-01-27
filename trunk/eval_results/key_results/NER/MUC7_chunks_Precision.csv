@@ -1,4 +1,4 @@
-label,unigram+,brown+cluster+v4000+,cw+noupdated+,cw+updated+,cbow+negsam+noupdated+,cbow+negsam+updated+,skip+gram+negsam+noupdated+,skip+gram+negsam+updated+,glove+noupdated+,glove+updated+
+label,unigram,brown+cluster+v4000,cw+noupdated,cw+updated,cbow+negsam+noupdated,cbow+negsam+updated,skip+gram+negsam+noupdated,skip+gram+negsam+updated,glove+noupdated,glove+updated
 15,0.2573,0.3238,0.1823,0.2278,0.1131,0.1369,0.4486,0.7101,0.2798,0.2588
 44,0.4557,0.4895,0.1737,0.2056,0.3212,0.2055,0.5897,0.8553,0.4348,0.3750
 103,0.4358,0.4662,0.3067,0.3501,0.4096,0.3509,0.5738,0.8019,0.4940,0.3324
