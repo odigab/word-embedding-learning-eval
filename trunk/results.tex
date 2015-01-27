@@ -2,8 +2,6 @@
 
 \section{Experimental Results and Discussion}
 
-
-
 Because we can either update pre-trained word embeddings during training or not, through the evaluation, we want to answer the following questions:
 \begin{itemize}
 \item How well do different word embeddings perform in all tasks when supervised fine-tuning is \textit{not} performed?
@@ -12,6 +10,25 @@ Because we can either update pre-trained word embeddings during training or not,
 \item How well do the word embeddings perform for unknown words? 
 \item How do the key parameters of each word learning algorithms affect the experimental results?
 \end{itemize}
+
+
+\begin{table}
+\begin{small}
+\begin{tabular}{lll}
+\hline
+%\caption{Benchmark results vs. our best results}
+\textbf{Task} & \textbf{Benchmark} & \textbf{Us} \\ \hline
+POS-Tagging & (Accuracy) 97.24 \cite{•} & \\  % Toutanova et al. (2003)
+Chunking & (F1) 94.29 \cite{•} & \\  % Sha and Pereira (2003)
+NER & (F1) 89.31 \cite{•} & \\  % Ando and Zhang (2005)
+MWE & (F1) 57.71 \cite{•} & \\  % Schneider (2014), Table 3 exact match on test set
+\hline
+\label{benchmark}
+\end{tabular}
+\end{small}
+\end{table}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% BESTS
@@ -98,7 +115,7 @@ Because we can either update pre-trained word embeddings during training or not,
 \begin{figure*}
 \caption{MWE out-of-vocabulary-words accuracy for \textit{in-domain} test set}
 \centering
-    	\includegraphics[width=0.5\textwidth]{plots/NERoutOfVocIN.png}    
+    	\includegraphics[width=0.5\textwidth]{plots/MWEoutOfVoc.png}    
 \label{fig:outmwe}
 \end{figure*}
 
