@@ -1,5 +1,5 @@
 #!/usr/bin/Rscript
-## This R script ranks labels according to the sum of absolute dif between each label of given two files.
+## LabelRank.R is a R script to compare the differences of each individual evaluation metrics between two result files and rank them. It goes through each evaluation metric, computes the average absolute differences between the same metrics from the two files, and rank them in ascending order
 #  VERSION 1.0
 #  Liyuan ZHOU, NICTA CRL, 2015
 #
