@@ -122,7 +122,173 @@ MWE & (F1) 57.71 \cite{•} & \\  % Schneider (2014), Table 3 exact match on tes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% OUT OF VOC POS
 
+\subsection{Result tables}
+\subsubsection{Best hyperparameters for All Tasks}
 
+\begin{table*}[h]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\pgfplotstabletypeset[col sep=comma, 
+precision=4,
+every head row/.style={
+before row=\toprule,
+after row=\midrule},
+every last row/.style={
+after row=\bottomrule
+}]{eval_results/key_results/POS/Accuracy.csv}
+\end{adjustbox}
+\caption{Accuracy of POS tagging evaluated on WSJ test set}
+\label{table:accuracy_pos}
+\end{table*}
+
+\begin{table*}[h]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\pgfplotstabletypeset[col sep=comma, 
+precision=4,
+every head row/.style={
+before row=\toprule,
+after row=\midrule},
+every last row/.style={
+after row=\bottomrule
+}]{eval_results/key_results/NER/CONLL_F1Measure.csv}
+\end{adjustbox}
+\caption{F1 Measure of NER evaluated on CoNLL test set}
+\label{table:f1_ner}
+\end{table*}
+
+\begin{table*}[h]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\pgfplotstabletypeset[col sep=comma, 
+precision=4,
+every head row/.style={
+before row=\toprule,
+after row=\midrule},
+every last row/.style={
+after row=\bottomrule
+}]{eval_results/key_results/chunking/chunks_F1Measure.csv}
+\end{adjustbox}
+\caption{F1 Measure of chunking evaluated on CoNLL test set}
+\label{table:f1_chunking}
+\end{table*}
+
+\begin{table*}[h]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\pgfplotstabletypeset[col sep=comma, 
+precision=4,
+every head row/.style={
+before row=\toprule,
+after row=\midrule},
+every last row/.style={
+after row=\bottomrule
+}]{eval_results/key_results/MWEs/mwe_F1Measure.csv}
+\end{adjustbox}
+\caption{F1 Measure of MWE identification evaluated on MWE test set}
+\label{table:f1_mwe}
+\end{table*}
+
+\subsubsection{Out of Vocabulary results for All Tasks}
+
+\begin{table*}[h]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\pgfplotstabletypeset[col sep=comma, 
+precision=4,
+every head row/.style={
+before row=\toprule,
+after row=\midrule},
+every last row/.style={
+after row=\bottomrule
+}]{eval_results/key_results/POS/WSJ_out-of-vocabulary_Accuracy.csv}
+\end{adjustbox}
+\caption{Accuracy of POS tagging evaluated on out-of-vocabulary words in WSJ test set}
+\label{table:outVocab_pos_accuracy}
+\end{table*}
+
+\begin{table*}[h]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\pgfplotstabletypeset[col sep=comma, 
+precision=4,
+every head row/.style={
+before row=\toprule,
+after row=\midrule},
+every last row/.style={
+after row=\bottomrule
+}]{eval_results/key_results/NER/CONLL_out-of-vocabulary_Accuracy.csv}
+\end{adjustbox}
+\caption{Accuracy of NER evaluated on out-of-vocabulary words in CoNLL test set}
+\label{table:outVocab_ner_accuracy}
+\end{table*}
+
+\begin{table*}[h]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\pgfplotstabletypeset[col sep=comma, 
+precision=4,
+every head row/.style={
+before row=\toprule,
+after row=\midrule},
+every last row/.style={
+after row=\bottomrule
+}]{eval_results/key_results/chunking/Accuracy.csv}
+\end{adjustbox}
+\caption{Accuracy of Chunking evaluated on out-of-vocabulary words in CoNLL test set}
+\label{table:outVocab_chunking_accuracy}
+\end{table*}
+
+\begin{table*}[h]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\pgfplotstabletypeset[col sep=comma, 
+precision=4,
+every head row/.style={
+before row=\toprule,
+after row=\midrule},
+every last row/.style={
+after row=\bottomrule
+}]{eval_results/key_results/MWEs/out-of-vocabulary_Accuracy.csv}
+\end{adjustbox}
+\caption{Accuracy of MWE identification evaluated on out-of-vocabulary words in MWE test set}
+\label{table:outVocab_mwe_accuracy}
+\end{table*}
+
+\subsubsection{Out of domain Results for NER and POS}
+
+\begin{table*}[h]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\pgfplotstabletypeset[col sep=comma, 
+precision=4,
+every head row/.style={
+before row=\toprule,
+after row=\midrule},
+every last row/.style={
+after row=\bottomrule
+}]{eval_results/key_results/POS/EngWebTreebank_Accuracy.csv}
+\end{adjustbox}
+\caption{Accuracy of POS tagging evaluated on English web treebank.}
+\label{table:outDomain_accuracy_pos}
+\end{table*}
+
+\begin{table*}[h]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\pgfplotstabletypeset[
+col sep=comma, 
+precision=4,
+every head row/.style={
+before row=\toprule,
+after row=\midrule},
+every last row/.style={
+after row=\bottomrule
+}]{eval_results/key_results/NER/MUC7_chunks_F1Measure.csv}
+\end{adjustbox}
+\caption{F1 measure of NER evaluated on MUC7 test set}
+\label{table:outDomain_ner_f1}
+\end{table*}
 
 
 \section{Conclusion}
