@@ -28,14 +28,17 @@ for opt, arg in opts:
 
 print 'Input folder is:', inputfolder
 print 'Output file is:', outputfile
+
 x = []
 y = []
 xv = []
 yv = []
+color = 'r'
 label = ''
 marker = ''
 linestyle = '-'
 noupMarker = 's'
+walk_dir = inputfolder
 legParams = {'legend.fontsize': 10,
           'legend.linewidth': 0.4}
 
@@ -49,8 +52,6 @@ alist_filter = ['brown_cluster_v4000_best.txt',
 	'glove_updated_incretuneparam.txt', 
 	'skip_gram_negsam_noupdated_best.txt', 
 	'skip_gram_negsam_updated_incretuneparam.txt']
-walk_dir = inputfolder
-
 
 # Walk into directories in filesystem
 # Ripped from os module and slightly modified
@@ -79,43 +80,46 @@ def sortedWalk(top, topdown=True, onerror=None):
     if not topdown:
         yield top, dirs, nondirs
 
-
-def returnold(folder):
-    matches = []
-    for root, dirnames, filenames in os.walk(folder):
-        for filename in fnmatch.filter(filenames, '*.*'):
-            matches.append(os.path.join(root, filename))
-    return min(matches, key=os.path.getmtime)
-
-files = sortedWalk(inputfolder)
-
-
-
-for root, subdirs, files in os.walk(walk_dir):
+for root, subdirs, files in sortedWalk(walk_dir):
 	#print('--\nroot = ' + root)
 	for subdir in sorted(subdirs):
-		print('\t- subdirectory ' + subdir)			
-	sortfiles = sorted(files)  
-	for filename in files:  
-		if filename in alist_filter: 
-			if re.match("unigram_best.txt", filename): label = "unigram"
-			elif re.match("glove_noupdated_best.txt", filename): 
+		print('\t- subdirectory ' + subdir)		
+	for filename in files:  		  		
+		if filename in alist_filter:
+			if re.match("unigram_best.txt", filename): 
+				color='r'
+				label = "unigram" 
+			if re.match("glove_noupdated_best.txt", filename):
+				color='b'
 				marker = noupMarker
 				label = "glove_noup"
-			elif re.match("glove_updated_incretuneparam.txt", filename): label = "glove_up"
+			if re.match("glove_updated_incretuneparam.txt", filename):					
+				color='b'
+				label = "glove_up"
 			elif re.match("cbow_negsam_noupdated_best.txt", filename):
+				color='g'
 				marker = noupMarker
 				label = "cbow_negsam_noup"
-			elif re.match("cbow_negsam_updated_incretuneparam.txt", filename): label = "cbow_negsam_up"
+			elif re.match("cbow_negsam_updated_incretuneparam.txt", filename): 
+				color='g'
+				label = "cbow_negsam_up"
 			elif re.match("skip_gram_negsam_noupdated_best.txt", filename):
+				color='y'
 				marker = noupMarker
 				label = "skip_gram_negsam_noup"
-			elif re.match("skip_gram_negsam_updated_incretuneparam.txt", filename): label = "skip_gram_negsam_up"
-			elif re.match("cw_updated_incretuneparam.txt", filename): label = "cw_up"
+			elif re.match("skip_gram_negsam_updated_incretuneparam.txt", filename): 
+				color='y'
+				label = "skip_gram_negsam_up"
+			elif re.match("cw_updated_incretuneparam.txt", filename): 
+				color='k'
+				label =  "cw_up"
 			elif re.match("cw_noupdated_best.txt", filename):
+				color='k'
 				marker = noupMarker
 				label = "cw_noup"
-			elif re.match("brown_cluster_v4000_best.txt", filename): label = "brown_cluster"
+			elif re.match("brown_cluster_v4000_best.txt", filename): 
+				color='m'
+				label = "brown_cluster"	
 			filePath = os.path.join(root, filename)
 			print('\t- file %s (full path: %s)' % (filename, filePath))
 			with open(filePath, 'rb') as f:
@@ -138,7 +142,7 @@ for root, subdirs, files in os.walk(walk_dir):
 				xv = np.array(x)
 				yv = np.array(y)
 #				zv = np.array(z)
-				plt.plot(xv, yv, label = label + '_' + t[2].replace('_out-of-vocabulary_Accuracy', ''), linestyle=linestyle, 	marker=marker)	
+				plt.plot(xv, yv, label = label + '_' + t[2].replace('_out-of-vocabulary_Accuracy', ''), linestyle=linestyle, 	marker=marker, color=color)	
 	#				plt.plot(xv, zv, label = label + '_' + t[29].replace('_out-of-vocabulary_Accuracy', ''))		
 				x = []
 				y = []
@@ -152,7 +156,7 @@ for root, subdirs, files in os.walk(walk_dir):
 plt.xlabel('Training size')
 plt.ylabel('F1-Measure')
 
-plt.rcParams.update(legParams)
+# plt.rcParams.update(legParams)
 plt.legend(loc='lower right')
 savefig(outputfile, bbox_inches='tight')
 #plt.show()
