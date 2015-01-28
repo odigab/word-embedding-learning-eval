@@ -162,12 +162,12 @@ for root, subdirs, files in sortedWalk(walk_dir):
 				zv = []
 				label = ''
 				marker = ''
-	
+plt.ylim([.5,1])
 plt.xlabel('Training size')
 plt.ylabel('Accuracy')
 
 plt.rcParams.update(legParams)
-plt.legend(loc='lower right')
+plt.legend(loc='best')
 savefig(outputfile, bbox_inches='tight')
 #plt.show()
 
