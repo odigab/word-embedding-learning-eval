@@ -148,7 +148,7 @@ plt.ylim([.7,1])
 plt.xlabel('Training size')
 plt.ylabel('F1-Measure')
 plt.rcParams.update(legParams)
-plt.legend(loc='lower right')
+plt.legend(loc='best')
 savefig(outputfile, bbox_inches='tight')
 #plt.show()
 
