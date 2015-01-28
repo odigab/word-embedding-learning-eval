@@ -154,7 +154,7 @@ for root, subdirs, files in sortedWalk(walk_dir):
 		
 plt.ylim([.5,1])
 plt.xlabel('Training size')
-plt.ylabel('F1-Measure')
+plt.ylabel('Accuracy')
 
 plt.rcParams.update(legParams)
 plt.legend(loc='lower right')
