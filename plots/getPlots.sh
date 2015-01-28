@@ -30,24 +30,18 @@ python bestMWE.py -i ../eval_results/results/MWE -o bestMWE.png
 ############################
 
 #- POS
-#python POSoutOfVocIN.py -i ../POS -o POSoutOfVocIN.png
-python POSoutOfVocIN.py -i ../eval_results/results/POS -o POSoutOfVocIN.png
+python POS-OOV-IN.py -i ../eval_results/results/POS -o POS-OOV-IN.png
+python POS-OOV-OUT.py -i ../eval_results/results/POS -o POS-OOV-OUT.png
 
-#python POSoutOfVocOUT.py -i ../POS -o POSoutOfVocOUT.png
-python POSoutOfVocOUT.py -i ../eval_results/results/POS -o POSoutOfVocOUT.png
+#- Chunking
+python ChunkingOOV.py -i ../eval_results/results/chunking -o Chunking-OOV.png
 
 #- NER
-#python NERoutOfVocIN.py -i ../NER -o NERoutOfVocIN.png
-python NERoutOfVocIN.py -i ../eval_results/results/NER -o NERoutOfVocIN.png
-
-#python NERoutOfVocOUT.py -i ../NER -o NERoutOfVocOUT.png
-python NERoutOfVocOUT.py -i ../eval_results/results/NER -o NERoutOfVocOUT.png
+python NER-OOV-IN.py -i ../eval_results/results/NER -o NER-OOV-IN.png
+python NER-OOV-OUT.py -i ../eval_results/results/NER -o NER-OOV-OUT.png
 
 #- MWE 
-#python MWEoutOfVoc.py -i ../MWEs -o MWEoutOfVoc.png
-python MWEoutOfVoc.py -i ../eval_results/results/MWE -o MWEoutOfVoc.png
-
-# * there are no experiment for chunking with out of voc words!
+python MWE-OOV.py -i ../eval_results/results/MWE -o MWE-OOV.png
 
 
 ############################

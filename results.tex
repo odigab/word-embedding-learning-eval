@@ -12,27 +12,28 @@ Because we can either update pre-trained word embeddings during training or not,
 \end{itemize}
 
 
-\begin{table}
+\begin{table*}
+\caption{Benchmark results vs. our best results}
+\begin{center}
 \begin{small}
 \begin{tabular}{lll}
 \hline
-%\caption{Benchmark results vs. our best results}
 \textbf{Task} & \textbf{Benchmark} & \textbf{Us} \\ \hline
-POS-Tagging & (Accuracy) 97.24 \cite{•} & \\  % Toutanova et al. (2003)
-Chunking & (F1) 94.29 \cite{•} & \\  % Sha and Pereira (2003)
-NER & (F1) 89.31 \cite{•} & \\  % Ando and Zhang (2005)
-MWE & (F1) 57.71 \cite{•} & \\  % Schneider (2014), Table 3 exact match on test set
+POS-Tagging & (Accuracy) 97.24 \cite{Toutanova:2003} & 0.9592 (skip-gram negsam+up) \\ 
+Chunking & (F1) 0.9429 \cite{Sha:2003} & 0.9386 (Brown cluster v2000+)\\  
+NER & (F1) 0.8931 \cite{Ando:2005} & 0.8686 (skip-gram negsam+noup)\\  
+MWE & (F1) 0.6253 \cite{Schneider+:2014} & 0.6546 (cw+up)\\ 
 \hline
 \label{benchmark}
 \end{tabular}
 \end{small}
-\end{table}
-
+\end{center}
+\end{table*}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% BESTS
-\begin{figure*}
+%%% BEST
+\begin{figure*}[h]
 \caption{Best results for each method for POS-Tagging and Chunking}
 \centering
 \begin{subfigure}{.5\textwidth}
@@ -40,7 +41,7 @@ MWE & (F1) 57.71 \cite{•} & \\  % Schneider (2014), Table 3 exact match on tes
     \includegraphics[width=0.8\textwidth]{plots/bestPOS.png}    	
 	\label{fig:bestpos}
 	\subcaption{POS-Tagging results}	
-\end{subfigure}%
+\end{subfigure}
 \begin{subfigure}{.5\textwidth}
 	\centering
     \includegraphics[width=0.8\textwidth]{plots/bestChunking.png}
@@ -49,7 +50,7 @@ MWE & (F1) 57.71 \cite{•} & \\  % Schneider (2014), Table 3 exact match on tes
 \end{subfigure}
 \end{figure*}
 
-\begin{figure*}
+\begin{figure*}[h]
 \caption{Best results for each method for NER and MWE}
 \centering
 \begin{subfigure}{.5\textwidth}
@@ -68,42 +69,38 @@ MWE & (F1) 57.71 \cite{•} & \\  % Schneider (2014), Table 3 exact match on tes
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% OUT OF VOC POS
-
-\begin{figure*}
+%%% OOV POS
+\begin{figure*}[h]
 \caption{POS-Tagging out-of-vocabulary-words accuracy for \textit{in-domain} and \textit{out-of-domain} test sets}
 \centering
 \begin{subfigure}{.5\textwidth}
 	\centering
-    	\includegraphics[width=0.8\textwidth]{plots/POSoutOfVocIN.png}
+    	\includegraphics[width=0.8\textwidth]{plots/POS-OOV-IN.png}
     	\subcaption{\textit{in domain} }
 	\label{fig:inpos}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
 	\centering
-    	\includegraphics[width=0.8\textwidth]{plots/POSoutOfVocOUT.png}
+    	\includegraphics[width=0.8\textwidth]{plots/POS-OOV-OUT.png}
    	\subcaption{\textit{out-of-domain}}
 	\label{fig:outpos}
 \end{subfigure}  	
 \end{figure*} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% OUT OF VOC Chunking: missing result!!!
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% OUT OF VOC NER
-\begin{figure*}
+%%% OOV NER
+\begin{figure*}[h]
 \caption{NER out-of-vocabulary-words accuracy for \textit{in-domain} and \textit{out-of-domain} test sets}
 \centering
 \begin{subfigure}{.5\textwidth}
 	\centering
-    	\includegraphics[width=0.8\textwidth]{plots/NERoutOfVocIN.png}
+    	\includegraphics[width=0.8\textwidth]{plots/NER-OOV-IN.png}
     	\subcaption{\textit{in-domain}}
 	\label{fig:inner}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
 	\centering
-    	\includegraphics[width=0.8\textwidth]{plots/NERoutOfVocOUT.png}
+    	\includegraphics[width=0.8\textwidth]{plots/NER-OOV-OUT.png}
    	\subcaption{\textit{out-of-domain}}
 	\label{fig:outner}
 \end{subfigure}  	
@@ -111,16 +108,29 @@ MWE & (F1) 57.71 \cite{•} & \\  % Schneider (2014), Table 3 exact match on tes
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% OUT OF VOC MWE
-\begin{figure*}
-\caption{MWE out-of-vocabulary-words accuracy for \textit{in-domain} test set}
+%%% OOV Chunking
+\begin{figure}[h]
+\caption{Chunking out-of-vocabulary-words accuracy for \textit{in-domain} test set}
 \centering
-    	\includegraphics[width=0.5\textwidth]{plots/MWEoutOfVoc.png}    
-\label{fig:outmwe}
-\end{figure*}
+    	\includegraphics[width=0.5\textwidth]{plots/Chunking-OOV.png}    
+\label{fig:outchunking}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% OUT OF VOC POS
+%%% OOV MWE
+\begin{figure}[h]
+\caption{MWE out-of-vocabulary-words accuracy for \textit{in-domain} test set}
+\centering
+    	\includegraphics[width=0.5\textwidth]{plots/MWE-OOV.png}    
+\label{fig:outmwe}
+\end{figure}
+
+
+
+
+
+
+
 
 \subsection{Result tables}
 
