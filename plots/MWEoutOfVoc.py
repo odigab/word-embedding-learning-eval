@@ -152,7 +152,7 @@ for root, subdirs, files in sortedWalk(walk_dir):
 				label = ''	
 				marker = ''
 
-plt.ylim([.7,1])
+plt.ylim([.5,1])
 plt.xlabel('Training size')
 plt.ylabel('Accuracy')
 
