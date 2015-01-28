@@ -147,7 +147,7 @@ for root, subdirs, files in sortedWalk(walk_dir):
 				print('x ', x)						
 				print('y ', y)			
 				xv = np.array(x)
-				yv = np.array(y)
+				yv = np.array(y)				
 				plt.plot(xv, yv, label=label, linestyle=linestyle, marker=marker, color=color)	
 				x = []
 				y = []
@@ -156,6 +156,7 @@ for root, subdirs, files in sortedWalk(walk_dir):
 				label = ''
 				marker = ''
 
+plt.ylim([.7,1])
 plt.xlabel('Training size')
 plt.ylabel('F1-Measure')
 
@@ -163,6 +164,16 @@ plt.ylabel('F1-Measure')
 plt.legend(loc='lower right')
 savefig(outputfile, bbox_inches='tight')
 #plt.show()
+
+
+
+
+
+
+
+
+
+
 
 
 

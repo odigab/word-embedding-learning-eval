@@ -145,8 +145,8 @@ for root, subdirs, files in sortedWalk(walk_dir):
 				xv = []
 				zv = []
 				label = ''
-				marker = ''
-	
+				marker = ''	
+plt.ylim([.5,1])
 plt.xlabel('Training size')
 plt.ylabel('F1-Measure')
 
