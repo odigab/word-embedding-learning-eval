@@ -49,7 +49,6 @@ argsDF <- as.data.frame(do.call("rbind", parseArgs(args)))
 argsL <- as.list(as.character(argsDF$V2))
 names(argsL) <- argsDF$V1
 
-
 files <- strsplit(argsL$files,",")[[1]]
 
 eval=toString(argsL$eval)
