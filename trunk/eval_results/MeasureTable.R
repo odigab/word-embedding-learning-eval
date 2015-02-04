@@ -49,14 +49,15 @@ argsDF <- as.data.frame(do.call("rbind", parseArgs(args)))
 argsL <- as.list(as.character(argsDF$V2))
 names(argsL) <- argsDF$V1
 
+
 files <- strsplit(argsL$files,",")[[1]]
 
 eval=toString(argsL$eval)
 
 temp = data.matrix(read.delim(file = files[1], header = TRUE, sep = "\t"))
-out <- as.data.frame(temp[,"numSens"])
+out <- as.data.frame(temp[,"label"])
 
-colnames(out)[1] <- "label"
+colnames(out)[1] <- "numSens"
 decimal <- function(x, k) format(round(x, k), nsmall=k)
 
 for(f in 1:length(files)){
@@ -68,7 +69,8 @@ for(f in 1:length(files)){
 	fileName <- basename(files[f])
 	fileName <- gsub("_","+",fileName)
 	print(fileName)
-	colnames(out)[f+1] <- substr(fileName, 0, regexpr("+[^+]*$", fileName)-2)
+#	colnames(out)[f+1] <- substr(fileName, 0, regexpr("+[^+]*$", fileName)-2)
+	colnames(out)[f+1] <- substr(fileName, 0, regexpr("+[^+]*$", fileName)+1)
 }
 write.csv(out, file = argsL$output, eol = "\n", quote=FALSE, row.names = FALSE)
 
