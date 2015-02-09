@@ -1,6 +1,8 @@
 \section{Sequence Tagging Tasks}
 \label{sec:SeqTagging}
 
+{\color{red}Lizhen}
+
 We evaluate different word representations in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification. For each task, we feed learned word representations into a first order linear-chain graph transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. If we do not update word representations during training, the graph transformer is equivalent to a linear-chain CRF. For each model taking distributed word representations as word features, we consider two settings: 
 \begin{small}
 \begin{itemize}
