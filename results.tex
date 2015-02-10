@@ -33,20 +33,61 @@ MWE & (F1) 0.6253 \cite{Schneider+:2014} & 0.6546 (cw+up)\\
 \end{table*}
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% HEATMAPS 
+\clearpage
+
+\begin{figure*}
+\caption{Best results for each method for POS-Tagging and Chunking}
+\centering
+\begin{subfigure}{6cm}
+	\centering
+    \includegraphics[scale=0.3]{plots/map-pos}    	
+	\label{fig:bestpos}
+	\subcaption{POS-Tagging Accuracy}	
+\end{subfigure}
+\begin{subfigure}{6cm}
+	\centering
+    \includegraphics[scale=0.3]{plots/map-chunk}
+	\label{fig:bestchunking}
+	\subcaption{Chunking F1-Measure}	
+\end{subfigure}
+\end{figure*}
+
+\begin{figure*}
+\caption{Best results for each method for NER and MWE}
+\centering
+\begin{subfigure}{6cm}
+	\centering
+    \includegraphics[scale=0.3]{plots/map-ner}    	
+	\label{fig:bestpos}
+	\subcaption{NER F1-Measure}	
+\end{subfigure}
+\begin{subfigure}{6cm}
+	\centering
+    \includegraphics[scale=0.3]{plots/map-mwe}
+	\label{fig:bestchunking}
+	\subcaption{MWEs F1-Measure}	
+\end{subfigure}
+\end{figure*}
+
+\clearpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% BEST
 \begin{figure*}[h]
 \caption{Best results for each method for POS-Tagging and Chunking}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{6cm}
 	\centering
-    \includegraphics[width=0.8\textwidth]{plots/bestPOS}    	
+    \includegraphics[scale=0.3]{plots/bestPOS}    	
 	\label{fig:bestpos}
 	\subcaption{POS-Tagging results}	
 \end{subfigure}
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{6cm}
 	\centering
-    \includegraphics[width=0.8\textwidth]{plots/bestChunking}
+    \includegraphics[scale=0.3]{plots/bestChunking}
 	\label{fig:bestchunking}
 	\subcaption{Chunking results}	
 \end{subfigure}
@@ -55,19 +96,22 @@ MWE & (F1) 0.6253 \cite{Schneider+:2014} & 0.6546 (cw+up)\\
 \begin{figure*}[h]
 \caption{Best results for each method for NER and MWE}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{6cm}
 	\centering
-    	\includegraphics[width=0.8\textwidth]{plots/bestNER}
+    	\includegraphics[scale=0.3]{plots/bestNER}
 	\subcaption{NER results}	
 	\label{fig:bestner}
 \end{subfigure}
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{6cm}
 	\centering
-    	\includegraphics[width=0.8\textwidth]{plots/bestMWE}
+    	\includegraphics[scale=0.3]{plots/bestMWE}
     \subcaption{MWE results}	
 	\label{fig:bestmwe}
 \end{subfigure}  	
 \end{figure*}  	
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,15 +119,15 @@ MWE & (F1) 0.6253 \cite{Schneider+:2014} & 0.6546 (cw+up)\\
 \begin{figure*}[h]
 \caption{POS-Tagging out-of-vocabulary-words accuracy for \textit{in-domain} and \textit{out-of-domain} test sets}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{6cm}
 	\centering
-    	\includegraphics[width=0.8\textwidth]{plots/POS-OOV-IN}
+    	\includegraphics[scale=0.3]{plots/POS-OOV-IN}
     	\subcaption{\textit{in domain} }
 	\label{fig:inpos}
 \end{subfigure}
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{6cm}
 	\centering
-    	\includegraphics[width=0.8\textwidth]{plots/POS-OOV-OUT}
+    	\includegraphics[scale=0.3]{plots/POS-OOV-OUT}
    	\subcaption{\textit{out-of-domain}}
 	\label{fig:outpos}
 \end{subfigure}  	
@@ -94,15 +138,36 @@ MWE & (F1) 0.6253 \cite{Schneider+:2014} & 0.6546 (cw+up)\\
 \begin{figure*}[h]
 \caption{NER out-of-vocabulary-words accuracy for \textit{in-domain} and \textit{out-of-domain} test sets}
 \centering
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{6cm}
 	\centering
-    	\includegraphics[width=0.8\textwidth]{plots/NER-OOV-IN}
+    	\includegraphics[scale=.3]{plots/NER-OOV-IN}
     	\subcaption{\textit{in-domain}}
 	\label{fig:inner}
 \end{subfigure}
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{6cm}
 	\centering
-    	\includegraphics[width=0.8\textwidth]{plots/NER-OOV-OUT}
+    	\includegraphics[scale=0.3]{plots/NER-OOV-OUT}
+   	\subcaption{\textit{out-of-domain}}
+	\label{fig:outner}
+\end{subfigure}  	
+\end{figure*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% OOV Chunking and MWE
+\begin{figure*}[h]
+\caption{Chunking and MWE out-of-vocabulary-words accuracy for \textit{in-domain} test set}
+\centering
+\begin{subfigure}{6cm}
+	\centering
+    	\includegraphics[scale=.3]{plots/Chunking-OOV}
+    	\subcaption{\textit{in-domain}}
+	\label{fig:inner}
+\end{subfigure}
+\begin{subfigure}{6cm}
+	\centering
+    	\includegraphics[scale=0.3]{plots/MWE-OOV}
    	\subcaption{\textit{out-of-domain}}
 	\label{fig:outner}
 \end{subfigure}  	
@@ -111,23 +176,21 @@ MWE & (F1) 0.6253 \cite{Schneider+:2014} & 0.6546 (cw+up)\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% OOV Chunking
-\begin{figure}[h]
-\caption{Chunking out-of-vocabulary-words accuracy for \textit{in-domain} test set}
-\centering
-    	\includegraphics[width=0.5\textwidth]{plots/Chunking-OOV}    
-\label{fig:outchunking}
-\end{figure}
+%\begin{figure}[h]
+%\caption{Chunking out-of-vocabulary-words accuracy for \textit{in-domain} test set}
+%\centering
+%    	\includegraphics[scale=.3]{plots/Chunking-OOV}    
+%\label{fig:outchunking}
+%\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% OOV MWE
-\begin{figure}[h]
-\caption{MWE out-of-vocabulary-words accuracy for \textit{in-domain} test set}
-\centering
-    	\includegraphics[width=0.5\textwidth]{plots/MWE-OOV}    
-\label{fig:outmwe}
-\end{figure}
-
-
+%\begin{figure}[h]
+%\caption{MWE out-of-vocabulary-words accuracy for \textit{in-domain} test set}
+%\centering
+%    	\includegraphics[scale=.3]{plots/MWE-OOV}    
+%\label{fig:outmwe}
+%\end{figure}
 
 
 
