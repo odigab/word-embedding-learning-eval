@@ -23,9 +23,10 @@ layout = Layout(
         family="Droid Sans, sans-serif",
     ),
     xaxis=XAxis(
-        title='Word Embeddings Methods',	# x-axis title
+        title='Word Embeddings Methods',	# x-axis title	
     ),
     yaxis=YAxis(
+	
         title='Training instances', 		# y-axis title
         autorange='reversed', 			# (!) reverse tick ordering
     ),
@@ -36,7 +37,7 @@ layout = Layout(
 scl_sns = [
     [0,"#1E9140"],   # color of minimun level (from 'zmin') dark green #1E9140
     #[0.25,"#BDF7AF"], [0.5,"#DCF5D5"], [0.75, "#F7EBE8"],  # in-between purple, pink, fuxia light green: BDF7AF, more light green DCF5D5, light pink F7EBE8
-    [0.25,"#F9E357"], [0.5,"#F9DBCA"], [0.75, "#F7EBE8"],  # in-between purple, pink, fuxia light green: BDF7AF, more light green DCF5D5, light pink F7EBE8
+    [0.25,"#F9E357"], [0.5,"#F9E357"], [0.75, "#F9E357"],  # in-between purple, pink, fuxia light green: BDF7AF, more light green DCF5D5, light pink F7EBE8
     [1, "#8B0000"]   # color of maximum level (from 'zmax') dark red 
 ]
 
@@ -45,12 +46,19 @@ pos = Data([
 	Heatmap(
 		z = [[float(0.6293),float(0.7687),float(0.7267),float(0.742),float(0.7543),float(0.7457),float(0.7547),float(0.7486),float(0.6861),float(0.7172)],[float(0.7387),float(0.8527),float(0.8009),float(0.8266),float(0.8446),float(0.8386),float(0.8501),float(0.8482),float(0.793),float(0.8178)],[float(0.8208),float(0.9019),float(0.8468),float(0.8818),float(0.8896),float(0.8877),float(0.8921),float(0.8953),float(0.8503),float(0.8737)],[float(0.8721),float(0.9249),float(0.8755),float(0.9076),float(0.9162),float(0.9159),float(0.9185),float(0.921),float(0.8869),float(0.9071)],[float(0.9039),float(0.9346),float(0.8933),float(0.9243),float(0.9293),float(0.9303),float(0.9321),float(0.9344),float(0.9059),float(0.9253)],[float(0.9215),float(0.9391),float(0.9048),float(0.9341),float(0.938),float(0.9392),float(0.9403),float(0.9437),float(0.9178),float(0.9366)],[float(0.933),float(0.9405),float(0.9129),float(0.9404),float(0.9439),float(0.9444),float(0.9465),float(0.9486),float(0.9266),float(0.9435)],[float(0.9382),float(0.941),float(0.9173),float(0.9458),float(0.9468),float(0.9498),float(0.9489),float(0.952),float(0.9321),float(0.9474)],[float(0.9413),float(0.9417),float(0.9208),float(0.95),float(0.9494),float(0.9541),float(0.9521),float(0.956),float(0.9357),float(0.9526)],[float(0.9432),float(0.9419),float(0.9236),float(0.9537),float(0.9516),float(0.9577),float(0.9543),float(0.9592),float(0.9379),float(0.9563)]],
 		x = ['unigram','brown','cw+noup','cw+up','cbow+negs+noup','cbow+negsam+up','skip+negsam+noup','skip+negsam+up','glove+noup','glove+up'],
+		# y0 = 38,
 		y = [38,113,262,561,1159,2354,4745,9527,19091,38219],
 		zauto=False,		# (!) overwrite Plotly's default color levels
 		zmin=0.6293,    	# (!) set value of min color level
 		zmax=0.9592,    	# (!) set value of max color level		
 		colorscale=scl_sns,	# (!) custom color scales list of lists		
-		reversescale=True	# inverse colormap order
+		reversescale=True,	# inverse colormap order
+		ytype = 'scaled',
+		line=Line(
+		        smoothing=1.5,    # (!) contour smmothing, default is 1
+			color='#999999',  # light grey contour lines, default is black
+		        width=4           # default is 0.5 
+    		),
  	)
 ])
       
@@ -64,6 +72,7 @@ chunking = Data([
 		zmax=0.9378,    	# (!) set value of max color level
 		colorscale=scl_sns,	# (!) custom color scales list of lists		
 		reversescale=True,	# inverse colormap order
+		ytype = 'scaled'
  	)
 ])
       
@@ -77,6 +86,7 @@ ner = Data([
 		zmax=0.8686,    	# (!) set value of max color level
 		colorscale=scl_sns,	# (!) custom color scales list of lists		
 		reversescale=True,	# inverse colormap order
+		ytype = 'scaled'
  	)
 ])
 
@@ -91,6 +101,7 @@ mwe = Data([
 		zmax=0.6546,    	# (!) set value of max color level
 		colorscale=scl_sns,	# (!) custom color scales list of lists		
 		reversescale=True,	# inverse colormap order
+		ytype = 'scaled'
  	)
 ])
 
