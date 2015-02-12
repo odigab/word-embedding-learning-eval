@@ -3,7 +3,36 @@
 
 {\color{red}Lizhen}
 
-We evaluate different word representations in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification. For each task, we feed learned word representations into a first order linear-chain graph transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. If we do not update word representations during training, the graph transformer is equivalent to a linear-chain CRF. For each model taking distributed word representations as word features, we consider two settings: 
+We evaluate different word representations in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification. 
+
+
+\subsection{Datasets}
+It is well known that the choice of a corpora have an important effect in the final accuracy of machine learning algorithms. 
+Therefore, each word embedding method was trained with the same corpora (Table \ref{wordEmbedCorpora}). The main reason of choosing the corpora 
+is that they are publicly available. 
+
+\begin{table}[h]
+\begin{center}
+\begin{small}
+\begin{tabular}{lll}
+\hline
+\textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
+UMBC 	& 48.1GB & 3 billions \\
+One Billion 	& 4.1GB & 0.8 billions  \\
+Latest wikipedia dump & 49.6GB & 3 billions \\ \hline
+\end{tabular}
+\end{small}
+\caption{Corpora used to learn word embeddings}
+\label{wordEmbedCorpora}
+\end{center}
+\end{table}
+
+\subsection{Preprocessing}
+All text are preprocessed with Stanford sentence splitter and tokeniser. All consecutive digit substrings are replaced by NUM\textit{f}, where \textit{f} is the length of the digit substring. For example, "10.20" is replaced by "NUM2.NUM2".
+
+
+
+For each task, we feed learned word representations into a first order linear-chain graph transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. If we do not update word representations during training, the graph transformer is equivalent to a linear-chain CRF. For each model taking distributed word representations as word features, we consider two settings: 
 \begin{small}
 \begin{itemize}
 \item[-] Graph transformer \textit{does not} fine tune word representations during training.
