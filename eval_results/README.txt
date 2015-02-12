@@ -28,3 +28,8 @@ Usage: LabelRank.R file_1 file_2
 MeasereTable.R
 MeasereTable.R is a R script that prints out a given evaluation method of different methods in a single table.
 MeasureTable.R --eval=evaluation_method --files=file1,file2,file3... --output=outputfile.csv
+
+/tsne/wordEmbeddings.py
+
+wordEmbeddings.py is a python script to calculate word coordinate in a vector space of given word embedding files and print the coordinates into a csv table named coordinate.csv under current folder. 
+wordEmbeddings.py -u <updateFile1,updateFile2,...> -n <notUpdateFile> -w <wordList>
