@@ -1,5 +1,20 @@
 #!/usr/bin/python
 
+## This script calculate word coordinate in a vector space of given word embedding files and print the coordinates into a csv table named coordinate.csv under current folder.
+#  VERSION 1.0
+#  Liyuan ZHOU, NICTA CRL, 2015
+#
+# Usage: 
+#	wordEmbeddings.py [-u <updateWordEmbeddingFiles>] [-n <notUpdateWordEmbeddingFile>] [-w <wordListFile>]
+#	
+#	-u <updateWordEmbeddingFile1,updateWordEmbeddingFile2,...>: files seperated by , without space.
+#	-n <notUpdateWordEmbeddingFile>: not update word embedding file.
+#	-w <wordListFile>: a txt file that list words
+#	
+# Example: 
+#	./wordEmbeddings.py -u uptest1.txt,uptest2.txt -n nouptest.txt -w wordList.txt
+#					
+
 from tsne import tsne
 import numpy as Math
 import sys, getopt
