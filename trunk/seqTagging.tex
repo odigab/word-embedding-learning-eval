@@ -4,12 +4,11 @@
 {\color{red}Lizhen}
 
 We evaluate different word representations in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification. 
-
-
-\subsection{Datasets}
 It is well known that the choice of a corpora have an important effect in the final accuracy of machine learning algorithms. 
 Therefore, each word embedding method was trained with the same corpora (Table \ref{wordEmbedCorpora}). The main reason of choosing the corpora 
 is that they are publicly available. 
+The data was preprocessed with the Stanford sentence splitter and tokenizer.
+All consecutive digit substrings were replaced by NUM\textit{f}, where \textit{f} is the length of the digit substring (e.g., ``10.20'' is replaced by ``NUM2.NUM2''.
 
 \begin{table}[h]
 \begin{center}
@@ -27,38 +26,46 @@ Latest wikipedia dump & 49.6GB & 3 billions \\ \hline
 \end{center}
 \end{table}
 
-\subsection{Preprocessing}
-All text are preprocessed with Stanford sentence splitter and tokeniser. All consecutive digit substrings are replaced by NUM\textit{f}, where \textit{f} is the length of the digit substring. For example, "10.20" is replaced by "NUM2.NUM2".
+For each sequence tagging task, we feed learned word representations into a first order linear-chain graph
+transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm
+AdaGrad~\cite{duchi2011adaptive}.
+For each model taking distributed word representations as word features, we consider two settings: 
 
-
-
-For each task, we feed learned word representations into a first order linear-chain graph transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. If we do not update word representations during training, the graph transformer is equivalent to a linear-chain CRF. For each model taking distributed word representations as word features, we consider two settings: 
 \begin{small}
 \begin{itemize}
-\item[-] Graph transformer \textit{does not} fine tune word representations during training.
+\item[-] Graph transformer \textit{does not} fine tune word representations during training (this is equivalent to a linear-chain CRF);
 \item[-] Graph transformer fine tunes the word representations during training.
 \end{itemize}
 \end{small}
-For each task, we consider also CRF models with hand-crafted features, which use one-hot representation for each unigram.
 
-For each task, we split the task specific corpus into a training set, validation set, and a test set (see Table \ref{datasplit}). If a corpus already provides fixed splits, we reuse them. For POS tagging and NER, we also evaluate the models with a out-of-domain corpus, which has similar annotation schema as the respective training corpus.
+We consider also CRF models with hand-crafted features, which use one-hot representation for each unigram.
+
+We split the task specific corpus into a training set, validation set, and a test set (see Table \ref{datasplit}). If a corpus already provides fixed splits, we reuse them. For POS-tagging and NER, we also evaluated the models with a out-of-domain corpus (English Web-Treebank and MUC-7, respectively), which has similar annotation schema as the respective training corpus.
+
 \begin{table*}
 \begin{small}
-\begin{tabular}{lllp{3cm}ll}
+\begin{tabular}{lllp{3.cm}ll}
 \hline
-			& \textbf{Training} & \textbf{Validation} & \textbf{Test} & \textbf{Feature space} \\ \hline
+			& \textbf{Training set} & \textbf{Validation set} & \textbf{Test set} & \textbf{Feature space} \\ \hline
 \textbf{POS-Tagging} & 0-18 WSJ & 19-21 WSJ & 22-24 of WSJ; English Web-Treebank & as in~\cite{collobert2011natural} \\
-\textbf{Chunking} & WSJ & 1000 sentences WSJ & CoNLL-2000 & as~\cite{turian2010word}\\
+\textbf{Chunking} & WSJ & 1000 sentences WSJ & CoNLL-2000 & as in~\cite{turian2010word}\\
 \textbf{NER} & CoNLL-2003 train set & CoNLL-2003 dev. set & CoNLL-2003 test set; MUC7 & as in~\cite{turian2010word} \\
 \textbf{MWE} & 500 documents from & 100 documents from & 123 documents & as in~\cite{mwecorpus}\\
 \hline
 \end{tabular}
-\caption{Datasets and features for each task}
+\caption{Datasets splits and feature space for each sequence tagging task.}
 \label{datasplit}
 \end{small}
 \end{table*}
 
-In order to have fair and reproducible experimental results, we tuned the hyperparameters with random search~\cite{bergstra2012random}. We randomly sampled 50 distinct hyperparameter sets with the same random seed for the models that do not update word embeddings, and sampled 100 distinct hyperparameter sets for the models that update word embeddings.  For each set of hyperparameters, we train a model on its training set and pick up the best one based on its performance on its validation set~\cite{turian2010word}. Note that, we also consider word vector size and context window size of distributed word representation, and number of clusters of brown clustering as the hyperparameters. This is achieved by mapping each possible hyperparameter combination to the word representation files trained with these parameters. Their ranges are listed below.
+
+In order to have fair and reproducible experimental results, we tuned the hyperparameters with random search~\cite{bergstra2012random}. 
+We randomly sampled 50 distinct hyperparameter sets with the same random seed for the models that do not update word embeddings, and sampled 100 distinct hyperparameter sets for the models that update word embeddings. 
+For each set of hyperparameters, we train a model on its training set and pick up the best one based on its performance on its validation set~\cite{turian2010word}. 
+Note that, we also consider word vector size and context window size of distributed word representation, and number of clusters of brown clustering as the hyperparameters.
+This is achieved by mapping each possible hyperparameter combination to the word representation files trained with these parameters. 
+Their ranges are listed below.
+
 \begin{small}
 \begin{itemize}
 \item[-]\textbf{Word vector size}: [25, 50, 100, 200].
@@ -67,11 +74,11 @@ In order to have fair and reproducible experimental results, we tuned the hyperp
 \end{itemize}
 \end{small}
 
-However, for the models that update word representations, we always found under-performed hyperparameters after trying out all hyperparameter combinations, because they have more hyperparameters than the models that do not update word representations. Then for each distributed word representations, we reuse all hyperparameters of the models that do not update word representations, only tune the hyperparameters of AdaGrad for the word representation layer. This method requires only 32 additional runs for each model updating embeddings and achieves consistently better results than 100 random draws.
+However, for the models that update word representations, we always found under-performed hyperparameters after trying out all hyperparameter combinations, because they have more hyperparameters than the models that do not update word representations. Then, for each distributed word representations, we reuse all hyperparameters of the models that do not update word representations, only tune the hyperparameters of AdaGrad for the word representation layer. This method requires only 32 additional runs for each model updating embeddings and achieves consistently better results than 100 random draws.
 
-The final evaluation is carried out in a semi-supervised setting. We split the training set into 10 partitions at log scale. That means, the second smallest partition will be twice the size of the smallest partition. We created 10 training sets with incremental size by merging these partitions from the smallest one to the largest one, and evaluate them all on the same designated test sets. 
+The final evaluation is carried out in a semi-supervised setting. We split the training set into 10 partitions at log scale. That means, the second smallest partition will be twice the size of the smallest partition. We created 10 training sets with incremental size by merging these partitions from the smallest one to the largest one, and each of them on the same designated test sets. 
 
-We adopt the most commonly used F1 measures as the evaluation metric for all tasks except POS tagging, for which we use per-word accuracy. In order to evaluate model performance on unknown words, we report also the accuracy for the words that do not occur in the training set.
+We adopted the most commonly used F1 measure as the evaluation metric for all tasks except POS tagging, for which we use per-word accuracy. In order to evaluate model performance on out-of-vocabulary (unknown) words, we reported also the accuracy for the words that do not occur in the training set.
 
 In addition, we also set up experiments to verify if CRF/graph transformer requires different feature design for different kinds of pre-trained word embeddings. This is achieved by adding a hidden layer between CRF and distributed word representations. For each context word, the hidden layer computes the element-wise multiplication of its embedding with the embedding of the current word embedding, and the representation of current word stays the same. The results of this approach are not plotted because this method leads only to marginal improvement.
 
