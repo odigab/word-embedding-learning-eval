@@ -1,127 +1,52 @@
 
-\section{Learning Word Representations}
+\section{Self-taught Learning}
 {\color{red}Lizhen and Gabriela}
 
-%The statistics about word occurrences in a corpus is the primary source of information available to all supervised methods for learning word representations.
-%Traditionally, words were represented in a vocabulary index, were the is not notion about the similarity between words. 
+The idea behind self-taught learning is to use unlabelled data for improving the performance on supervised learning tasks by learning a higher-order feature representation
+of the inputs using the unlabelled data \cite{•}
 
-Distributed word representation methods represent each word as a continuous vector, where similar words have a similar vector representation, therefore, capturing
-the similarity between words.
+% It is well know that having a good representation of the data  is essential for machine learning algorithms, the key of self-taught learning is to learn that representation from unlabelled data
 
-{\color{blue}Example}
 
-The estimation of the word vectors can be carry out with different models architectures. We evaluate five different word embeddings learning algorithms, which are the following: 
+
+\subsection{Learning Word Representations}
+Based on the idea that a word is characterized by the company it keeps \cite{firth1957}, 
+distributed word representation methods represent a given word as a continuous vector, which consists of the most frequent contexts of that given word in a big corpus.
+Therefore, similar words have a similar vector representation.
+
+Traditionally, the estimation of the vectors is done by initializing the vectors with co-occurrences counts. More recently, the vectors are learned in a supervised way, where
+the weights in the vectors are set to maximize the probability of the context in which the word is observed in the corpus. 
+Note that the method does no require an annotated corpus since the contexts windows used for training are extracted from unannotated data.
+
+More formally, learning a word vector $W: words \rightarrow \mathbb{R}^n$ is parametrized function that maps
+words to high-dimensional vectors, where $W$ is initialized to have random vectors for each word and learn to have meaningful vectors to perform same task.
+
+Learning the word vectors can be carry out with different models architectures. 
+In this paper, we evaluated five different word embeddings learning algorithms, which are the following: 
  
 \begin{itemize}
-\item[-] Glove \cite{pennington2014glove}
-\item[-] Skip-gram \cite{Mikolov13}
-\item[-] CBOW \cite{Mikolov13}
-\item[-] Neural language model \cite{collobert2011natural}
 \item[-] Brown cluster \cite{Brown92class-basedn-gram}
+\item[-] CBOW \cite{Mikolov13NIPS}
+\item[-] Glove \cite{pennington2014glove}
+\item[-] Neural language model \cite{collobert2011natural}
+\item[-] Skip-Gram \cite{Mikolov13}
 \end{itemize}
 
-The first four methods were chosen because they are recent
-state-of-the-art word embedding methods and because their software is
-available. The final method (Brown clusters) was selected as a benchmark word representation, which makes use of hard word clusters rather than a distributed representation.
+The above methods were chosen because they are recent
+state-of-the-art word embedding learning methods and because their software is
+available and all of them are neural networks architectures.
+The first method (Brown clusters) was selected as a benchmark word representation, which makes use of hard word clusters rather than a distributed representation.
 
-\begin{table}
-\centering
-\begin{small}
-\begin{tabular}{lr}
-\hline
-\textbf{Glove parameters}  & \textbf{Value} \\ \hline
-Size of word vectors &  \\
-%Max skip length between words & 15 \\ 
-Discard words below frequency & 5 \\
-Number of training iterations & 25 \\
-%Cut-off in weighting function & 100 \\ 
-Max epochs & 50 \\
-Initial learning rate & 0.05\\ \hline
-\end{tabular}
-\label{glove}
-\caption{Glove algorithm parameters}
-\end{small}
-\end{table}
+Skip-Gram \cite{Mikolov13} is a neuronal network language model, but it does not have a hidden layer, and 
+instead predicting the target word, it predicts the context given the target word.
+These embeddings are faster to train than other neuronal embeddings.
+(and does not involve dense matrix multiplication).
+
+The CBOW \cite{Mikolov13NIPS} model learns to predict the word in the middle of a symmetric window based on the sum of the vector representations of the words in the window.
+
+GloVe \cite{pennington2014glove} is essentially a log-bilinear model with a weighted least-squares objective. The main intuition underlying the model is the simple observation that ratios of word-word co-occurrence probabilities have the potential for encoding some form of meaning.
+
+%One of the benefits of neuronal networks are able to learn ways of representing the data automatically,
 
 
-\begin{table}
-\centering
-\begin{small}
-\begin{tabular}{lr}
-\hline
-\textbf{Skip-gram parameters}  & \textbf{Value} \\ \hline
-Word vector size &  \\
-Context window size & \\
-%Max skip length between words & 5 \\ 
-Learning algorithm &10 negative samples \\
-Discard words below frequency & 5 \\
-Max epochs & 50 \\
-Initial learning rate & 0.025 \\ \hline
-\end{tabular}
-\label{skip}
-\caption{Skip-gram algorithm parameters}
-\end{small}
-\end{table}
 
-\begin{table}
-\centering
-\begin{small}
-\begin{tabular}{lr}
-\hline
-\textbf{CBOW parameters}  & \textbf{Value} \\ \hline
-Word vector size &  \\
-Context window size & \\
-Discard words below frequency & 5 \\
-Max epochs & 50 \\
-Initial learning rate & 0.025 \\ \hline
-\end{tabular}
-\label{cbow}
-\caption{Skip-gram algorithm parameters}
-\end{small}
-\end{table}
-
-
-\begin{table}
-\centering
-\begin{small}
-\begin{tabular}{lr}
-\hline
-\textbf{Brown cluster parameters}  & \textbf{Value} \\ \hline
-Number of clusters & \\ 
-Discard words below frequency & 5 \\ \hline
-%Maximum length of a phrase & 1 \\ \hline
-%Number to call srand with & 505123952 \\
-%Collocations with most mutual information & 500 \\ \hline
-%Collocations with most mutual information (output) & 500 \\ \hline
-\end{tabular}
-\label{brown}
-\caption{Brown algorithm parameters}
-\end{small}
-\end{table}
-
-
-{\color{blue}Discuss here about fundamental differences between the above methods}
-
-\subsection{Datasets}
-It is well known that the choice of a corpora have an important effect in the final accuracy of machine learning algorithms. 
-Therefore, each word embedding method was trained with the same corpora (Table \ref{wordEmbedCorpora}). The main reason of choosing the corpora 
-is that they are publicly available. 
-
-\begin{table}[h]
-\begin{center}
-\begin{small}
-\begin{tabular}{lll}
-\hline
-\textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
-UMBC 	& 48.1GB & 3 billions \\
-One Billion 	& 4.1GB & 0.8 billions  \\
-Latest wikipedia dump & 49.6GB & 3 billions \\ \hline
-\end{tabular}
-\end{small}
-\caption{Corpora used to learn word embeddings}
-\label{wordEmbedCorpora}
-\end{center}
-\end{table}
-
-\subsection{Preprocessing}
-All text are preprocessed with Stanford sentence splitter and tokeniser. All consecutive digit substrings are replaced by NUM\textit{f}, where \textit{f} is the length of the digit substring. For example, "10.20" is replaced by "NUM2.NUM2".
