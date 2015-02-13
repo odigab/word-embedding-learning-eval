@@ -4,27 +4,6 @@
 {\color{red}Lizhen}
 
 We evaluate different word representations in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification. 
-It is well known that the choice of a corpora have an important effect in the final accuracy of machine learning algorithms. 
-Therefore, each word embedding method was trained with the same corpora (Table \ref{wordEmbedCorpora}). The main reason of choosing the corpora 
-is that they are publicly available. 
-The data was preprocessed with the Stanford sentence splitter and tokenizer.
-All consecutive digit substrings were replaced by NUM\textit{f}, where \textit{f} is the length of the digit substring (e.g., ``10.20'' is replaced by ``NUM2.NUM2''.
-
-\begin{table}[h]
-\begin{center}
-\begin{small}
-\begin{tabular}{lll}
-\hline
-\textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
-UMBC 	& 48.1GB & 3 billions \\
-One Billion 	& 4.1GB & 0.8 billions  \\
-Latest wikipedia dump & 49.6GB & 3 billions \\ \hline
-\end{tabular}
-\end{small}
-\caption{Corpora used to learn word embeddings}
-\label{wordEmbedCorpora}
-\end{center}
-\end{table}
 
 For each sequence tagging task, we feed learned word representations into a first order linear-chain graph
 transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm
