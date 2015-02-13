@@ -1,52 +1,86 @@
+\section{Self-taught Learning for Sequence Tagging}
+\label{sec:self_taught_learning}
+\lizhen{This section might go to introduction}
+The idea of learning word representations for downstream NLP applications embraces the idea of self-taught learning~\cite{}. Self-taught learning starts with learning initial data representations from a large amount of unlabelled data, which may not be directly relevant to target applications. The learned representations are then fed as features into models of target applications, and may be fine-tuned during training to adapt to the target needs. Learning from a random sample of unlabelled data is distinct from semi-supervised learning~\cite{}, which makes an assumption that the unlabelled data shares the same distribution as the labelled training data. In the following, we will introduce the recent advances of learning word representations and apply them for a range of sequence tagging tasks by using graph transformers~\cite{}.
 
-\section{Self-taught Learning}
-{\color{red}Lizhen and Gabriela}
+\section{Word Representations}
+The distributional hypothesis in linguistics suggests that "a word is characterised by the company it keeps"~\cite{firth1957}. Words that are used in the similar contexts tend to have similar semantic and syntactic properties. Capturing distributional similarity is the underlying idea of all word representation learning methods. 
 
-The idea behind self-taught learning is to use unlabelled data for improving the performance on supervised learning tasks by learning a higher-order feature representation
-of the inputs using the unlabelled data \cite{•}
+\subsection{Types of Word Representations}
+Based on the ways of constructing word representations, \newcite{turian2010word} categorise these methods into three types: \textit{Distributinoal representation},  \textit{Cluster-based representation}, and \textit{Distributed representation}.
 
-% It is well know that having a good representation of the data  is essential for machine learning algorithms, the key of self-taught learning is to learn that representation from unlabelled data
+\textit{Distributional representation} methods map each word $w$ to its context word vector $\mathbf{C}_w$, which is built based on coocurrence counts between $w$ and the words surrounding it. The learning methods store either directly the cooccurence count between two words $w$ and $i$ in $C_{wi}$~\cite{} or project the concurrence counts between words into a lower dimensional space by using techniques such as SVD~\cite{} and LDA~\cite{}. 
 
+The methods of \textit{Cluster-based representation} build clusters of words by applying either soft- or hard clustering algorithms. Some of them also rely on cooccurence matrix of words~\cite{}. The Brown algorithm~\cite{} is the most famous one in this category.
 
+A \textit{distributed representation} takes the form of a dense, low-dimensional, and continuous-valued vector. It is compact and stores latent features of a word. This kind of representations are learned with various neural language models~\cite{} in the hope of capturing both syntactic and semantic properties of words.
 
-\subsection{Learning Word Representations}
-Based on the idea that a word is characterized by the company it keeps \cite{firth1957}, 
-distributed word representation methods represent a given word as a continuous vector, which consists of the most frequent contexts of that given word in a big corpus.
-Therefore, similar words have a similar vector representation.
+\subsection{Selected Word Representations}
+For the sequence tagging tasks, we choose five top performed word representations in various empirical studies as candidates : Brown clustering~\cite{}, CW~\cite{}, Skip-gram~\cite{}, CBOW~\cite{}, and Glove~\cite{}. The key idea of all these word models is to estimate the probability of word sequences. Formally, given a word sequence $\mathbf{w}=<w_1, w_2, ..., w_T>$, the training objective of these models is to maximise the log probability.
+\begin{equation}
+p(\mathbf{w}) = \frac{1}{T}\sum_{k = 1}^T log(p(w_k | w_{j \in c_{k - m}^{k + n}}))
+\end{equation}
+where $c_{k - m}^{k + n}$ denotes a sub-sequence $<w_{k-m}, ..., w_{k - 1}, w_k, w_{k + 1}, ..., w_{k+n}>$ of length $n - m - 1$, which is the local context of $w_k$. All models except CW choose $n = -1$ and $m > 0$ and exclude the word $w_k$ from the local context.
 
-Traditionally, the estimation of the vectors is done by initializing the vectors with co-occurrences counts. More recently, the vectors are learned in a supervised way, where
-the weights in the vectors are set to maximize the probability of the context in which the word is observed in the corpus. 
-Note that the method does no require an annotated corpus since the contexts windows used for training are extracted from unannotated data.
+The key differences among these models are the parameterisation of the factors $p(w_k | w_{j \in c_{k - m}^{k + n}})$ as well as the training loss functions. Brown clustering introduces a finite set of word classes $V$ for each word,  
 
-More formally, learning a word vector $W: words \rightarrow \mathbb{R}^n$ is parametrized function that maps
-words to high-dimensional vectors, where $W$ is initialized to have random vectors for each word and learn to have meaningful vectors to perform same task.
+\subsection{Building Word Representations}
+For a fair comparison, we train each kind of word embedding on a combination of all corpora in Table \ref{wordEmbedCorpora}. The joint corpus was preprocessed with the Stanford sentence splitter and tokenizer. All consecutive digit substrings were replaced by NUM\textit{f}, where \textit{f} is the length of the digit substring (e.g., ``10.20'' is replaced by ``NUM2.NUM2''.
 
-Learning the word vectors can be carry out with different models architectures. 
-In this paper, we evaluated five different word embeddings learning algorithms, which are the following: 
- 
-\begin{itemize}
-\item[-] Brown cluster \cite{Brown92class-basedn-gram}
-\item[-] CBOW \cite{Mikolov13NIPS}
-\item[-] Glove \cite{pennington2014glove}
-\item[-] Neural language model \cite{collobert2011natural}
-\item[-] Skip-Gram \cite{Mikolov13}
-\end{itemize}
-
-The above methods were chosen because they are recent
-state-of-the-art word embedding learning methods and because their software is
-available and all of them are neural networks architectures.
-The first method (Brown clusters) was selected as a benchmark word representation, which makes use of hard word clusters rather than a distributed representation.
-
-Skip-Gram \cite{Mikolov13} is a neuronal network language model, but it does not have a hidden layer, and 
-instead predicting the target word, it predicts the context given the target word.
-These embeddings are faster to train than other neuronal embeddings.
-(and does not involve dense matrix multiplication).
-
-The CBOW \cite{Mikolov13NIPS} model learns to predict the word in the middle of a symmetric window based on the sum of the vector representations of the words in the window.
-
-GloVe \cite{pennington2014glove} is essentially a log-bilinear model with a weighted least-squares objective. The main intuition underlying the model is the simple observation that ratios of word-word co-occurrence probabilities have the potential for encoding some form of meaning.
-
-%One of the benefits of neuronal networks are able to learn ways of representing the data automatically,
+\begin{table}[h]
+\begin{center}
+\begin{small}
+\begin{tabular}{lll}
+\hline
+\textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
+UMBC 	& 48.1GB & 3 billions \\
+One Billion 	& 4.1GB & 0.8 billions  \\
+Latest wikipedia dump & 49.6GB & 3 billions \\ \hline
+\end{tabular}
+\end{small}
+\caption{Corpora used to learn word embeddings}
+\label{wordEmbedCorpora}
+\end{center}
+\end{table}
+%
+%
+%Based on the idea that a word is characterized by the company it keeps \cite{firth1957}, 
+%distributed word representation methods represent a given word as a continuous vector, which consists of the most frequent contexts of that given word in a big corpus.
+%Therefore, similar words have a similar vector representation.
+%
+%Traditionally, the estimation of the vectors is done by initializing the vectors with co-occurrences counts. More recently, the vectors are learned in a supervised way, where
+%the weights in the vectors are set to maximize the probability of the context in which the word is observed in the corpus. 
+%Note that the method does no require an annotated corpus since the contexts windows used for training are extracted from unannotated data.
+%
+%More formally, learning a word vector $W: words \rightarrow \mathbb{R}^n$ is parametrized function that maps
+%words to high-dimensional vectors, where $W$ is initialized to have random vectors for each word and learn to have meaningful vectors to perform same task.
+%
+%Learning the word vectors can be carry out with different models architectures. 
+%In this paper, we evaluated five different word embeddings learning algorithms, which are the following: 
+% 
+%\begin{itemize}
+%\item[-] Brown cluster \cite{Brown92class-basedn-gram}
+%\item[-] CBOW \cite{Mikolov13NIPS}
+%\item[-] Glove \cite{pennington2014glove}
+%\item[-] Neural language model \cite{collobert2011natural}
+%\item[-] Skip-Gram \cite{Mikolov13}
+%\end{itemize}
+%
+%The above methods were chosen because they are recent
+%state-of-the-art word embedding learning methods and because their software is
+%available and all of them are neural networks architectures.
+%The first method (Brown clusters) was selected as a benchmark word representation, which makes use of hard word clusters rather than a distributed representation.
+%
+%Skip-Gram \cite{Mikolov13} is a neuronal network language model, but it does not have a hidden layer, and 
+%instead predicting the target word, it predicts the context given the target word.
+%These embeddings are faster to train than other neuronal embeddings.
+%(and does not involve dense matrix multiplication).
+%
+%The CBOW \cite{Mikolov13NIPS} model learns to predict the word in the middle of a symmetric window based on the sum of the vector representations of the words in the window.
+%
+%GloVe \cite{pennington2014glove} is essentially a log-bilinear model with a weighted least-squares objective. The main intuition underlying the model is the simple observation that ratios of word-word co-occurrence probabilities have the potential for encoding some form of meaning.
+%
+%%One of the benefits of neuronal networks are able to learn ways of representing the data automatically,
 
 
 
