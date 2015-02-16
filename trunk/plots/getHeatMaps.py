@@ -36,7 +36,6 @@ layout = Layout(
 # Custom color scales
 scl_sns = [
     [0,"#1E9140"],   # color of minimun level (from 'zmin') dark green #1E9140
-    #[0.25,"#BDF7AF"], [0.5,"#DCF5D5"], [0.75, "#F7EBE8"],  # in-between purple, pink, fuxia light green: BDF7AF, more light green DCF5D5, light pink F7EBE8
     [0.25,"#F9E357"], [0.5,"#F9E357"], [0.75, "#F9E357"],  # in-between purple, pink, fuxia light green: BDF7AF, more light green DCF5D5, light pink F7EBE8
     [1, "#8B0000"]   # color of maximum level (from 'zmax') dark red 
 ]
