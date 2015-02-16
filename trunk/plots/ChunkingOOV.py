@@ -41,7 +41,7 @@ noupMarker = 's'
 walk_dir = inputfolder
 legParams = {'legend.fontsize': 10}
 
-alist_filter = ['brown_cluster_v4000_best.txt', 
+alist_filter = ['brown_cluster_v2000_best.txt', 
 	'cbow_negsam_noupdated_best.txt', 
 	'cbow_negsam_updated_incretuneparam.txt', 
 	'cw_noupdated_best.txt', 
@@ -116,7 +116,7 @@ for root, subdirs, files in sortedWalk(walk_dir):
 				color='k'
 				marker = noupMarker
 				label = "cw_noup"
-			elif re.match("brown_cluster_v4000_best.txt", filename): 
+			elif re.match("brown_cluster_v2000_best.txt", filename): 
 				color='m'
 				label = "brown_cluster"	
 			filePath = os.path.join(root, filename)
