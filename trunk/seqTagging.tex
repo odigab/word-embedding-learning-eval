@@ -22,6 +22,7 @@ We consider also CRF models with hand-crafted features, which use one-hot repres
 We split the task specific corpus into a training set, validation set, and a test set (see Table \ref{datasplit}). If a corpus already provides fixed splits, we reuse them. For POS-tagging and NER, we also evaluated the models with a out-of-domain corpus (English Web-Treebank and MUC-7, respectively), which has similar annotation schema as the respective training corpus.
 
 \begin{table*}
+\caption{Datasets splits and feature space for each sequence tagging task.}
 \begin{small}
 \begin{tabular}{lllp{3.cm}ll}
 \hline
@@ -32,7 +33,6 @@ We split the task specific corpus into a training set, validation set, and a tes
 \textbf{MWE} & 500 documents from & 100 documents from & 123 documents & as in~\cite{mwecorpus}\\
 \hline
 \end{tabular}
-\caption{Datasets splits and feature space for each sequence tagging task.}
 \label{datasplit}
 \end{small}
 \end{table*}
