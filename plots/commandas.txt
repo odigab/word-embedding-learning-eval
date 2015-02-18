@@ -1,0 +1,11 @@
+python norm.py /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/chunking/chunks_F1Measure.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/chunking/NormalizedF1Measure.csv
+
+python norm.py /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/MWEs/mwe_F1Measure.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/MWEs/NormalizedF1Measure.csv
+
+python norm.py /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/POS/Accuracy.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/POS/NormalizedAccuracy.csv
+
+python norm.py /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/NER/CONLL_F1Measure.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/NER/NormalizedCONLL_F1Measure.csv
+
+
+
+python getHeatMaps2.py /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/chunking/NormalizedF1Measure.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/MWEs/NormalizedF1Measure.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/POS/NormalizedAccuracy.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/NER/NormalizedCONLL_F1Measure.csv heat-map-color.pdf
