@@ -99,15 +99,47 @@ Thus, a natural question: would it be better to learn distributional representat
 \label{fig:bestPOS-Chunk}
 \end{figure*}
 
+\begin{figure*}
+\caption{Best results for each method for POS-Tagging and Chunking. The x-axis correspond to the different word embeddings methods and the y-axis to the 10 training partitions at log scale. Green color stand for high performance, while red color stands for low performance. The methods are in chronological order}
+\centering
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-pos-color}    	
+	\subcaption{POS-Tagging Accuracy}	
+\end{subfigure}
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-chunk-color}
+	\subcaption{Chunking F1-Measure}	
+\end{subfigure}
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-ner-color}    	
+	\subcaption{NER F1-Measure}	
+\end{subfigure}
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-mwe-color}
+	\subcaption{MWEs F1-Measure}		
+\end{subfigure}
+\label{fig:bestPOS-Chunk}
+\end{figure*}
+
 
 
 \begin{figure*}
-\caption{•}
+\caption{Normalized by best and worst values for each task}
 \centering
 \includegraphics[scale=0.8]{plots/heat-map}    	
 \label{fig:heatmap}
 \end{figure*}
 
+\begin{figure*}
+\caption{Normalized by best and worst values for each task}
+\centering
+\includegraphics[scale=0.8]{plots/heat-map-color}    	
+\label{fig:heatmap}
+\end{figure*}
 
 
 \iffalse
