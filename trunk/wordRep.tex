@@ -4,6 +4,7 @@
 The idea of learning word representations for downstream NLP applications embraces the idea of self-taught learning~\cite{}. Self-taught learning starts with learning initial data representations from a large amount of unlabelled data, which may not be directly relevant to target applications. The learned representations are then fed as features into models of target applications, and may be fine-tuned during training to adapt to the target needs. Learning from a random sample of unlabelled data is distinct from semi-supervised learning~\cite{}, which makes an assumption that the unlabelled data shares the same distribution as the labelled training data. In the following, we will introduce the recent advances of learning word representations and apply them for a range of sequence tagging tasks by using graph transformers~\cite{}.
 
 \section{Word Representations}
+\label{wordrep}
 The distributional hypothesis in linguistics suggests that "a word is characterised by the company it keeps"~\cite{firth1957}. Words that are used in the similar contexts tend to have similar semantic and syntactic properties. Capturing distributional similarity is the underlying idea of all word representation learning methods. 
 
 \subsection{Types of Word Representations}
@@ -47,6 +48,7 @@ p(w_k | w_{k - m}^{k -1}) = p(w_k | h_k) p(h_k | h_{k - m}^{k -1})
 where $h_k$ denotes the word class of the word $w_k$, $w_{k - m}^{k -1}$ are the previous $m$ words and $h_{k - m}^{k -1}$ are their respective word classes. Then $J(w, \text{context}(w)) = - \log p(w_k | w_{k - m}^{k -1}) $. Since there is no practical method to find optimal partition of word classes, they consider only bigram class model, and utilise hierarchical clustering as an approximation method to find a sufficiently good partition of words. 
 
 \subsection{Building Word Representations}
+\label{buildingWordRep}
 For a fair comparison, we train the best performing methods Brown clustering, CBOW, Skip-gram, and Glove on a combination of all corpora in Table \ref{wordEmbedCorpora}. The joint corpus was preprocessed with the Stanford sentence splitter and tokenizer. All consecutive digit substrings were replaced by NUM\textit{f}, where \textit{f} is the length of the digit substring (e.g., ``10.20'' is replaced by ``NUM2.NUM2''. The word embeddings of CW are downloaded from the website \url{http://metaoptimize.com/projects/wordreprs}.
 
 \begin{table}[h]

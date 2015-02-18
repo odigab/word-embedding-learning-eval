@@ -1,9 +1,8 @@
 \section{Sequence Tagging Tasks}
 \label{sec:SeqTagging}
-
-{\color{red}Lizhen}
-
-We evaluate different word representations in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification. 
+We evaluate different word representations in four different sequence tagging tasks: POS-tagging, chunking, NER and MWE identification. 
+For the POS-tagging, chunking and MWE tasks, we used the same features as the state-of-the-art approaches,  \newcite{collobert2011natural}, \newcite{turian2010word} and ~\newcite{mwecorpus}, respectively. 
+For the NER, we used the same feature space as in~\newcite{turian2010word}, except for the previous two predictions.
 
 For each sequence tagging task, we feed learned word representations into a first order linear-chain graph
 transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm
@@ -26,11 +25,11 @@ We split the task specific corpus into a training set, validation set, and a tes
 \begin{small}
 \begin{tabular}{lllp{3.cm}ll}
 \hline
-			& \textbf{Training set} & \textbf{Validation set} & \textbf{Test set} & \textbf{Feature space} \\ \hline
-\textbf{POS-Tagging} & 0-18 WSJ & 19-21 WSJ & 22-24 of WSJ; English Web-Treebank & as in~\cite{collobert2011natural} \\
-\textbf{Chunking} & WSJ & 1000 sentences WSJ & CoNLL-2000 & as in~\cite{turian2010word}\\
-\textbf{NER} & CoNLL-2003 train set & CoNLL-2003 dev. set & CoNLL-2003 test set; MUC7 & as in~\cite{turian2010word} \\
-\textbf{MWE} & 500 documents from & 100 documents from & 123 documents & as in~\cite{mwecorpus}\\
+			& \textbf{Training set} & \textbf{Validation set} & \textbf{\textit{in-domain} Test set} & \textbf{\textit{out-of-domain} Test set} \\ \hline
+\textbf{POS-Tagging} & 0-18 WSJ & 19-21 WSJ & 22-24 of WSJ & English Web-Treebank  \\
+\textbf{Chunking} & WSJ & 1000 sentences WSJ & CoNLL-2000 & Brown corpus \\
+\textbf{NER} & CoNLL-2003 train set & CoNLL-2003 dev. set & CoNLL-2003 test set & MUC7  \\
+\textbf{MWE} & 500 documents from & 100 documents from & 123 documents & - \\
 \hline
 \end{tabular}
 \label{datasplit}
