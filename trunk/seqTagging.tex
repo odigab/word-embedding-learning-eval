@@ -43,15 +43,6 @@ We randomly sampled 50 distinct hyperparameter sets with the same random seed fo
 For each set of hyperparameters, we train a model on its training set and pick up the best one based on its performance on its validation set~\cite{turian2010word}. 
 Note that, we also consider word vector size and context window size of distributed word representation, and number of clusters of brown clustering as the hyperparameters.
 This is achieved by mapping each possible hyperparameter combination to the word representation files trained with these parameters. 
-Their ranges are listed below.
-
-\begin{small}
-\begin{itemize}
-\item[-]\textbf{Word vector size}: [25, 50, 100, 200].
-\item[-]\textbf{Context window size}: [5, 10, 15].
-\item[-]\textbf{Number of brown clusters}: [250, 500, 1000, 2000, 4000]. 
-\end{itemize}
-\end{small}
 
 However, for the models that update word representations, we always found under-performed hyperparameters after trying out all hyperparameter combinations, because they have more hyperparameters than the models that do not update word representations. Then, for each distributed word representations, we reuse all hyperparameters of the models that do not update word representations, only tune the hyperparameters of AdaGrad for the word representation layer. This method requires only 32 additional runs for each model updating embeddings and achieves consistently better results than 100 random draws.
 
