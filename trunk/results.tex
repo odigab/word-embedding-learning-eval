@@ -39,7 +39,7 @@ We observed that embedding methods are especially helping POS-tagging and chunki
 Therefore, confirming that any of the evaluated word embedding methods should be use when labelled data is limited.
 These early improvements are less evident for NER and MWE. 
 We attribute this to: a) NER and MWE are more difficult tasks than POS-tagging and chunking;
-b) NER and MWE require more training data to reach a decent performance; c) the performance of NER and MWE heavily dependent on complex features such as gazetteers and lexicons like Wordnet, which are not captured by the feature representation learned from unlabelled data, meanwhile the standard features used in POS-tagging and chunking (e.g., context words, stemmed words) are similar to the representations encoded in the word embeddings.
+b) NER and MWE require more training data to reach a decent performance; c) the performance of NER and MWE heavily dependent on complex features such as gazetteers and lexicons like Wordnet, which are not captured by the feature representations learned from unlabelled data, meanwhile the standard features used in POS-tagging and chunking (e.g., context words, stemmed words) are similar to the representations encoded in the word embeddings.
 
 \textbf{(iii) How well do the word embeddings perform for unknown words?}
 As already mentioned, we measure the performance for out-of-vocabulary words (OOV)
@@ -56,13 +56,15 @@ word representations become task-specific, hence performing worst for OOV.
 %According to our results, there is not a clear trend about fine-tuning or not during training. 
 Across all the methods, fine-tuning is helping POS-Tagging and MWE, where the CW method has been found to be the most sensible to tuning, reaching almost 3 points more, when tuning is performed. 
 For chunking and NER, the best results are fine-tuned, but the difference across all the methods and updated features versus not-updated ones, is not significant. 
-We also found that fine-tuning can correct poorly learned word representations but can be
+We also found that fine-tuning can correct poorly learned word representations, but can be
 overfitted if unsupervisely learned ones are already good. 
 
 Finally, we address the following question: \textbf{(vi) It has been shown that Brown clusters are useful features for MWE identification but, are also word embeddings helping MWE identification?} 
 According to our experiments, the word embedding features distilled by fine-tuned CW reached the best results, beating the state-of-the-art performance (see Table \ref{benchmark}).
 However, between Brown clusters and fine-tuned CW, learned under the same settings, the difference is not impressive, suggesting that distributional word representations and cluster-based representations captures similar features for the MWE identification task.
 Thus, a natural question: would it be better to learn distributional representations for MWE, instead of representations of single words?
+
+
 
 
 
@@ -84,12 +86,6 @@ Thus, a natural question: would it be better to learn distributional representat
     \includegraphics[scale=0.4]{plots/map-chunk}
 	\subcaption{Chunking F1-Measure}	
 \end{subfigure}
-\label{fig:bestPOS-Chunk}
-\end{figure*}
-
-\begin{figure*}
-\caption{Best results for each method for NER and MWE}
-\centering
 \begin{subfigure}{7cm}
 	\centering
     \includegraphics[scale=0.4]{plots/map-ner}    	
@@ -100,11 +96,17 @@ Thus, a natural question: would it be better to learn distributional representat
     \includegraphics[scale=0.4]{plots/map-mwe}
 	\subcaption{MWEs F1-Measure}		
 \end{subfigure}
-\label{fig:bestNER-MWE}
+\label{fig:bestPOS-Chunk}
 \end{figure*}
 
 
 
+\begin{figure*}
+\caption{•}
+\centering
+\includegraphics[scale=0.8]{plots/heat-map}    	
+\label{fig:heatmap}
+\end{figure*}
 
 
 
