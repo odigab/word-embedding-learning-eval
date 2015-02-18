@@ -53,8 +53,8 @@ pos = Data([
 		zauto=False,		# (!) overwrite Plotly's default color levels
 		zmin=0.6293,    	# (!) set value of min color level
 		zmax=0.9592,    	# (!) set value of max color level		
-		# colorscale=scl_sns,	# (!) custom color scales list of lists		
-		colorscale = 'Greys',
+		colorscale=scl_sns,	# (!) custom color scales list of lists		
+		# colorscale = 'Greys',
 		reversescale=True,	# inverse colormap order
 		#ytype = 'scaled',
 		line=Line(
@@ -73,8 +73,8 @@ chunking = Data([
 		zauto=False, 		# (!) overwrite Plotly's default color levels
 		zmin=0.5778,    	# (!) set value of min color level
 		zmax=0.9378,    	# (!) set value of max color level
-		# colorscale=scl_sns,	# (!) custom color scales list of lists
-		colorscale = 'Greys',	
+		 colorscale=scl_sns,	# (!) custom color scales list of lists
+		# colorscale = 'Greys',	
 		reversescale=True,	# inverse colormap order
 		ytype = 'scaled'
  	)
@@ -88,8 +88,8 @@ ner = Data([
 		zauto=False, 		# (!) overwrite Plotly's default color levels
 		zmin=0.0173,    	# (!) set value of min color level
 		zmax=0.8686,    	# (!) set value of max color level
-		# colorscale=scl_sns,	# (!) custom color scales list of lists		
-		colorscale = 'Greys',
+		colorscale=scl_sns,	# (!) custom color scales list of lists		
+		# colorscale = 'Greys',
 		reversescale=True,	# inverse colormap order
 		ytype = 'scaled'
  	)
@@ -104,8 +104,8 @@ mwe = Data([
 		zauto=False, 		# (!) overwrite Plotly's default color levels
 		zmin=0,    	# (!) set value of min color level
 		zmax=0.6546,    	# (!) set value of max color level
-		# colorscale=scl_sns,	# (!) custom color scales list of lists		
-		colorscale = 'Greys',
+		colorscale=scl_sns,	# (!) custom color scales list of lists		
+		# colorscale = 'Greys',
 		reversescale=True,	# inverse colormap order
 		ytype = 'scaled'
  	)
@@ -122,10 +122,10 @@ figmwe = Figure(data=mwe, layout=layout)
 #plot_url = py.plot(figner, filename='ner-heatmap')
 #plot_url = py.plot(figmwe, filename='mwe-heatmap')
 
-py.image.save_as(figpos, 'map-pos.pdf')
-py.image.save_as(figchunk, 'map-chunk.pdf')
-py.image.save_as(figner, 'map-ner.pdf')
-py.image.save_as(figmwe, 'map-mwe.pdf')
+py.image.save_as(figpos, 'map-pos-color.pdf')
+py.image.save_as(figchunk, 'map-chunk-color.pdf')
+py.image.save_as(figner, 'map-ner-color.pdf')
+py.image.save_as(figmwe, 'map-mwe-color.pdf')
 
 print 'Done!'
 
