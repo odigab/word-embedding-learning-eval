@@ -1,8 +1,3 @@
-\section{Self-taught Learning for Sequence Tagging}
-\label{sec:self_taught_learning}
-\lizhen{This section might go to introduction}
-The idea of learning word representations for downstream NLP applications embraces the idea of self-taught learning~\cite{raina2007self}. Self-taught learning starts with learning initial data representations from a large amount of unlabelled data, which may not be directly relevant to target applications. The learned representations are then fed as features into models of target applications, and may be fine-tuned during training to adapt to the target needs. Learning from a random sample of unlabelled data is distinct from semi-supervised learning~\cite{}, which makes an assumption that the unlabelled data shares the same distribution as the labelled training data. In the following, we will introduce the recent advances of learning word representations and apply them for a range of sequence tagging tasks by using graph transformers~\cite{}.
-
 \section{Word Representations}
 \label{wordrep}
 The distributional hypothesis in linguistics suggests that "a word is characterised by the company it keeps"~\cite{firth1957}. Words that are used in the similar contexts tend to have similar semantic and syntactic properties. Capturing distributional similarity is the underlying idea of all word representation learning methods. 
