@@ -1,52 +1,76 @@
 \section{Introduction}
 
-{\color{red}Tim}
+In recent years, distributed word representations have grown to become a
+mainstay of natural language processing (NLP), and been show to have
+empirical utility in a myriad of tasks
+\cite{Collobert2008,turian2010word,baroni:2014,Andreas:Klein:2014}.  The
+underlying idea behind distributed word representations is simple: to
+map each word $w$ in our vocabulary $V$ onto a continuous-valued vector
+of dimensionality $d \ll |V|$.  In this way, words of similar type
+(syntactic, lexical semantic or otherwise) will ideally be mapped to
+similar regions of the vector space, implicitly supporting both
+generalisation across in-vocabulary (IV) items and countering the
+effects of data sparsity for low-frequency and out-of-vocabulary (OOV)
+items.
 
-In the last years, distributed word representations
-have been applied to several NLP tasks.
-Inspired by distributional semantics models, distributed word
-representation methods represent each word as a continuous vector, where similar words have a similar vector representation, therefore, capturing the similarity between words.
+Without some means of automatically deriving the vector representations
+without reliance on labelled data, however, word embeddings would have
+little practical utility. Fortunately, it has been shown that they can
+be ``pre-trained'' from unlabelled text data in various ways, based on a
+range of implementations of the distributional hypothesis, i.e.\ that
+words which occur in similar contexts tend to be semantically
+similar. Pre-training methods have been refined considerably in recent
+years, and scaled up to increasingly large corpora.
 
-The resulting vectors can be used as features in many NLP applications and it has been shown that they outperform methods that treats words as atomic units \cite{}.  
-Their attractiveness relies in the ability to learn word representations in an unsupervised way, thus directly providing lexical features from big amounts of unlabelled data 
-and, therefore, alleviating the cost of human annotations.
-It has been also claimed that word embeddings
-have the ability to connect out of vocabulary words to known ones.
-%, as well known as vocabulary expansion hypothesis. 
-Hence, suggesting that word embeddings are a good resource 
-for applications that need to be adapted to a certain domain, 
-different from the one the application have been tuned for.
-For example,...
-Another property attribute to word embeddings is their 
-capacity to encouraging common behaviour among related in-vocabulary words, for instance...
+As with other machine learning methods, it is well known that the
+quality of the pre-trained word embeddings depends heavily factors
+including parameter optimization, the size of the training data, and the
+fit with the target application. For example, \newcite{turian2010word}
+showed that the optimal dimensionality for word embeddings is task
+specific.  One factor which has received relatively little attention in
+NLP is the effect of ``fine-tuning'' the pre-trained word embeddings as
+part of the training of the end task, based on self-taught
+learning~\cite{raina2007self}.  Fine-tuning leads to word
+representations that are task-specific, but often at the cost of
+over-fitting low-frequency and OOV words.
 
-
-As with other learning methods, it is well known that
-the performance of machine learning algorithms heavily depends on
-parameter optimization, the size of the training data used and the applications they target.
-For example, \cite{turian2010word} shows that the optimal word embedding dimensions are task specific.
-Moreover, there are several word embeddings methods, which used different algorithms and resources. 
-Some methods involve feedback from the end task when learning (or fine-tuning) the word representations and others do not. 
-Learning algorithm that involves fine-tuning are supposed
-to perform better since word representations become
-task-specific, at the cost of performing worst for out of vocabulary 
-words. But still, there is not systematic comparison between
-these two methods. 
+% The idea of learning word representations for downstream NLP
+% applications embraces the idea of . 
+% Self-taught learning starts with learning initial data representations
+% from a large amount of unlabelled data, which may not be directly
+% relevant to target applications. 
+% The learned representations are then fed as features into models of
+% target applications, and may be fine-tuned during training to adapt to
+% the target needs. 
+% Learning from a random sample of unlabelled data is distinct from
+% semi-supervised learning~\cite{}, which makes an assumption that the
+% unlabelled data shares the same distribution as the labelled training
+% data. 
+% In the following, we will introduce the recent advances of learning word
+% representations and apply them for a range of sequence tagging tasks by
+% using graph transformers~\cite{}.
 
 %6) How exactly should word representations be incorporated into feature-based sequence tagging models? (May have been answered by the Guo et al. paper.) 
 %I believe there is always a better way of doing this, empirical methods as in Guo’s paper or deep sequence neural networks are the ways to go. However, all of them treat the word embeddings trained with different methods in the same way. I conjecture that we should treat them differently based on how they are trained.
 
 
-In this paper, we perform an extensive evaluation of five word embedding approaches under fixed experiment conditions, and evaluate them over different sequence labelling tasks: POS-tagging, chunking, 
-NER and MWE (Multi Word Expression Identification), 
-within the following aims:
-(i) perform a fair comparison of different word embeddings
-algorithms. This includes running different word embeddings algorithms under controlled conditions, for example, use the same training set, the same preprocessing, etc.;
-(ii) measure the influence of word embeddings in sequence labeling tasks in semi-supervised settings (fine-tuning);
-(iii) systematically compared the usefulness of word embedding versus
-unigram features for sequence tagging.
-(iv) use word embeddings for MWE. To the best of our knowledge, 
-word embeddings have not been used for this task before;
+In this paper, we perform an extensive evaluation of five word embedding
+approaches under fixed experimental conditions, applied to four sequence
+labelling tasks: POS-tagging, full-text chunking, named entity
+recognition (NER), and multiword expression (MWE) identification. In
+this, we explore the following research questions:
+\begin{compactenum}[\bf RQ1:]
+\item are word embeddings better than baseline approaches of one-hot
+  unigram features and Brown clusters?
+\item are some word embeddings better than others in a sequence
+  labelling context?
+\item what is the impact of fine-tuning word embeddings in sequence
+  labeling tasks, both empirically over the target task and
+  geometrically over the vectors?
+\item what is the impact of word embeddings (with and without
+  fine-tuning) on both OOV items (relative to the training data) and
+  out-of-domain data?
+\end{compactenum}
 
 
 %(i) are word embeddings always better than unigram features? 
@@ -57,3 +81,10 @@ word embeddings have not been used for this task before;
 % the conextion between dist. semantics models and sequence taggin. 
 %static share hypothesis (in vocabulary words, e.g., individual first names are also rare in the treebank, but tend to cluster together in distributional representations);
 %embedding structure hypothesis (e.g., group words by definiteness, like each, this, every, few, most, etc.).
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t 
+%%% TeX-master: "WordEmbEvaluation"
+%%% End: 
