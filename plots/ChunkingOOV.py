@@ -8,6 +8,8 @@ import array
 import fnmatch
 import numpy as np
 import sys, getopt
+import matplotlib
+matplotlib.use('Pdf')
 import matplotlib.pyplot as plt
 
 try:
