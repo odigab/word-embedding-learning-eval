@@ -19,7 +19,7 @@ python getHeatMaps2.py ..eval_results/key_results/chunking/NormalizedF1Measure.c
 # OOV Plots
 ############
 
-python getOOVPlots.py ../eval_results/results/POS ../eval_results/results/NER ../eval_results/results/chunking ../eval_results/results/MWE OOV-plots.pdf
+python getOOVPlots.py ../eval_results/results/POS ../eval_results/results/NER ../eval_results/results/chunking ../eval_results/results/chunking_brown ../eval_results/results/MWE OOV-plots.pdf
 
 
 
