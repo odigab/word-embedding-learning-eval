@@ -7,5 +7,11 @@ python norm.py /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-ev
 python norm.py /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/NER/CONLL_F1Measure.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/NER/NormalizedCONLL_F1Measure.csv
 
 
-
 python getHeatMaps2.py /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/chunking/NormalizedF1Measure.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/MWEs/NormalizedF1Measure.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/POS/NormalizedAccuracy.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/NER/NormalizedCONLL_F1Measure.csv heat-map-color.pdf
+
+
+
+python test.py ../eval_results/results/POS ../eval_results/results/NER ../eval_results/results/chunking ../eval_results/results/MWE OVV-plots.pdf
+
+
+
