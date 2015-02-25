@@ -73,8 +73,6 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% HEATMAPS 
-
-
 \begin{figure*}
 \caption{Best results for each method for POS-Tagging and Chunking, NER and MWE identification. The x-axis correspond to the different word embeddings methods and the y-axis to the 10 training partitions at log scale. Green color stand for high performance, while red color stands for low performance. The methods are display in chronological order.}
 \centering
@@ -100,6 +98,7 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 \end{subfigure}
 \label{fig:bestPOS-Chunk}
 \end{figure*}
+
 
 \begin{figure*}
 \caption{Best results for each method for POS-Tagging and Chunking. The x-axis correspond to the different word embeddings methods and the y-axis to the 10 training partitions at log scale. Green color stand for high performance, while red color stands for low performance. The methods are in chronological order}
@@ -128,6 +127,32 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 \end{figure*}
 
 
+\begin{figure*}
+\caption{Best results for each method for POS-Tagging and Chunking. The x-axis correspond to the different word embeddings methods and the y-axis to the 10 training partitions at log scale. Green color stand for high performance, while red color stands for low performance. The methods are in chronological order}
+\centering
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-pos-color-invert}    	
+	\subcaption{POS-Tagging Accuracy}	
+\end{subfigure}
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-chunk-color-invert}
+	\subcaption{Chunking F1-Measure}	
+\end{subfigure}
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-ner-color-invert}    	
+	\subcaption{NER F1-Measure}	
+\end{subfigure}
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-mwe-color-invert}
+	\subcaption{MWEs F1-Measure}		
+\end{subfigure}
+\label{fig:bestPOS-Chunk}
+\end{figure*}
+
 
 \begin{figure*}
 \caption{Normalized by best and worst values for each task}
@@ -142,6 +167,18 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 \includegraphics[scale=0.8]{plots/heat-map-color}    	
 \label{fig:heatmap}
 \end{figure*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% OOV 
+\begin{figure*}
+\centering
+\caption{Out-of-vocabulary-words (OOV) accuracy for \textit{in-domain} and \textit{out-of-domain} test sets}
+\label{OOV} 
+    	\includegraphics[scale=0.5]{plots/OOV-plots}
+\end{figure*}
+
 
 
 \iffalse
@@ -197,12 +234,13 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 	\label{fig:outner}
 \end{subfigure}  	
 \end{figure*}	
+
 \fi
 
 
-
+\iffalse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% OOV POS and NER
+%%% OOV 
 \begin{figure*}
 \caption{Out-of-vocabulary-words (OOV) accuracy for \textit{in-domain} and \textit{out-of-domain} test sets}
 \label{OOV} 
@@ -239,9 +277,9 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
     \subcaption{MWE accuracy for \textit{in domain} OOV} 
   \end{minipage}   
 \end{figure*}
+\fi
 
-
-
+\iffalse
 \subsection{Result tables}
 The first column of each table contains the number of training sentences.
 \subsubsection{Best hyperparameters for All Tasks}
@@ -411,4 +449,5 @@ after row=\bottomrule
 \label{table:outDomain_ner_f1}
 \end{table*}
 
+\fi
 
