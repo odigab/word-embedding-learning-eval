@@ -73,6 +73,50 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% HEATMAPS 
+
+\iffalse
+\newpage
+\begin{figure}[htb]
+ \subfloat[Some figure]{\includegraphics[scale=0.4]{plots/map-pos-color-invert.pdf}}\hfill
+ \subfloat[Some other figure]{\includegraphics[width=0.48\textwidth]\includegraphics[scale=0.4]{plots/map-chunk-color-invert}}\\[-2ex]  %%<-- in this line
+ \subfloat[Some more]{\includegraphics[scale=0.4]{plots/map-ner-color-invert}}\hfill
+ \subfloat[Some less]\includegraphics[scale=0.4]{plots/map-ner-color-invert}}
+ \caption{There are example figures}
+\end{figure}
+\fi
+
+
+\newpage
+
+\begin{figure*}
+\caption{Best results for each method for POS-Tagging and Chunking. The x-axis correspond to the different word embeddings methods and the y-axis to the 10 training partitions at log scale. Green color stand for high performance, while red color stands for low performance. The methods are in chronological order}
+\centering
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-pos-color-invert}    	
+	\subcaption{POS-Tagging Accuracy}	
+\end{subfigure}
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-chunk-color-invert}
+	\subcaption{Chunking F1-Measure}	
+\end{subfigure}
+%\\[-2ex]  %%<-- in this line
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-ner-color-invert}    	
+	\subcaption{NER F1-Measure}	
+\end{subfigure}
+\begin{subfigure}{7cm}
+	\centering
+    \includegraphics[scale=0.4]{plots/map-mwe-color-invert}
+	\subcaption{MWEs F1-Measure}		
+\end{subfigure}
+\label{fig:bestPOS-Chunk}
+\end{figure*}
+
+
+\iffalse
 \begin{figure*}
 \caption{Best results for each method for POS-Tagging and Chunking, NER and MWE identification. The x-axis correspond to the different word embeddings methods and the y-axis to the 10 training partitions at log scale. Green color stand for high performance, while red color stands for low performance. The methods are display in chronological order.}
 \centering
@@ -99,7 +143,6 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 \label{fig:bestPOS-Chunk}
 \end{figure*}
 
-
 \begin{figure*}
 \caption{Best results for each method for POS-Tagging and Chunking. The x-axis correspond to the different word embeddings methods and the y-axis to the 10 training partitions at log scale. Green color stand for high performance, while red color stands for low performance. The methods are in chronological order}
 \centering
@@ -125,35 +168,9 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 \end{subfigure}
 \label{fig:bestPOS-Chunk}
 \end{figure*}
+\fi
 
-
-\begin{figure*}
-\caption{Best results for each method for POS-Tagging and Chunking. The x-axis correspond to the different word embeddings methods and the y-axis to the 10 training partitions at log scale. Green color stand for high performance, while red color stands for low performance. The methods are in chronological order}
-\centering
-\begin{subfigure}{7cm}
-	\centering
-    \includegraphics[scale=0.4]{plots/map-pos-color-invert}    	
-	\subcaption{POS-Tagging Accuracy}	
-\end{subfigure}
-\begin{subfigure}{7cm}
-	\centering
-    \includegraphics[scale=0.4]{plots/map-chunk-color-invert}
-	\subcaption{Chunking F1-Measure}	
-\end{subfigure}
-\begin{subfigure}{7cm}
-	\centering
-    \includegraphics[scale=0.4]{plots/map-ner-color-invert}    	
-	\subcaption{NER F1-Measure}	
-\end{subfigure}
-\begin{subfigure}{7cm}
-	\centering
-    \includegraphics[scale=0.4]{plots/map-mwe-color-invert}
-	\subcaption{MWEs F1-Measure}		
-\end{subfigure}
-\label{fig:bestPOS-Chunk}
-\end{figure*}
-
-
+\iffalse
 \begin{figure*}
 \caption{Normalized by best and worst values for each task}
 \centering
@@ -167,6 +184,7 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 \includegraphics[scale=0.8]{plots/heat-map-color}    	
 \label{fig:heatmap}
 \end{figure*}
+\fi
 
 
 
@@ -183,8 +201,6 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Vector fields
-
-
 % POS
 \begin{figure*}[h]
 \caption{updated vs. no-updated word representations for POS}
@@ -215,6 +231,7 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 \end{subfigure}
 \end{figure*}
 
+\iffalse
 % chunking
 \begin{figure*}[h]
 \caption{updated vs. no-updated word representations for chunking}
@@ -275,7 +292,7 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 	\subcaption{}	
 \end{subfigure}
 \end{figure*}
-
+\fi
 
 \iffalse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
