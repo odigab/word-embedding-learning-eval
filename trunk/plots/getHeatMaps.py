@@ -137,10 +137,23 @@ figmwe = Figure(data=mwe, layout=layout)
 #plot_url = py.plot(figner, filename='ner-heatmap')
 #plot_url = py.plot(figmwe, filename='mwe-heatmap')
 
-py.image.save_as(figpos, 'map-pos-color-invert.pdf')
-py.image.save_as(figchunk, 'map-chunk-color-invert.pdf')
-py.image.save_as(figner, 'map-ner-color-invert.pdf')
-py.image.save_as(figmwe, 'map-mwe-color-invert.pdf')
+
+figpos.tight_layout()
+savefig('map-pos-color-invert.pdf', bbox_inches='tight')
+
+figchunk.tight_layout()
+savefig('map-chunk-color-invert.pdf', bbox_inches='tight')
+
+figner.tight_layout()
+savefig('map-ner-color-invert.pdf', bbox_inches='tight')
+
+figmwe.tight_layout()
+savefig('map-mwe-color-invert.pdf', bbox_inches='tight')
+
+# py.image.save_as(figpos, 'map-pos-color-invert.pdf')
+# py.image.save_as(figchunk, 'map-chunk-color-invert.pdf')
+# py.image.save_as(figner, 'map-ner-color-invert.pdf')
+# py.image.save_as(figmwe, 'map-mwe-color-invert.pdf')
 
 print 'Done!'
 
