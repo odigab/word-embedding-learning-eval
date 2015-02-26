@@ -14,8 +14,8 @@ During training of distributed representation of words, we consider two settings
 
 \begin{small}
 \begin{itemize}
-\item[-] Graph transformer \textit{does not} fine tune word representations during training (this is equivalent to a linear-chain CRF);
-\item[-] Graph transformer fine tunes the word representations during training.
+\item[-] Graph transformer \textit{does not} fine tune word representations during training. Then the graph transformer is equivalent to a linear-chain CRF, which takes fixed feature vectors as input.
+\item[-] Graph transformer fine tunes the word representations during training. In this case, we treat all elements in word representations as model parameters but still keep other features fixed.
 \end{itemize}
 \end{small}
 
