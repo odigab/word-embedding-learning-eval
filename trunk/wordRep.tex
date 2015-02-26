@@ -5,46 +5,46 @@ The distributional hypothesis in linguistics suggests that ``a word is character
 \subsection{Types of Word Representations}
 Based on the ways of constructing word representations, \newcite{turian2010word} categorised these methods into three types: \textit{Distributional representation},  \textit{Cluster-based representation}, and \textit{Distributed representation}.
 
-\textit{Distributional representation} methods map each word $w$ to its context word vector $\mathbf{C}_w$, which is built based on co-occurrence counts between $w$ and the words surrounding it. The learning methods store either directly the co-occurrence count between two words $w$ and $i$ in $C_{wi}$~\cite{} or project the concurrence counts between words into a lower dimensional space by using techniques such as SVD~\cite{} and LDA~\cite{}. 
+\textit{Distributional representation} methods map each word $w$ to its context word vector $\mathbf{C}_w$, which is built based on co-occurrence counts between $w$ and the words surrounding it. The learning methods store either directly the co-occurrence counts between two words $w$ and $i$ in $C_{wi}$~\cite{sahlgren2006word,turney2010frequency,honkela1997self} or project the concurrence counts between words into a lower dimensional space~\cite{vrehuuvrek2010software,lund1996producing} by applying dimension reduction techniques such as SVD~\cite{dumais1988using} and LDA~\cite{blei2003latent}. 
 
-The methods of \textit{Cluster-based representation} build clusters of words by applying either soft- or hard clustering algorithms. Some also rely on co-occurrence matrix of words~\cite{}. The Brown algorithm~\cite{Brown92class-basedn-gram} is the most famous one in this category.
+The methods of \textit{Cluster-based representation} build clusters of words by applying either soft- or hard clustering algorithms~\cite{lin2009phrase,li2005semi}. Some of them also rely on co-occurrence matrix of words~\cite{pereira1993distributional}. The Brown clustering algorithm~\cite{Brown92class-basedn-gram} is the most famous in this category.
 
-A \textit{distributed representation} takes the form of a dense, low-dimensional, and continuous-valued vector. It is compact and stores latent features of a word. This kind of representations are also called word embeddings, which are built in the hope of capturing both syntactic and semantic properties of words.
+A \textit{distributed representation} of words takes the form of a dense, low-dimensional, and continuous-valued vector. It is compact and stores mutually non-exclusive latent features. This kind of representations are also called word embeddings, which are built in the hope of capturing both syntactic and semantic properties of words.
 
 \subsection{Selected Word Representations}
-In a range of sequence tagging tasks, we evaluated five word representations : Brown clustering~\cite{Brown92class-basedn-gram}, Collobert \& Weston (CW)~\cite{collobert2011natural}, continuous bag-of-words model (CBOW)~\cite{}, continuous skip-gram model (Skip-gram)~\cite{}, and Global vectors (Glove)~\cite{}. Except CW, all other methods are ranked as the best method in different recent empirical studies~\cite{}. CW is included because it is one of the most influential early work in this area. The trainings methods of these word representations are unsupervised, and are ultimately derived from the word occurrence statistics of a corpus. Another property they shared in common is that all training objectives can be factorised into a sum of local training factors $J(w, \text{context}(w))$. 
-\begin{equation}
-L = - \sum_{w \in V} J(w, \text{context}(w))
-\end{equation}
-where $V$ is the vocabulary set of a corpus and $\text{context}(w)$ denotes the local context of a word $w$. For a word $w$, its local context can either be its previous $k$ words or $m$ words surrounding it. Local training factors are designed to capture the relationship between current words and their local contexts. The underlying ideas of these factors are two-folds: i) predicting current words based on local contexts; ii) using current words to estimate their context words. Except Brown clustering, which utilises cluster-based representation, all other methods employ distributed representation.
+In a range of sequence tagging tasks, we evaluated five word representations : Brown clustering, Collobert \& Weston (CW)~\cite{collobert2011natural}, continuous bag-of-words model (CBOW)~\cite{Mikolov13}, continuous skip-gram model (Skip-gram)~\cite{Mikolov13NIPS}, and Global vectors (Glove)~\cite{pennington2014glove}. Except CW, all other methods are ranked as the best method in different recent empirical studies~\cite{turian2010word,pennington2014glove}. CW is included because it is one of the most influential early work in this area. The training of these word representations is conducted in an unsupervised way. The underlying idea is to predict occurrence of words in the neighbourhood. Their training objectives share the same form, which is a sum of local training factors $J(w, \text{ctx}(w))$. 
+\begin{displaymath}
+L = \sum_{w \in V} J(w, \text{ctx}(w))
+\end{displaymath}
+where $V$ is the vocabulary set of a corpus and $\text{ctx}(w)$ denotes the local context of a word $w$. The local context of a word can either be its previous $k$ words or $k$ words surrounding it. Local training factors are designed to capture the relationship between current words and their local contexts. They either predict current words based on local contexts, or use current words to estimate their context words. Except Brown clustering, which utilises cluster-based representation, all other methods employ distributed representation.
 
-The starting point of CBOW and Skip-gram models is to employ softmax for predicting word occurrence.
-\begin{equation}
-J_{wi} = \frac{\exp(\mathbf{v}_w^{\text{T}} \mathbf{v}_{\text{context}(w)})}{\sum_{j \in V} \exp(\mathbf{v}_j^{\text{T}} \mathbf{v}_{\text{context}(w)})}
-\end{equation}
-where $\mathbf{v}_{\text{context}(w)}$ denotes the distributed representation of the local context of word $w$. CBOW takes the average of the representation of all context words as $\mathbf{v}_{\text{context}(w)})$. Thus it estimates the probability of current words $w$ given its local context. In contrast, Skip-gram applies softmax for each context word of a word $w$, in this case, $\mathbf{v}_{\text{context}(w)}$ is the corresponding distributed representation of the context word. This model is interpreted as predicting context words based on current words. In practice, softmax is too expensive to compute thus~\newcite{} propose to use hierarchical softmax and negative sampling to speed up training procedure.
+The starting point of CBOW and Skip-gram models is to employ softmax for predicting word occurrence, then
+\begin{displaymath}
+J(w, \text{ctx}(w)) = - \log \big ( \frac{\exp(\mathbf{v}_w^{\text{T}} \mathbf{v}_{\text{ctx}(w)})}{ \sum_{j \in V} \exp(\mathbf{v}_j^{\text{T}} \mathbf{v}_{\text{ctx}(w)})} \big )
+\end{displaymath}
+where $\mathbf{v}_{\text{ctx}(w)}$ denotes the distributed representation of the local context of word $w$. CBOW takes the average of the representation of all context words as $\mathbf{v}_{\text{ctx}(w)}$. Thus it estimates the probability of current words $w$ given its local context. In contrast, Skip-gram applies softmax for each context word of a word $w$. In this case, $\mathbf{v}_{\text{ctx}(w)}$ corresponds to the representation of one of its context words. This model is interpreted as predicting context words based on current words. In practice, softmax is too expensive to compute thus~\newcite{Mikolov13NIPS} propose to use hierarchical softmax and negative sampling to speed up training.
 
 CW considers the local context of a word $w$ as $m$ words to the left and $m$ words to the right of $w$. The concatenation of embeddings of $w$ and all its context words are taken as input of a neural network with one hidden layer, which produces a higher level representation $f(w) \in R^n$. Then the learning procedure replaces the embedding of $w$ with that of a randomly sampled word $w'$ and generate another representation $f(w') \in R^n$ with the same neural network. The training objective is to maximise the difference between them.
-\begin{equation}
-J(w, \text{context}(w)) = \max (0, 1 - f(w) + f(w'))
-\end{equation}
+\begin{displaymath}
+J(w, \text{ctx}(w)) = \max (0, 1 - f(w) + f(w'))
+\end{displaymath}
 This approach can be regarded as negative sampling with only one negative example.
 
-Glove assumes the dot product of two word embeddings should be similar to logarithm of the co-occurrence count $X_{ij}$ of the two words. The local factor $J(w, \text{context}(w))$ becomes
-\begin{equation}
+Glove assumes the dot product of two word embeddings should be similar to logarithm of the co-occurrence count $X_{ij}$ of the two words. The local factor $J(w, \text{ctx}(w))$ becomes
+\begin{displaymath}
 g(X_{ij}) (\mathbf{v}_i^{\text{T}} \mathbf{v}_j + b_i + b_j - \log(X_{ij}))^2
-\end{equation}
-where $b_i$ and $b_j$ are the bias terms of word $i$ and $j$, $g(X_{ij})$ is a weighing function based on the co-occurence count. This weighting function controls the degree of agreement between the parametric function $\mathbf{v}_i^{\text{T}} \mathbf{v}_j + b_i + b_j $ and $\log(X_{ij})$. Frequently co-occurred word pairs will gain more weights than infrequent ones but stays the same if it is beyond a threshold.
+\end{displaymath}
+where $b_i$ and $b_j$ are the bias terms of word $i$ and $j$, $g(X_{ij})$ is a weighting function based on the co-occurence count. This weighting function controls the degree of agreement between the parametric function $\mathbf{v}_i^{\text{T}} \mathbf{v}_j + b_i + b_j $ and $\log(X_{ij})$. Frequently co-occurred word pairs will gain more weights than infrequent ones but stays the same if it is beyond a threshold.
 
 \textit{Brown clustering} introduces a finite set of word classes $V$ for all words and partitions all words into these classes. The conditional probability of seeing the next word is defined as
-\begin{equation}
+\begin{displaymath}
 p(w_k | w_{k - m}^{k -1}) = p(w_k | h_k) p(h_k | h_{k - m}^{k -1})
-\end{equation}
-where $h_k$ denotes the word class of the word $w_k$, $w_{k - m}^{k -1}$ are the previous $m$ words and $h_{k - m}^{k -1}$ are their respective word classes. Then $J(w, \text{context}(w)) = - \log p(w_k | w_{k - m}^{k -1}) $. Since there is no practical method to find optimal partition of word classes, they consider only bigram class model, and utilise hierarchical clustering as an approximation method to find a sufficiently good partition of words. 
+\end{displaymath}
+where $h_k$ denotes the word class of the word $w_k$, $w_{k - m}^{k -1}$ are the previous $m$ words and $h_{k - m}^{k -1}$ are their respective word classes. Then $J(w, \text{ctx}(w)) = - \log p(w_k | w_{k - m}^{k -1}) $. Since there is no practical method to find optimal partition of word classes, they consider only bigram class model, and utilise hierarchical clustering as an approximation method to find a sufficiently good partition of words. 
 
 \subsection{Building Word Representations}
 \label{buildingWordRep}
-For a fair comparison, we train the best performing methods Brown clustering, CBOW, Skip-gram, and Glove on a combination of all corpora in Table \ref{wordEmbedCorpora}. The joint corpus was preprocessed with the Stanford sentence splitter and tokenizer. All consecutive digit substrings were replaced by NUM\textit{f}, where \textit{f} is the length of the digit substring (e.g., ``10.20'' is replaced by ``NUM2.NUM2''. The word embeddings of CW are downloaded from the website \url{http://metaoptimize.com/projects/wordreprs}.
+For a fair comparison, we train the best performing methods Brown clustering, CBOW, Skip-gram, and Glove on a combination of freely available corpora in Table \ref{wordEmbedCorpora}. The joint corpus was preprocessed with the Stanford sentence splitter and tokenizer. All consecutive digit substrings were replaced by NUM\textit{f}, where \textit{f} is the length of the digit substring (e.g., ``10.20'' is replaced by ``NUM2.NUM2''. The word embeddings of CW are downloaded from the website \url{http://metaoptimize.com/projects/wordreprs}.
 
 \begin{table}[h]
 \begin{center}
@@ -69,7 +69,7 @@ Dimension of word embedding and context window size are the key hyperparameters 
 \item[-]\textbf{Context window size}: [5, 10, 15].
 \end{itemize}
 \end{small}
-Brown clustering requires only the number of clusters as hyperparameter. We train word clusters with 250, 500, 1000, 2000, and 4000 clusters respectively. 
+Brown clustering requires only the number of clusters as hyperparameter. Thus we train word clusters with 250, 500, 1000, 2000, and 4000 clusters respectively. 
 %
 %
 %Based on the idea that a word is characterized by the company it keeps \cite{firth1957}, 
