@@ -96,14 +96,14 @@ unigram features (Figures \ref{fig:heatmaps}).
 \textbf{(ii) How does the size of labelled training data affect the experimental results?}
 We observed that embedding methods are especially helping POS-tagging and NER when there are only several hundreds of training instances. 
 Therefore, confirming that any of the evaluated word embedding methods should be used when POS-tagging or NER labelled data is limited.
-These early improvements are less evident for chunking and MWE, and according to our results, all the methods, including unigram, needed the same amount of training data to reach a decent performance.
+These early improvements are less evident for chunking and MWE, and according to our results, all the methods, including unigram, needed the similar amount of training data to reach a decent performance.
 %We attribute this to: a) the standard features used in POS-tagging (e.g., context words, stemmed words) are similar to the representations encoded in the word embeddings.
 %  b) NER and MWE require more training data to reach a decent performance; c) the performance of NER and MWE heavily dependent on complex features such as gazetteers and lexicons like Wordnet, which are not captured by the feature representations learned from unlabelled data, meanwhile the standard features used in POS-tagging and chunking (e.g., context words, stemmed words) are similar to the representations encoded in the word embeddings.
 
 \textbf{(iii) How well do the word embeddings perform when evaluated with \textit{out-of-domain} test sets?}
 We measure the performance for \textit{out-of-domain} of all the tasks, except MWE identification for which there is no other data set available (Table \ref{datasplit}).
 As expected, the performance goes down for all tasks. The drop is more dramatic for chunking, which drops about 30\% for word embeddings methods as well as for unigram. 
-Indicating that nor word embeddings or unigram features have a big impact for chunking.
+Indicating that neither word embeddings nor unigram features have a big impact on chunking.
 Nevertheless, the best best performing embedding method for out-of-domain test sets turned to be skip-gram without fine-tuning, and the worst method is unigram (these results are not plotted for the lack of space).
 
 \textbf{(iv) How well do the word embeddings perform for unknown words?}
@@ -116,9 +116,11 @@ word representations become task-specific, hence performing worst for OOV.
 
 %\textbf{(iv) How do the key parameters of each word learning algorithms affect the experimental results?} 
 
-\textbf{(v) How well do different word embeddings perform in all tasks when semi-supervised fine-tuning is not performed?}, and 
-\textbf{(vi) and how well do different word embeddings perform in all tasks when semi-supervised fine-tuning is performed?}
+%\textbf{(v) How well do different word embeddings perform in all tasks when semi-supervised fine-tuning is not performed?}, and 
+% textbf{(vi) and how well do different word embeddings perform in all tasks when semi-supervised fine-tuning is performed?}
 %According to our results, there is not a clear trend about fine-tuning or not during training. 
+\textbf{v} Is fine-tuning helpful for all kinds of word embeddings and across all tasks?
+
 Across all the methods, fine-tuning is helping POS-Tagging and MWE, where the CW method has been found to be the most sensible to tuning, reaching almost 3 points more, when tuning is performed (Figure \ref{pos}, \ref{mwe}). 
 For chunking and NER, the best results are fine-tuned, but the difference across all the methods and updated features versus not-updated ones, is not significant (Figure \ref{chu}, \ref{ner}). 
 We also found that fine-tuning can correct poorly learned word representations, but can be
