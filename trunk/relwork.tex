@@ -2,18 +2,18 @@
 %Word embedding learning methods have been applied to several 
 %NLP tasks that we summaries in this section.
 
-\newcite{collobert2011natural} proposed a neuronal network architecture
+\newcite{collobert2011natural} proposed a neural network architecture
 that learn word embeddings and use them in POS-tagging, chunking, NER and Semantic Role Labelling. 
-Without specializing their architecture for the mentioned tasks, they achieve close state-of-the-art performance. After including specialized features (e.g., word suffixes for POS-tagging;  Gazzeters for NER, etc.) and other tricks like cascading and ensambling classifiers, achieve competitive state-of-the-art performance.
+Without specializing their architecture for the mentioned tasks, they achieve close state-of-the-art performance. After including specialized features (e.g., word suffixes for POS-tagging;  gazetteers for NER, etc.) and other tricks like cascading and ensambling classifiers, achieve competitive state-of-the-art performance.
 % they system is very fast too.
-Similarly, \newcite{turian2010word} explored the impact of using word
-features learned from cluster-based and word embeddings representations
-for NER and chunking. 
+Similarly, \newcite{turian2010word} explored the impact for NER and chunking 
+of %using word
+features learned\nss{derived?} from word clusters and embeddings. 
 They conclude that unsupervised word representation improve NER and chunking, and that combining different word representations can further improve the performance.
 Word representation from Brown clusters have been also shown to enhance
 Twitter POS tagging \newcite{owoputi2013improved}. 
 
-\newcite{Schneider+:2014} presented a MWE analyser that, among other features, used unsupervised word clusters. 
+\newcite{Schneider+:2014} presented an MWE analyser that, among other features, used unsupervised word clusters. 
 They observed that the clusters were useful for identifying words that usually belong to proper names, which are considered MWE in the data set used. Nevertheless, they mentioned that it is difficult to measure the impact of the word embeddings features, since other features may capture the same information. 
 %Further feature engineering should be carry out in order to find out the impact 
 
