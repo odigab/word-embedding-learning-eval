@@ -1,8 +1,23 @@
 \section{Sequence Tagging Tasks}
 \label{sec:SeqTagging}
-We evaluate different word representations in four different sequence tagging tasks: POS-tagging, chunking, NER and MWE identification. 
-For the POS-tagging, chunking and MWE tasks, we used the same features as the state-of-the-art approaches,  \newcite{collobert2011natural}, \newcite{turian2010word} and ~\newcite{mwecorpus}, respectively. 
-For the NER, we used the same feature space as in~\newcite{turian2010word}, except for the previous two predictions.aa
+We evaluate different word representations in four different sequence tagging tasks: POS tagging, chunking, NER and MWE identification. 
+
+For each sequence tagging task, we fed features into a first order linear-chain graph
+transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm
+AdaGrad~\cite{duchi2011adaptive}.
+
+As in~\cite{turian2010word}, the features of each task consist of both hand crafted features and word representation features. At each word position, we extract word representation features from the words in a window $\{-2, -1, 0, 1, 2\}$. The word representation features of word embeddings are the distributed representation of each word.  For Brown clustering, we extract the prefix features from word clusters in the same way as~\cite{turian2010word}. In addition, we consider one-hot representation of unigrams as well.
+
+For POS tagging, chunking and MWE, we used the same hand-crafted features as the state-of-the-art approaches,  \newcite{collobert2011natural}, \newcite{turian2010word} and ~\newcite{mwecorpus}, respectively. For NER, we considered the same feature space as in~\cite{turian2010word}, except for the previous two predictions, because we want to evaluate all word representations with the same type of model -- first-order graph transformer.
+
+During training of distributed representation of words, we consider two settings: 
+
+\begin{small}
+\begin{itemize}
+\item[-] Graph transformer \textit{does not} fine tune word representations during training (this is equivalent to a linear-chain CRF);
+\item[-] Graph transformer fine tunes the word representations during training.
+\end{itemize}
+\end{small}
 
 \begin{table*}
 \caption{Datasets splits and feature space for each sequence tagging task.}
@@ -20,24 +35,7 @@ For the NER, we used the same feature space as in~\newcite{turian2010word}, exce
 \end{small}
 \end{table*}
 
-For each sequence tagging task, we feed learned word representations into a first order linear-chain graph
-transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm
-AdaGrad~\cite{duchi2011adaptive}.
-For each model taking distributed word representations as word features, we consider two settings: 
-
-\begin{small}
-\begin{itemize}
-\item[-] Graph transformer \textit{does not} fine tune word representations during training (this is equivalent to a linear-chain CRF);
-\item[-] Graph transformer fine tunes the word representations during training.
-\end{itemize}
-\end{small}
-
-We consider also CRF models with hand-crafted features, which use one-hot representation for each unigram.
-
-We split the task specific corpus into a training set, validation set, and a test set (see Table \ref{datasplit}). If a corpus already provides fixed splits, we reuse them. For POS-tagging and NER, we also evaluated the models with a out-of-domain corpus (English Web-Treebank and MUC-7, respectively), which has similar annotation schema as the respective training corpus.
-
-
-
+We split the task specific corpus into a training set, validation set, and a test set (see Table \ref{datasplit}). If a corpus already provides fixed splits, we reuse them. For POS tagging,  NER and chunking, we also evaluated the models with a out-of-domain corpus (English Web-Treebank, MUC-7 and Brown corpus, respectively), which has similar annotation schema as the respective training corpus.
 
 In order to have fair and reproducible experimental results, we tuned the hyperparameters with random search~\cite{bergstra2012random}. 
 We randomly sampled 50 distinct hyperparameter sets with the same random seed for the models that do not update word embeddings, and sampled 100 distinct hyperparameter sets for the models that update word embeddings. 
@@ -49,9 +47,7 @@ However, for the models that update word representations, we always found under-
 
 The final evaluation is carried out in a semi-supervised setting. We split the training set into 10 partitions at log scale. That means, the second smallest partition will be twice the size of the smallest partition. We created 10 training sets with incremental size by merging these partitions from the smallest one to the largest one, and each of them on the same designated test sets. 
 
-We adopted the most commonly used F1 measure as the evaluation metric for all tasks except POS tagging, for which we use per-word accuracy. In order to evaluate model performance on out-of-vocabulary (unknown) words, we reported also the accuracy for the words that do not occur in the training set.
-
-In addition, we also set up experiments to verify if CRF/graph transformer requires different feature design for different kinds of pre-trained word embeddings. This is achieved by adding a hidden layer between CRF and distributed word representations. For each context word, the hidden layer computes the element-wise multiplication of its embedding with the embedding of the current word embedding, and the representation of current word stays the same. The results of this approach are not plotted because this method leads only to marginal improvement.
+For easy comparison with previous results, we adopted the most widely used F1 measure as the evaluation metric for all tasks except POS tagging, for which we use per-word accuracy. In order to evaluate model performance on out-of-vocabulary (unknown) words, we reported also the accuracy for the words that do not occur in the training set.
 
 %\subsection{POS tagging} We could choose one of the options. \subsubsection{Option 1} Almost the same setting as~\cite{collobert2011natural}, except adding one more test set.
 % \noindent Training set: 0-18 of WSJ.
