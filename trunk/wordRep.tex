@@ -1,13 +1,13 @@
 \section{Word Representations}
 \label{wordrep}
-The distributional hypothesis in linguistics suggests that "a word is characterised by the company it keeps"~\cite{firth1957}. Words that are used in the similar contexts tend to have similar semantic and syntactic properties. Capturing distributional similarity is the underlying idea of all word representation learning methods. 
+The distributional hypothesis in linguistics suggests that ``a word is characterised by the company it keeps''~\cite{firth1957}. Words that are used in the similar contexts tend to have similar semantic and syntactic properties. Capturing distributional similarity is the underlying idea of all word representation learning methods. 
 
 \subsection{Types of Word Representations}
-Based on the ways of constructing word representations, \newcite{turian2010word} categorise these methods into three types: \textit{Distributinoal representation},  \textit{Cluster-based representation}, and \textit{Distributed representation}.
+Based on the ways of constructing word representations, \newcite{turian2010word} categorised these methods into three types: \textit{Distributional representation},  \textit{Cluster-based representation}, and \textit{Distributed representation}.
 
-\textit{Distributional representation} methods map each word $w$ to its context word vector $\mathbf{C}_w$, which is built based on coocurrence counts between $w$ and the words surrounding it. The learning methods store either directly the cooccurence count between two words $w$ and $i$ in $C_{wi}$~\cite{} or project the concurrence counts between words into a lower dimensional space by using techniques such as SVD~\cite{} and LDA~\cite{}. 
+\textit{Distributional representation} methods map each word $w$ to its context word vector $\mathbf{C}_w$, which is built based on co-occurrence counts between $w$ and the words surrounding it. The learning methods store either directly the co-occurrence count between two words $w$ and $i$ in $C_{wi}$~\cite{} or project the concurrence counts between words into a lower dimensional space by using techniques such as SVD~\cite{} and LDA~\cite{}. 
 
-The methods of \textit{Cluster-based representation} build clusters of words by applying either soft- or hard clustering algorithms. Some of them also rely on cooccurence matrix of words~\cite{}. The Brown algorithm~\cite{Brown92class-basedn-gram} is the most famous one in this category.
+The methods of \textit{Cluster-based representation} build clusters of words by applying either soft- or hard clustering algorithms. Some also rely on co-occurrence matrix of words~\cite{}. The Brown algorithm~\cite{Brown92class-basedn-gram} is the most famous one in this category.
 
 A \textit{distributed representation} takes the form of a dense, low-dimensional, and continuous-valued vector. It is compact and stores latent features of a word. This kind of representations are also called word embeddings, which are built in the hope of capturing both syntactic and semantic properties of words.
 
@@ -30,7 +30,7 @@ J(w, \text{context}(w)) = \max (0, 1 - f(w) + f(w'))
 \end{equation}
 This approach can be regarded as negative sampling with only one negative example.
 
-Glove assumes the dot product of two word embeddings should be similar to logarithm of the co-occurence count $X_{ij}$ of the two words. The local factor $J(w, \text{context}(w))$ becomes
+Glove assumes the dot product of two word embeddings should be similar to logarithm of the co-occurrence count $X_{ij}$ of the two words. The local factor $J(w, \text{context}(w))$ becomes
 \begin{equation}
 g(X_{ij}) (\mathbf{v}_i^{\text{T}} \mathbf{v}_j + b_i + b_j - \log(X_{ij}))^2
 \end{equation}

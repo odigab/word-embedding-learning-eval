@@ -1,5 +1,5 @@
 
-#!/usr/bin/python
+
 import plotly.plotly as py
 from plotly.graph_objs import *
 from pylab import *
@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt
 import plotly.tools as tls   
 # (*) Graph objects to piece together plots
 from plotly.graph_objs import *
+import matplotlib.gridspec as gridspec
 
 layout = Layout(    
     font=Font(
@@ -126,34 +127,54 @@ mwe = Data([
  	)
 ])
 
+
+
+# Set the size of the figure that will contained the subplots
+fig = plt.figure(figsize=(12,20))
+
 # Make figure object
+fig.add_subplot(4, 2, 1)
+fig.subplots_adjust(hspace=1.5)
 figpos = Figure(data=pos, layout=layout)
+
+fig.add_subplot(4, 2, 2)
+fig.subplots_adjust(hspace=1.5)
 figchunk = Figure(data=chunking, layout=layout)
+
+fig.add_subplot(4, 2, 3)
+fig.subplots_adjust(hspace=1.5)
 figner = Figure(data=ner, layout=layout)
+
+fig.add_subplot(4, 2, 4)
+fig.subplots_adjust(hspace=1.5)
 figmwe = Figure(data=mwe, layout=layout)
+
+fig.tight_layout()
+savefig('newmap', bbox_inches='tight')
+
 
 #plot_url = py.plot(figpos, filename='pos-heatmap')
 #plot_url = py.plot(figchunk, filename='chunking-heatmap')
 #plot_url = py.plot(figner, filename='ner-heatmap')
 #plot_url = py.plot(figmwe, filename='mwe-heatmap')
 
+#figpos.tight_layout()
+#savefig('map-pos-color-invert.pdf', bbox_inches='tight')
 
-figpos.tight_layout()
-savefig('map-pos-color-invert.pdf', bbox_inches='tight')
+#figchunk.tight_layout()
+#savefig('map-chunk-color-invert.pdf', bbox_inches='tight')
 
-figchunk.tight_layout()
-savefig('map-chunk-color-invert.pdf', bbox_inches='tight')
+#figner.tight_layout()
+#savefig('map-ner-color-invert.pdf', bbox_inches='tight')
 
-figner.tight_layout()
-savefig('map-ner-color-invert.pdf', bbox_inches='tight')
-
-figmwe.tight_layout()
-savefig('map-mwe-color-invert.pdf', bbox_inches='tight')
+#figmwe.tight_layout()
+#savefig('map-mwe-color-invert.pdf', bbox_inches='tight')
 
 # py.image.save_as(figpos, 'map-pos-color-invert.pdf')
 # py.image.save_as(figchunk, 'map-chunk-color-invert.pdf')
 # py.image.save_as(figner, 'map-ner-color-invert.pdf')
 # py.image.save_as(figmwe, 'map-mwe-color-invert.pdf')
+
 
 print 'Done!'
 
