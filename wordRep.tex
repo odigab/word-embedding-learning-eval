@@ -20,7 +20,7 @@ where $V$ is the vocabulary set of a corpus and $\text{ctx}(w)$ denotes the loca
 
 The starting point of CBOW and Skip-gram models is to employ softmax for predicting word occurrence, then
 \begin{displaymath}
-J(w, \text{ctx}(w)) = - \log \big ( \frac{\exp(\mathbf{v}_w^{\text{T}} \mathbf{v}_{\text{ctx}(w)})}{ \sum_{j \in V} \exp(\mathbf{v}_j^{\text{T}} \mathbf{v}_{\text{ctx}(w)})} \big )
+J(w, \text{ctx}(w)) = - \log \left( \frac{\exp(\mathbf{v}_w^{\text{T}} \mathbf{v}_{\text{ctx}(w)})}{ \sum_{j \in V} \exp(\mathbf{v}_j^{\text{T}} \mathbf{v}_{\text{ctx}(w)})} \right)
 \end{displaymath}
 where $\mathbf{v}_{\text{ctx}(w)}$ denotes the distributed representation of the local context of word $w$. CBOW takes the average of the representation of all context words as $\mathbf{v}_{\text{ctx}(w)}$. Thus it estimates the probability of current words $w$ given its local context. In contrast, Skip-gram applies softmax for each context word of a word $w$. In this case, $\mathbf{v}_{\text{ctx}(w)}$ corresponds to the representation of one of its context words. This model is interpreted as predicting context words based on current words. In practice, softmax is too expensive to compute thus~\newcite{Mikolov13NIPS} propose to use hierarchical softmax and negative sampling to speed up training.
 
@@ -46,29 +46,23 @@ where $h_k$ denotes the word class of the word $w_k$, $w_{k - m}^{k -1}$ are the
 \label{buildingWordRep}
 For a fair comparison, we train the best performing methods Brown clustering, CBOW, Skip-gram, and Glove on a combination of freely available corpora in Table \ref{wordEmbedCorpora}. The joint corpus was preprocessed with the Stanford sentence splitter and tokenizer. All consecutive digit substrings were replaced by NUM\textit{f}, where \textit{f} is the length of the digit substring (e.g., ``10.20'' is replaced by ``NUM2.NUM2''. The word embeddings of CW are downloaded from the website \url{http://metaoptimize.com/projects/wordreprs}.
 
-\begin{table}[h]
-\begin{center}
-\begin{small}
-\begin{tabular}{lll}
+\begin{table}[h]\centering\small
+\begin{tabular}{lrl}
 \hline
-\textbf{Data set} & \textbf{Size} & \textbf{Words} \\ \hline
-UMBC 	& 48.1GB & 3 billions \\
-One Billion 	& 4.1GB & 0.8 billions  \\
-Latest wikipedia dump & 49.6GB & 3 billions \\ \hline
+\textbf{Data set} & \multicolumn{1}{c}{\textbf{Size}} & \multicolumn{1}{c}{\textbf{Words}} \\ \hline
+UMBC 	& 48.1 GB & 3 billion \\
+One Billion 	& 4.1 GB & 0.8 billion  \\
+Latest \nss{English?} Wikipedia dump & 49.6 GB & 3 billion \\ \hline
 \end{tabular}
-\end{small}
 \caption{Corpora used to learn word embeddings}
 \label{wordEmbedCorpora}
-\end{center}
 \end{table}
 
-Dimension of word embedding and context window size are the key hyperparameters of the learning methods for distributed representation. We use all possible combinations from the following ranges to train word embeddings on the combined corpus.
-\begin{small}
-\begin{itemize}
+The dimensionality of word embeddings and the size of the context window are the key hyperparameters of the learning methods for distributed representations. We use all combinations of the following values to train word embeddings on the combined corpus:
+\begin{itemize}\small
 \item[-]\textbf{Word dimension}: [25, 50, 100, 200].
 \item[-]\textbf{Context window size}: [5, 10, 15].
 \end{itemize}
-\end{small}
 Brown clustering requires only the number of clusters as hyperparameter. Thus we train word clusters with 250, 500, 1000, 2000, and 4000 clusters respectively. 
 %
 %

@@ -137,10 +137,10 @@ However, between Brown clusters and fine-tuned CW, learned under the same settin
 Thus, a natural question: would it be better to learn distributional representations for MWE, instead of representations of single words?
 
 
-As a reference, we compared our best results for each task with their corresponding benchmarks (Table\ref{benchmark}). 
+As a reference, we compared our best results for each task with their corresponding benchmarks (Table~\ref{benchmark}). 
 For POS-tagging and chunking, we reach a comparable performance to the state-of-the-art methods.
 The difference between our NER system and its baseline is most obvious, as we are 0.025 points below them, but the comparison is not fair considering that their algorithm is much complex
-(\newcite{Ando:2005} used a $2^{nd}$ order CRF, while we used a $1^{rst}$ order CRF).
+(\newcite{Ando:2005} used a 2$^{\text{nd}}$-order CRF, while we used a 1$^{\text{st}}$-order CRF).
 %, which use as features the two previous predictions and the previous label combined with the current word).
 For the task of MWE identification, our implementation and settings beat the baseline. 
 However, in this paper, we do not aim to maximize the absolute performance of the tasks under 
