@@ -30,6 +30,7 @@
 \usepackage{amsmath}
 \usepackage{enumerate}
 \usepackage{paralist}
+\usepackage[font=small,skip=0pt]{caption}
 
 
 \newcommand{\RQ}[1][1]{RQ#1\xspace}
@@ -68,7 +69,7 @@
   In this paper, we perform an extrinsic evaluation of five popular word
   embedding methods in the context of four sequence labelling tasks:
   POS-tagging, chunking, NER and MWE identification.
-  A particular focus of the paper is analysis of the impact of fine-tuning the word
+  A particular focus of the paper is analysis of the impact of fine-tuning of word
   representations during training.
   We show that when using word embeddings as features, as few as
   several hundred training instances are sufficient to achieve competitive
@@ -76,9 +77,8 @@
   all tasks.
   % We also find, however, that fine-tuning can result in over-fitting, in the situation 
   % where the pre-trained representations were already good.
-  Perhaps more surprisingly, our results indicate that there is very
-  little difference between the different word embedding methods, and
-  indeed, that simple Brown clusters are often competitive with word
+  Perhaps more surprisingly, our results indicate there is 
+  little difference between the different word embedding methods, and that simple Brown 			clusters are often competitive with word
   embeddings across all tasks we consider. 
 \end{abstract}
 
