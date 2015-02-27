@@ -3,16 +3,21 @@
 The distributional hypothesis in linguistics suggests that ``a word is characterised by the company it keeps''~\cite{firth1957}. Words that are used in the similar contexts tend to have similar semantic and syntactic properties. Capturing distributional similarity is the underlying idea of all word representation learning methods. 
 
 \subsection{Types of Word Representations}
-Based on the ways of constructing word representations, \newcite{turian2010word} categorised these methods into three types: \textit{Distributional representation},  \textit{Cluster-based representation}, and \textit{Distributed representation}.
+\newcite{turian2010word} identifies three varieties of word representations: \textit{distributional},  \textit{cluster-based}, and \textit{distributed}.
 
-\textit{Distributional representation} methods map each word $w$ to its context word vector $\mathbf{C}_w$, which is built based on co-occurrence counts between $w$ and the words surrounding it. The learning methods store either directly the co-occurrence counts between two words $w$ and $i$ in $C_{wi}$~\cite{sahlgren2006word,turney2010frequency,honkela1997self} or project the concurrence counts between words into a lower dimensional space~\cite{vrehuuvrek2010software,lund1996producing} by applying dimension reduction techniques such as SVD~\cite{dumais1988using} and LDA~\cite{blei2003latent}. 
+\textit{Distributional representation} methods map each word $w$ to its context word vector $\mathbf{C}_w$, which is built based on co-occurrence counts between $w$ and the words surrounding it. The learning methods either directly store the co-occurrence counts between two words $w$ and $i$ in $C_{wi}$~\cite{sahlgren2006word,turney2010frequency,honkela1997self}, or project the concurrence counts between words into a lower dimensional space~\cite{vrehuuvrek2010software,lund1996producing} via dimensionality reduction techniques such as SVD~\cite{dumais1988using} and LDA~\cite{blei2003latent}. 
 
-The methods of \textit{Cluster-based representation} build clusters of words by applying either soft- or hard clustering algorithms~\cite{lin2009phrase,li2005semi}. Some of them also rely on co-occurrence matrix of words~\cite{pereira1993distributional}. The Brown clustering algorithm~\cite{Brown92class-basedn-gram} is the most famous in this category.
+\textit{Cluster-based representation} methods build clusters of words by applying either soft or hard clustering algorithms~\cite{lin2009phrase,li2005semi}. Some of them also rely on a co-occurrence matrix of words~\cite{pereira1993distributional}. The Brown clustering algorithm~\cite{Brown92class-basedn-gram} is the most famous in this category.
 
-A \textit{distributed representation} of words stores mutually non-exclusive latent features, which can capture both syntactic and semantic properties of words. This kind of representations are also called word embeddings, which usually take the form of dense, low-dimensional, and continuous-valued vectors, with $\mathbf{x} \in R^n$, where $n$ is referred to as word dimension.
+A \textit{distributed representation} of a word consists of overlapping latent features potentially capturing both syntactic and semantic properties. This kind of representation is also called a \emph{word embedding}, which usually takes the form of dense, low-dimensional, and continuous-valued vector $\mathbf{x} \in R^n$, where $n$ is referred to as the word dimension.
 
 \subsection{Selected Word Representations}
-In a range of sequence tagging tasks, we evaluated five word representations : Brown clustering, Collobert \& Weston (CW)~\cite{collobert2011natural}, continuous bag-of-words model (CBOW)~\cite{Mikolov13}, continuous skip-gram model (Skip-gram)~\cite{Mikolov13NIPS}, and Global vectors (Glove)~\cite{pennington2014glove}. Except CW, all other methods are ranked as the best method in different recent empirical studies~\cite{turian2010word,pennington2014glove}. CW is included because it is one of the most influential early work in this area. The training of these word representations is conducted in an unsupervised way. The underlying idea is to predict occurrence of words in the neighbourhood. Their training objectives share the same form, which is a sum of local training factors $J(w, \text{ctx}(w))$. 
+In a range of sequence tagging tasks, we evaluated five word representations: 
+Brown clusters, Collobert \& Weston (CW)--style embeddings \cite{collobert2011natural}, 
+continuous bag-of-words model (CBOW) embeddings \cite{Mikolov13}, 
+continuous skip-gram model (Skip-gram) embeddings \cite{Mikolov13NIPS}, 
+and Global vector (Glove) embeddings \cite{pennington2014glove}. 
+With the exception of CW, all are ranked as the best method in different recent empirical studies~\cite{turian2010word,pennington2014glove}. CW is included because it is an influential early result in this area. The training of these word representations is conducted in an unsupervised way. The underlying idea is to predict occurrence of words in the neighbourhood. Their training objectives share the same form, which is a sum of local training factors $J(w, \text{ctx}(w))$. 
 \begin{displaymath}
 L = \sum_{w \in V} J(w, \text{ctx}(w))
 \end{displaymath}
