@@ -30,9 +30,24 @@
 \usepackage{amsmath}
 \usepackage{enumerate}
 \usepackage{paralist}
+\usepackage{xspace}
 
 
 \newcommand{\RQ}[1][1]{RQ#1\xspace}
+
+\newcommand{\figref}[2][]{Figure#1~\ref{#2}\xspace}
+\newcommand{\tabref}[2][]{Table#1~\ref{#2}\xspace}
+
+\newcommand{\lex}[1]{\textit{#1}\xspace}
+
+\newcommand{\method}[1]{\textsc{#1}\xspace}
+\newcommand{\brown}{\method{Brown}}
+\newcommand{\CW}{\method{CW}}
+\newcommand{\CBOW}{\method{CW}}
+\newcommand{\Skipgram}{\method{Skip-gram}}
+\newcommand{\Glove}{\method{Glove}}
+
+\newcommand{\ctx}{\ensuremath{\text{ctx}}}
 
 
 \hyphenation{an-aly-sis}
@@ -78,9 +93,10 @@
   all tasks.
   % We also find, however, that fine-tuning can result in over-fitting, in the situation 
   % where the pre-trained representations were already good.
-  Perhaps more surprisingly, our results indicate there is 
-  little difference between the different word embedding methods, and that simple Brown 			clusters are often competitive with word
-  embeddings across all tasks we consider. 
+  Perhaps more surprisingly, our results indicate there is little
+  difference between the different word embedding methods, and that simple
+  Brown clusters are often competitive with word embeddings across all
+  tasks we consider. 
 \end{abstract}
 
 \newcommand{\gabi}[1]{\textcolor{blue}{#1}}
@@ -95,14 +111,14 @@
 \input{relwork}
 \input{conclusion}
 
-\section*{Acknowledgments}
+% \section*{Acknowledgments}
 
-Anonymised\\
-Anonymised\\
-Anonymised\\
-Anonymised\\
-Anonymised\\
-Anonymised\\
+% Anonymised\\
+% Anonymised\\
+% Anonymised\\
+% Anonymised\\
+% Anonymised\\
+% Anonymised\\
 
 %NICTA is funded by the Australian Government as represented by the Department of Broadband, Communications and the Digital Economy and the Australian Research Council through the ICT Centre of Excellence program.
 

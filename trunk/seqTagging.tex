@@ -3,9 +3,10 @@
 We evaluate different word representations in four different sequence tagging tasks: POS-tagging, chunking, NER and MWE identification. 
 
 For each sequence tagging task, we fed features into a first order linear-chain graph
-transformer~\cite{collobert2011natural}, which contains two layers, as illustrated in Figure \ref{fig:graph_transformer}. The upper layer is identical to a linear-chain CRF~\cite{lafferty2001conditional}, the lower layer consists of word representation and hand-crafted features. If we treat word representations as fixed, the graph transformer is a linear-chain CRF. Alternatively, we can treat the word representations as model parameters, in which case the model is a neural network with word embeddings as the input layer. We trained all models with the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. 
+transformer~\cite{collobert2011natural}, which contains two layers, as illustrated in \figref{fig:graph_transformer}. The upper layer is identical to a linear-chain CRF~\cite{lafferty2001conditional}, the lower layer consists of word representation and hand-crafted features. If we treat word representations as fixed, the graph transformer is a linear-chain CRF. Alternatively, we can treat the word representations as model parameters, in which case the model is a neural network with word embeddings as the input layer. We trained all models with the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. 
 
-\begin{figure}[hb]
+
+\begin{figure}[t]
   \centering
   \includegraphics[scale = 0.3]{images/graph_transformer.png}
   \caption{Architecture of linear-chain graph transformer}
@@ -27,22 +28,22 @@ In training the distributed word representations, we consider two settings:
 \end{small}
 
 \begin{table*}
-\caption{Datasets splits and feature space for each sequence tagging task.}
 \begin{small}
-\begin{tabular}{lllp{3.cm}ll}
+\begin{tabular}{cccccc}
 \hline
-			& \textbf{Training set} & \textbf{Validation set} & \textbf{\textit{in-domain} Test set} & \textbf{\textit{out-of-domain} Test set} \\ \hline
+			& \textbf{Training set} & \textbf{Validation set} & \textbf{\textit{In-domain} Test set} & \textbf{\textit{Out-of-domain} Test set} \\ \hline
 \textbf{POS-Tagging} & 0-18 WSJ & 19-21 WSJ & 22-24 of WSJ & English Web-Treebank  \\
 \textbf{Chunking} & WSJ & 1000 sentences WSJ & CoNLL-2000 & Brown corpus \\
-\textbf{NER} & CoNLL-2003 train set & CoNLL-2003 dev. set & CoNLL-2003 test set & MUC7  \\
-\textbf{MWE} & 500 documents from & 100 documents from & 123 documents & - \\
+\textbf{NER} & CoNLL-2003 train set & CoNLL-2003 dev set & CoNLL-2003 test set & MUC7  \\
+\textbf{MWE} & 500 documents from & 100 documents from & 123 documents & --- \\
 \hline
 \end{tabular}
+\caption{Datasets splits and feature space for each sequence tagging task.}
 \label{datasplit}
 \end{small}
 \end{table*}
 
-We split the task-specific corpus into a training set, a validation set, and a test set (see Table \ref{datasplit}). If a corpus already provides fixed splits, we reuse them. For POS-tagging,  NER and chunking, we also evaluated the models with an out-of-domain corpus (English Web Treebank, MUC-7 and Brown corpus, respectively), which have similar annotations.
+We split the task-specific corpus into a training set, a validation set, and a test set (see \tabref{datasplit}). If a corpus already provides fixed splits, we reuse them. For POS-tagging,  NER and chunking, we also evaluated the models with an out-of-domain corpus (English Web Treebank, MUC-7 and Brown corpus, respectively), which have similar annotations.
 
 For fair and reproducible experimental results, we tuned the hyperparameters with random search~\cite{bergstra2012random}. 
 We randomly sampled 50 distinct hyperparameter sets with the same random seed for the models that do not update word embeddings, and sampled 100 distinct hyperparameter sets for the models that do update word embeddings. 
@@ -77,3 +78,10 @@ For easy comparison with previous results, we adopt the most widely used F1 meas
 % \noindent Validation set: CoNLL03 development set.
 % \noindent Test set: CoNLL03 test set and MUC7. We report model performances on these two test sets respectively.
 % \noindent Feature space: the same set as in~\cite{turian2010word}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t 
+%%% TeX-master: "WordEmbEvaluation"
+%%% End: 
