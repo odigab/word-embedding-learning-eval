@@ -1,8 +1,7 @@
 \section{Experimental Results and Discussion}
 
 %%%% BECHMARKS
-\begin{table*}
-\caption{Benchmark results vs. our best results for in-domain and out-of-domain test sets (Acc. refers to Accuracy).}
+\begin{table*}[t]
 \begin{center}
 \begin{small}
 \begin{tabular}{llll}
@@ -13,8 +12,9 @@ Chunking & (F1) 0.942 \cite{Sha:2003} & 0.938 (Brown cluster v2000) & 0.676 (glo
 NER & (F1) 0.893 \cite{Ando:2005} & 0.868 (skip-gram negsam+noup) & 0.736 (skip-gram negsam+noup) \\  
 MWE & (F1) 0.625 \cite{Schneider+:2014} & 0.654 (cw+up) & - \\ 
 \hline
-\label{benchmark}
 \end{tabular}
+\caption{Benchmark results vs. our best results for in-domain and out-of-domain test sets (Acc. refers to Accuracy; F1 refers to F1-measure).}
+\label{benchmark}
 \end{small}
 \end{center}
 \end{table*}
@@ -22,7 +22,6 @@ MWE & (F1) 0.625 \cite{Schneider+:2014} & 0.654 (cw+up) & - \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% HEATMAPS 
 \begin{figure*}
-\caption{Best results for each method for POS-Tagging, Chunking, NER and MWE identification. The x-axis correspond to the different word embeddings methods and the y-axis to the 10 training partitions at log scale. Green color stand for high performance, while red color stands for low performance. The methods are in chronological order; wherein the suffix \textit{up} stands for \textit{updated or fine-tuned features}, and \textit{noup} stands for \textit{no-updated} features.\nss{[The rightmost axis labels of (c) are cut off. Also, is it possible to enlarge the axis text at all? Difficult to read when printed.]}}
 \centering
 \begin{subfigure}{7cm}
 	\centering
@@ -36,7 +35,7 @@ MWE & (F1) 0.625 \cite{Schneider+:2014} & 0.654 (cw+up) & - \\
 	\subcaption{Chunking F1-Measure}	
 	\label{chu}
 \end{subfigure}
-%\\[-2ex]  %%<-- in this line
+%\\[-1.5ex]  %%<-- in this line
 \begin{subfigure}{7cm}
 	\centering
     \includegraphics[scale=0.4]{plots/map-ner-color-invert}    	
@@ -49,6 +48,7 @@ MWE & (F1) 0.625 \cite{Schneider+:2014} & 0.654 (cw+up) & - \\
 	\subcaption{MWEs F1-Measure}		
 	\label{mwe}
 \end{subfigure}
+\caption{Best results for each method for POS-Tagging, Chunking, NER and MWE identification. The x-axis correspond to the different word embeddings methods and the y-axis to the 10 training partitions at log scale. Green color stand for high performance, while red color stands for low performance. The methods are in chronological order; wherein the suffix \textit{up} stands for \textit{updated or fine-tuned features}, and \textit{noup} stands for \textit{no-updated} features.\nss{[The rightmost axis labels of (c) are cut off. Also, is it possible to enlarge the axis text at all? Difficult to read when printed.]}}
 \label{fig:heatmaps}
 \end{figure*}
 
@@ -57,7 +57,6 @@ MWE & (F1) 0.625 \cite{Schneider+:2014} & 0.654 (cw+up) & - \\
 %%% Vector fields
 % POS
 \begin{figure*}
-\caption{Updated vs. no-updated word representations for POS-tagging and chunking using skip-gram\nss{[Arrowheads are too small to see]}}
 \centering
 \begin{subfigure}[b]{0.48\textwidth}
 	\centering
@@ -83,6 +82,7 @@ MWE & (F1) 0.625 \cite{Schneider+:2014} & 0.654 (cw+up) & - \\
 %	\label{fig:skipmwe}
 %	\subcaption{}	
 %\end{subfigure}
+\caption{Updated vs.\ no-updated word representations for POS-tagging and chunking using skip-gram\nss{[Arrowheads are too small to see]}}
 \label{fig:vectorfield}
 \end{figure*}
 
@@ -92,13 +92,14 @@ We focus on the following questions:
 \textbf{(i) Are some word embeddings better than the baseline approaches of one-hot unigram features and Brown clusters?}
 To answer this question we systematically compared the usefulness of word embedding versus
 unigram and Brown cluster features for sequence tagging.
-As shown in Table~\ref{benchmark}, every task has at least one word embedding method that outperforms
+As shown in \tabref{benchmark}, every task has at least one word embedding method that outperforms
 unigram features. In the case of chunking, Brown clustering performs slightly better than other methods \nss{on in-domain data} when the model is trained with all training data. 
+
 
 %\textbf{(ii) How does the size of labelled training data affect the experimental results?}
 \textbf{(ii) Do word embedding features help more than unigram features to achieve decent performance with limited labelled training data?}
 
-Figure~\ref{fig:heatmaps} shows that for POS-tagging and NER, with only several hundred training instances, 
+\figref{fig:heatmaps} shows that for POS-tagging and NER, with only several hundred training instances, 
 word embedding features are especially helpful relative to unigram features. 
 For example, when trained with 561 instances, the POS-tagging model using skip-gram embeddings with fine-tuning is 5.3\% above
 the one with unigram features; and when trained with 932 instances, the NER model using skip-gram embeddings without fine-tuning is 11.7\% above the one using unigrams. 
@@ -112,25 +113,27 @@ We found that fine-tuning can correct poorly learned word representations, but c
 
 To illustrate the effect of fine-tuning, we sampled 60 words and plotted the changes of their word embeddings before and after fine-tuning, by using vector fields. Each arrow points to the direction of change and the size of the arrow indicates the magnitude of change.  Half of the words were chosen manually and include some known word clusters like names of the days and names of countries so that we can observe the changes of word clusters.  The rest of the words were randomly selected (additional plots with 100 randomly sampled words and the top 100 most frequent words, for all the methods and all the tasks, can be found in the supplementary material and at \url{https://123abc123abd.wordpress.com/}).
 
-In Figure \ref{fig:vectorfield}, we show vector fields plots for chunking and NER using skip-gram embeddings.
-As illustrated in Figure~\ref{fig:skipChu}, after fine-tuning for chunking, all the vectors are changed with similar magnitude 
+In \figref{fig:vectorfield}, we show vector fields plots for chunking and NER using skip-gram embeddings.
+As illustrated in \figref{fig:skipChu}, after fine-tuning for chunking, all the vectors are changed with similar magnitude 
 (except for a few outliers), but their directions of change appear to be random, 
 whether they previously belonged to the same word cluster or not.\nss{[I don't understand how clusters are shown in the plots.]} 
-In contrast, after fine-tuning for NER, word vectors belonging to the same cluster changed their magnitude and direction homogeneously (Figure~\ref{fig:skippos}).\nss{[Why is this good?]} 
+In contrast, after fine-tuning for NER, word vectors belonging to the same cluster changed their magnitude and direction homogeneously (\figref{fig:skippos}).\nss{[Why is this good?]} 
 The different ways of changing word clusters between the two tasks is another piece of evidence that information contained in word embeddings is less beneficial for chunking than for NER. 
+
 
 % This also indicates that the graph transformer can identify useful factors in word representations and keep them during training.
 \textbf{(iii) How well do the word embeddings perform when evaluated on \textit{out-of-domain} test sets?}
-Table~\ref{benchmark} shows \textit{out-of-domain} performance on all the tasks for which out-of-domain data is available.
+\tabref{benchmark} shows \textit{out-of-domain} performance on all the tasks for which out-of-domain data is available.
 As expected, the performance drops across the board. The difference is most pronounced for chunking, which loses nearly 30\% absolute for word embedding methods as well as for unigrams, 
 indicating that word embeddings and unigram features provide similar information 
 for chunking. 
+
 
 Another interesting observation is that fine-tuning is likely to harm out-of-domain performance because the distribution between in-domain and out-of-domain datasets is different. This suggests that word embeddings pre-trained in an unsupervised way capture more common properties across domains. 
 
 \textbf{(iv) How well do the word embeddings perform for unknown words?}
 We also isolate performance on out-of-vocabulary (OOV) words 
-in the \textit{in-domain} and \textit{out-of-domain} settings (Figure~\ref{OOV}).
+in the \textit{in-domain} and \textit{out-of-domain} settings (\figref{OOV}).
 As expected, word embeddings and Brown clustering excel in out-of-domain OOV performance.
 Word embeddings without\nss{[with?]} fine-tuning are more successful for 
 in-domain than out-of-domain datasets, since fine-tuned
@@ -138,24 +141,26 @@ word representations become task-specific\nss{[not only task-specific, but domai
 In addition, OOV performance tends to be insensitive to the size of training sets.
 
 
+
 Finally, we address the following question: \textbf{(vi) It has been shown that Brown clusters are useful features for MWE identification; is there any additional benefit to word embeddings for this task?} 
-According to our experiments, the word embedding features distilled by fine-tuned CW reached the best results, beating the state-of-the-art performance (see Table \ref{benchmark}).
+According to our experiments, the word embedding features distilled by fine-tuned CW reached the best results, beating the state-of-the-art performance (see \tabref{benchmark}).
 However, the difference between Brown clustering and fine-tuned CW is not impressive, suggesting that distributed word representations and cluster-based representations captures similar features for the MWE identification task. Moreover, we observe that this is the most difficult of the four tasks: it has less training data and achieves the lowest score.
 
 
 In this paper, we do not aim to maximise the absolute performance of the tasks under 
-study, but rather to study the impact of word embeddings for sequence tagging tasks under controlled settings. Thus the performance of our systems in NER, POS and chunking are slightly worse than the best ones in benchmarks (Table~\ref{benchmark}). The 2.7\% difference between our NER system and the best performing system is due to the fact that we use a first-order instead of a second-order CRF~\cite{Ando:2005}. 
+study, but rather to study the impact of word embeddings for sequence tagging tasks under controlled settings. Thus the performance of our systems in NER, POS and chunking are slightly worse than the best ones in benchmarks (\tabref{benchmark}). The 2.7\% difference between our NER system and the best performing system is due to the fact that we use a first-order instead of a second-order CRF~\cite{Ando:2005}. 
 \nss{[In the following sentences, should ``baselines'' be ``benchmarks''?:]}Another difference between our implementation and the baselines is that we tuned the hyperparameters with random search, so that the experiments can be easily replicated by using the same random seed. In contrast, the hyper-parameters of the baselines are tuned by experts, which are difficult to reproduce. For the task of MWE identification, our implementation and settings beat the baseline.
+
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% OOV 
-\begin{figure*}
+\begin{figure*}[t]
 \centering
+    	\includegraphics[scale=0.5]{plots/OOV-plots}
 \caption{Out-of-vocabulary-words (OOV) accuracy for \textit{in-domain} and \textit{out-of-domain} test sets}
 \label{OOV} 
-    	\includegraphics[scale=0.5]{plots/OOV-plots}
 \end{figure*}
 
 
@@ -164,3 +169,8 @@ study, but rather to study the impact of word embeddings for sequence tagging ta
 
 
 
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t 
+%%% TeX-master: "WordEmbEvaluation"
+%%% End: 
