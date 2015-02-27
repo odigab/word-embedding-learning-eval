@@ -6,8 +6,8 @@ empirical utility in a myriad of tasks
 \cite{Collobert2008,turian2010word,baroni:2014,Andreas:Klein:2014}.  The
 underlying idea behind distributed word representations is simple: to
 map each word $w$ in our vocabulary $V$ onto a continuous-valued vector
-of dimensionality $d \ll |V|$.  In this way, words of similar type
-(syntactic, lexical semantic or otherwise) will ideally be mapped to
+of dimensionality $d \ll |V|$.  Words that are similar
+(e.g., with respect to syntax or lexical semantics) will ideally be mapped to
 similar regions of the vector space, implicitly supporting both
 generalisation across in-vocabulary (IV) items and countering the
 effects of data sparsity for low-frequency and out-of-vocabulary (OOV)
@@ -16,18 +16,18 @@ items.
 Without some means of automatically deriving the vector representations
 without reliance on labelled data, however, word embeddings would have
 little practical utility. Fortunately, it has been shown that they can
-be ``pre-trained'' from unlabelled text data in various ways, based on a
-range of implementations of the distributional hypothesis, i.e., that
+be ``pre-trained'' from unlabelled text data using various algorithms 
+to model the distributional hypothesis (i.e., that
 words which occur in similar contexts tend to be semantically
-similar. Pre-training methods have been refined considerably in recent
+similar). Pre-training methods have been refined considerably in recent
 years, and scaled up to increasingly large corpora.
 
 As with other machine learning methods, it is well known that the
-quality of the pre-trained word embeddings depends heavily factors
+quality of the pre-trained word embeddings depends heavily on factors
 including parameter optimization, the size of the training data, and the
 fit with the target application. For example, \newcite{turian2010word}
-showed that the optimal dimensionality for word embeddings is task
-specific.  One factor which has received relatively little attention in
+showed that the optimal dimensionality for word embeddings is task-specific.  
+One factor which has received relatively little attention in
 NLP is the effect of ``fine-tuning'' the pre-trained word embeddings as
 part of the training of the end task, based on self-taught
 learning~\cite{raina2007self}.  Fine-tuning leads to word
