@@ -71,7 +71,6 @@ MWE & (F1) 0.625 \cite{Schneider+:2014} & 0.654 (cw+up) & - \\
 	\label{fig:skippos}
 	\subcaption{NER}	
 \end{subfigure}
-
 %\begin{subfigure}[b]{0.48\textwidth}
 %	\centering
 %   \includegraphics[width=\textwidth]{plots/vectorField/skip_NER.png}
@@ -89,23 +88,45 @@ MWE & (F1) 0.625 \cite{Schneider+:2014} & 0.654 (cw+up) & - \\
 
 We focus on the following questions:
 
-\textbf{(i) Are the evaluated word embedding methods better than unigram features?}
-To answer this question, we systematically compared the usefulness of word embedding versus
-unigram features for sequence tagging and noted that word embedding methods always outperform 
-unigram features (Figures \ref{fig:heatmaps}). 
+%\textbf{(i) Are the evaluated word embedding methods better than unigram features?}
+\textbf{(i) Are some word embeddings better than baseline approaches of one-hot unigram features and Brown clusters?}
+To answer this question we systematically compared the usefulness of word embedding versus
+unigram and Brown cluster features for sequence tagging.
+We noted that word embedding methods outperform 
+unigram features, except for chunking, where Brown cluster outperform word embedding methods (Table~\ref{benchmark}). 
 
-\textbf{(ii) How does the size of labelled training data affect the experimental results?}
-We observed that embedding methods are especially helping POS-tagging and NER when there are only several hundreds of training instances. 
+%\textbf{(ii) How does the size of labelled training data affect the experimental results?}
+\textbf{(ii) Do word embedding methods require less labelled training data than unigram to reach a sufficient performance?}
+
+We observed that embedding methods are especially helping POS-tagging and NER when there are only some hundreds of training instances. 
+For example, when trained with 561 instances, skip-gram with fine-tuning is 5.3\% above
+unigram features for POS-tagging; and when trained with 932 instances, skip-gram without fine-tuning is 11.7\% above unigram for NER. Similar differences were observed between 
+the rest of the embeddings methods and unigram for these two tasks.
+Gaby said, brown cluster is winning unigram.
 Therefore, confirming that any of the evaluated word embedding methods should be used when POS-tagging or NER labelled data is limited.
-These early improvements are less evident for chunking and MWE, and according to our results, all the methods, including unigram, needed the similar amount of training data to reach a decent performance.
-%We attribute this to: a) the standard features used in POS-tagging (e.g., context words, stemmed words) are similar to the representations encoded in the word embeddings.
-%  b) NER and MWE require more training data to reach a decent performance; c) the performance of NER and MWE heavily dependent on complex features such as gazetteers and lexicons like Wordnet, which are not captured by the feature representations learned from unlabelled data, meanwhile the standard features used in POS-tagging and chunking (e.g., context words, stemmed words) are similar to the representations encoded in the word embeddings.
+These early improvements are less evident for chunking and MWE, and according to our results, all the methods, including unigram, needed similar amount of training data to reach a decent performance (Figures \ref{fig:heatmaps}). 
+
+
+
+\textbf{(iii) Is fine-tuning helpful for all kinds of word embeddings and across all tasks?}
+We found that fine-tuning can correct poorly learned word representations, but can be
+overfitted if unsupervisely learned ones are already good. 
+%Across all the methods, fine-tuning is helping POS-Tagging and MWE, where the CW method has been found to be the most sensible to tuning, reaching almost 3 points more, when tuning is performed (Figure \ref{pos}, \ref{mwe}).  For chunking and NER, the best results are fine-tuned, but the difference across all the methods and updated features versus not-updated ones, is not significant (Figure \ref{chu}, \ref{ner}). 
+
+To illustrate the behaviour of fine-tuning during training, we plotted a set of 60 words before and after tuning, for chunking and NER using skip-gram (Figure \ref{fig:vectorfield}). 
+Half of the words were chosen manually and include related words like names of the days and names of countries, and the rest of the words were randomly pick up (additional plots with 100 random words and the top 100 frequent words, for all the methods and all the tasks, can be found in the supplementary material and at \url{https://123abc123abd.wordpress.com/}).
+
+As shown in Figure~\ref{chu}, after fine-tuning for chunking, all the vectors slightly changed their magnitude, except for a few outliers. This confirm our previous observation about the little impact of word embeddings features for chunking. 
+Differently, after NER fine-tuning, word vectors belonging to the same cluster changed their magnitude and direction homogeneously. {\color{red} This means that...}
+
+
 
 \textbf{(iii) How well do the word embeddings perform when evaluated with \textit{out-of-domain} test sets?}
 We measure the performance for \textit{out-of-domain} of all the tasks, except MWE identification for which there is no other data set available (Table \ref{datasplit}).
 As expected, the performance goes down for all tasks. The drop is more dramatic for chunking, which drops about 30\% for word embeddings methods as well as for unigram. 
-Indicating that neither word embeddings nor unigram features have a big impact on chunking.
-Nevertheless, the best best performing embedding method for out-of-domain test sets turned to be skip-gram without fine-tuning, and the worst method is unigram (Table~\ref{benchmark}).
+Indicating that word embeddings and unigram features provided similar information 
+for chunking. 
+As expected, word embedding methods without fine-tuned perform better when tested with out-of-domain data (Table~\ref{benchmark}). 
 
 \textbf{(iv) How well do the word embeddings perform for unknown words?}
 As already mentioned, we measure the performance for out-of-vocabulary words (OOV)
@@ -116,29 +137,17 @@ for the \textit{in-domain} and \textit{out-of-domain} settings (Figure \ref{OOV}
 word representations become task-specific, hence performing worst for OOV.
 
 
-\textbf{(v) Is fine-tuning helpful for all kinds of word embeddings and across all tasks?}
-Across all the methods, fine-tuning is helping POS-Tagging and MWE, where the CW method has been found to be the most sensible to tuning, reaching almost 3 points more, when tuning is performed (Figure \ref{pos}, \ref{mwe}). 
-For chunking and NER, the best results are fine-tuned, but the difference across all the methods and updated features versus not-updated ones, is not significant (Figure \ref{chu}, \ref{ner}). 
-We also found that fine-tuning can correct poorly learned word representations, but can be
-overfitted if unsupervisely learned ones are already good. 
-
-To illustrate the behaviour of fine-tuning during training, we plotted a set of 100 words before and after tuning, for chunking and NER using skip-gram (Figure \ref{fig:vectorfield}). 
-Half of the words were chosen manually and include related words like names of the days and names of countries, and the rest of the words were randomly pick up (additional plots with 100 random words and the top 100 frequent words, for all the methods and all the tasks, can be found in the supplementary material and at \url{https://123abc123abd.wordpress.com/}).
-
-As shown in Figure~\ref{chu}, after fine-tuning for chunking, all the vectors slightly changed their magnitude, except for a few outliers. This confirm our previous observation about the little impact of word embeddings features for chunking. 
-Differently, after NER fine-tuning, word vectors belonging to the same cluster changed their magnitude and direction homogeneously. {\color{red} This means that...}
-
 Finally, we address the following question: \textbf{(vi) It has been shown that Brown clusters are useful features for MWE identification but, are also word embeddings helping MWE identification?} 
 According to our experiments, the word embedding features distilled by fine-tuned CW reached the best results, beating the state-of-the-art performance (see Table \ref{benchmark}).
-However, between Brown clusters and fine-tuned CW, learned under the same settings, the difference is not impressive, suggesting that distributional word representations and cluster-based representations captures similar features for the MWE identification task.
-Thus, a natural question: would it be better to learn distributional representations for MWE, instead of representations of single words?
+However, between Brown clusters and fine-tuned CW, learned under the same settings, the difference is not impressive, suggesting that distributed word representations and cluster-based representations captures similar features for the MWE identification task.
+Thus, a natural question: would it be better to learn distributed representations for MWE, instead of representations of single words?
 
 
 As a reference, we compared our best results for each task with their corresponding benchmarks (Table~\ref{benchmark}). 
 For POS-tagging and chunking, we reach a comparable performance to the state-of-the-art methods.
-The difference between our NER system and its baseline is most obvious, as we are 0.025 points below them, but the comparison is not fair considering that their algorithm is much complex
+The difference between our NER system and its baseline is most obvious, as we are 2.7\%  below them, but the comparison is not fair considering that their algorithm is much complex
 (\newcite{Ando:2005} used a 2$^{\text{nd}}$-order CRF, while we used a 1$^{\text{st}}$-order CRF).
-%, which use as features the two previous predictions and the previous label combined with the current word).
+Another difference between our implementation and the baselines is that, meanwhile we tuned the hyper-parameters with random search, so that the experiments can be replicated, they hyper-parameters of the baseline had been expert-tuned. 
 For the task of MWE identification, our implementation and settings beat the baseline. 
 However, in this paper, we do not aim to maximize the absolute performance of the tasks under 
 study, but rather to study the impact of word embeddings for sequence tagging tasks under control settings.
