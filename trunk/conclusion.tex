@@ -1,13 +1,12 @@
 \section{Conclusion}
-We have performed an extensive extrinsic evaluation of five word embeddings methods approaches
-under fixed experiments conditions, and evaluate them over different sequence tagging tasks: POS-tagging, chunking, NER and MWE identification.
-We found that word embeddings methods always outperformed unigram features, especially when the training size is small, but no method was consistently better than the others across the different tasks and settings.
-Word representations were also found useful for improving the accuracy of OOV.
-We expected to see an important gap between the performance of fine-tuned features in a semi-supervised setting and no fine-tuned ones, but the difference is marginal.
-Nevertheless, we found that fine-tuning can result in over-fitting, when the ones learned  unsupervised were already good.   
+We have performed an extensive extrinsic evaluation of five word embedding methods
+under fixed experimental conditions, and evaluated their applicability to four sequence tagging tasks: POS-tagging, chunking, NER and MWE identification.
+We found that word embedding features always outperformed unigram features, especially with limited training data, but no embedding method was consistently superior across the different tasks and settings.
+Word representations were also found useful for improving accuracy on OOV words.
+
+We expected a performance gap between the fixed and fine-tuned embeddings, but the observed difference was marginal.
+Indeed, we found that fine-tuning can result in overfitting\nss{[to the task and domain?]}.
 Finally, by using word embeddings as features for MWE identification, we outperformed 
-the state-of-the-art system.
+the state-of-the-art system on that task.
 %We could not find any trend that suggest that a word embedding method is better than other.
-Future studies include learning representation of complex sequences such as MWEs.
-
-
+We hope to build on this in future work by learning representations directly over multiword units.\nss{[Has there been any research into this issue?]}
