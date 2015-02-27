@@ -119,12 +119,12 @@ word representations become task-specific, hence performing worst for OOV.
 %\textbf{(v) How well do different word embeddings perform in all tasks when semi-supervised fine-tuning is not performed?}, and 
 % textbf{(vi) and how well do different word embeddings perform in all tasks when semi-supervised fine-tuning is performed?}
 %According to our results, there is not a clear trend about fine-tuning or not during training. 
-\textbf{v} Is fine-tuning helpful for all kinds of word embeddings and across all tasks?
+\textbf{(v) Is fine-tuning helpful for all kinds of word embeddings and across all tasks?}
 
 Across all the methods, fine-tuning is helping POS-Tagging and MWE, where the CW method has been found to be the most sensible to tuning, reaching almost 3 points more, when tuning is performed (Figure \ref{pos}, \ref{mwe}). 
 For chunking and NER, the best results are fine-tuned, but the difference across all the methods and updated features versus not-updated ones, is not significant (Figure \ref{chu}, \ref{ner}). 
-We also found that fine-tuning can correct poorly learned word representations, but can be
-overfitted if unsupervisely learned ones are already good. 
+We also found that fine-tuning can correct poorly learned word representations, but can 
+overfit the representations if the unsupervised ones are already good. 
 
 To illustrate the behaviour of fine-tuning during training, we plotted a set of 100 words before and after tuning, for chunking and NER using skip-gram (Figure \ref{fig:vectorfield}). 
 Half of the words were chosen manually and include related words like names of the days and names of countries, and the rest of the words were randomly pick up (additional plots with 100 random words and the top 100 frequent words, for all the methods and all the tasks, can be found in the supplementary material and {\color{red} url}).
