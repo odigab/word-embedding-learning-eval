@@ -2,7 +2,10 @@
 \label{wordrep} 
 
 \subsection{Types of Word Representations}
-\newcite{turian2010word} identifies three varieties of word representations: \textit{distributional},  \textit{cluster-based}, and \textit{distributed}.
+
+\newcite{turian2010word} identifies three varieties of word
+representations: \textit{distributional}, \textit{cluster-based}, and
+\textit{distributed}.
 
 \textit{Distributional representation} methods map each word $w$ to a
 context word vector $\mathbf{C}_w$, which is constructed directly from
@@ -123,13 +126,12 @@ pre-training, for \CW, we simply downloaded the pre-compiled embeddings from:
 
 \begin{table}[t]
 \centering
-\small
 \begin{tabular}{lrr}
 \hline
 \textbf{Data set} & \multicolumn{1}{c}{\textbf{Size}} & \multicolumn{1}{c}{\textbf{Words}} \\ \hline
 UMBC 	& 48.1GB & 3G \\
 One Billion 	& 4.1GB & 1G  \\
-Latest English Wikipedia dump & 49.6GB & 3G \\ \hline
+English Wikipedia & 49.6GB & 3G \\ \hline
 \end{tabular}
 \caption{Corpora used to pre-train the word embeddings}
 \label{wordEmbedCorpora}
@@ -139,9 +141,9 @@ The dimensionality of the word embeddings and the size of the context
 window are the key hyperparameters when learning distributed
 representations. We use all combinations of the following values to
 train word embeddings on the combined corpus:
-\begin{itemize}\small
-\item[-]\textbf{Embedding dimensions $d \in \{25, 50, 100, 200\}$}
-\item[-]\textbf{Context window size $m \in \{5, 10, 1\}$}
+\begin{itemize}
+\item \textbf{Embedding dim.\ $d \in \{25, 50, 100, 200\}$}
+\item \textbf{Context window size $m \in \{5, 10, 1\}$}
 \end{itemize}
 \brown requires only the number of clusters as a hyperparameter. We
 perform clustering with $d\ in \{250, 500, 1000, 2000, and 4000\}$ clusters.
