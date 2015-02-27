@@ -3,10 +3,17 @@
 We evaluate different word representations in four different sequence tagging tasks: POS-tagging, chunking, NER and MWE identification. 
 
 For each sequence tagging task, we fed features into a first order linear-chain graph
-transformer~\cite{collobert2011natural}, and trained them by using the online learning algorithm
-AdaGrad~\cite{duchi2011adaptive}.
+transformer~\cite{collobert2011natural}, which contains two layers, as illustrated in Figure \ref{fig:graph_transformer}. The upper layer is identical to a linear-chain CRF~\cite{}, the lower layer consists of word representation and hand crafted features. If we do not treat word representation as model parameters, the graph transformer is a linear-chain CRF. Otherwise it is a neural network with word embeddings as the input layer. We trained all models by using the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. 
 
-As in~\cite{turian2010word}, the features of each task consist of both hand crafted features and word representation features. At each word position, we extract word representation features from the words in a window $\{-2, -1, 0, 1, 2\}$. The word representation features of word embeddings are the distributed representation of each word.  For Brown clustering, we extract the prefix features from word clusters in the same way as~\cite{turian2010word}. In addition, we consider one-hot representation of unigrams as well.
+\begin{figure}[hb]
+  \centering
+  \includegraphics[scale = 0.3]{images/graph_transformer.png}
+  \caption{Architecture of linear-chain graph transformer}
+  \label{fig:graph_transformer}
+\end{figure}
+
+
+As in~\cite{turian2010word}, at each word position, we extract word representation features from the words in a window $\{-2, -1, 0, 1, 2\}$. The word representation features of word embeddings are the pre-trained continuous vectors of each word.  The Brown clustering features are the prefix features extracted from word clusters in the same way as~\cite{turian2010word}. In addition, we include one-hot representation of unigrams for comparison as well.
 
 For POS-tagging, chunking and MWE, we used the same hand-crafted features as the state-of-the-art approaches,  \newcite{collobert2011natural}, \newcite{turian2010word} and ~\newcite{mwecorpus}, respectively. For NER, we considered the same feature space as in~\cite{turian2010word}, except for the previous two predictions, because we want to evaluate all word representations with the same type of model -- first-order graph transformer.
 
@@ -14,8 +21,8 @@ During training of distributed representation of words, we consider two settings
 
 \begin{small}
 \begin{itemize}
-\item[-] Graph transformer \textit{does not} fine tune word representations during training. Then the graph transformer is equivalent to a linear-chain CRF, which takes fixed feature vectors as input.
-\item[-] Graph transformer fine tunes the word representations during training. In this case, we treat all elements in word representations as model parameters but still keep other features fixed.
+\item[-] Graph transformer \textit{does not} fine tune word representations during training. 
+\item[-] Graph transformer fine tunes the word representations during training. 
 \end{itemize}
 \end{small}
 
