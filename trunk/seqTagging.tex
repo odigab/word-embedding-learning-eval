@@ -3,7 +3,7 @@
 We evaluate different word representations in four different sequence tagging tasks: POS-tagging, chunking, NER and MWE identification. 
 
 For each sequence tagging task, we fed features into a first order linear-chain graph
-transformer~\cite{collobert2011natural}, which contains two layers, as illustrated in Figure \ref{fig:graph_transformer}. The upper layer is identical to a linear-chain CRF~\cite{lafferty2001conditional}, the lower layer consists of word representation and hand crafted features. If we do not treat word representation as model parameters, the graph transformer is a linear-chain CRF. Otherwise it is a neural network with word embeddings as the input layer. We trained all models by using the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. 
+transformer~\cite{collobert2011natural}, which contains two layers, as illustrated in Figure \ref{fig:graph_transformer}. The upper layer is identical to a linear-chain CRF~\cite{lafferty2001conditional}, the lower layer consists of word representation and hand-crafted features. If we treat word representations as fixed, the graph transformer is a linear-chain CRF. Alternatively, we can treat the word representations as model parameters, in which case the model is a neural network with word embeddings as the input layer. We trained all models with the online learning algorithm AdaGrad~\cite{duchi2011adaptive}. 
 
 \begin{figure}[hb]
   \centering
