@@ -177,37 +177,45 @@ appears to be more beneficial for \ner than \chunking.
 % This also indicates that the graph transformer can identify useful factors in word representations and keep them during training.
 \paragraph{\RQ[4]: What is the impact of word embeddings cross-domain
   and for OOV words?}
-\tabref{benchmark} shows \textit{out-of-domain} performance on all the tasks for which out-of-domain data is available.
-As expected, the performance drops across the board. The difference is most pronounced for \chunking, which loses nearly 30\% absolute for word embedding methods as well as for unigrams, 
-indicating that word embeddings and unigram features provide similar information 
-for \chunking. 
+As shown in \tabref{benchmark}, results predictably drop when we
+evaluate out of domain.
+The difference is most pronounced for \chunking, where there is an
+absolute drop in \fscore of around 30\% for all methods, indicating that
+word embeddings and unigram features provide similar information for
+\chunking. 
 
+Another interesting observation is that updating often hurts
+out-of-domain performance because the distribution between domains is different. 
+This suggests that, if the objective is to optimise performance across
+domains, it is best not to perform updating. 
 
-Another interesting observation is that updating is likely to harm out-of-domain performance because the distribution between in-domain and out-of-domain datasets is different. This suggests that word embeddings pre-trained in an unsupervised way capture more common properties across domains. 
-
-
-We also isolate performance on out-of-vocabulary (OOV) words 
-in the \textit{in-domain} and \textit{out-of-domain} settings (\figref{OOV}).
-As expected, word embeddings and Brown clustering excel in out-of-domain OOV performance.
-Word embeddings with updating are more successful for 
-in-domain than out-of-domain datasets, since task-updated
-word representations become task-specific and domain-specific. 
-In addition, OOV performance tends to be insensitive to the size of training sets.
-
-Finally, we address the following question: \textbf{(vi) It has been shown that Brown clusters are useful features for \mwe; is there any additional benefit to word embeddings for this task?} 
-According to our experiments, the word embedding features distilled by \CW[\withup] reached the best results, beating the state-of-the-art performance (see \tabref{benchmark}).
-However, the difference between \brown and \CW[\withup] is not impressive, suggesting that distributed word representations and cluster-based representations captures similar features for \mwe. Moreover, we observe that this is the most difficult of the four tasks: it has less training data and achieves the lowest score.
-
+We also analyze performance on OOV words both in-domain and
+out-of-domain in \figref{OOV}.
+As expected, word embeddings and \brown excel in out-of-domain OOV performance.
+Consistent with our overall observations about cross-domain
+generalisation, the OOV results are better when updating is not performed. 
 
 %\textbf{(ii) How does the size of labelled training data affect the experimental results?}
 \paragraph{\RQ[5] Overall, are some word embeddings better than others?}
+Comparing the different word embedding techniques over our four sequence
+labelling tasks, for the different evaluations (overall, out-of-domain
+and OOV), there is no clear winner among the word embeddings -- for
+\pos, \Skipgram appears to have a slight advantage, but this does not
+generalise to other tasks.\\
 
-
-In this paper, we do not aim to maximise the absolute performance of the tasks under 
-study, but rather to study the impact of word embeddings for sequence labelling tasks under controlled settings. Thus the performance of our systems in \ner, \pos and \chunking are slightly worse than the best ones in benchmarks (\tabref{benchmark}). The 2.7\% difference between our \ner system and the best performing system is due to the fact that we use a first-order instead of a second-order CRF~\cite{Ando:2005}. 
-%\nss{[In the following sentences, should ``baselines'' be ``benchmarks''?:]}
-Another difference between our implementation and the benchmarks is that we tuned the hyperparameters with random search, so that the experiments can be easily replicated by using the same random seed. In contrast, the hyperparameters of the baselines are tuned by experts, which are difficult to reproduce. For the task of \mwe, our implementation and settings beat the baseline.
-
+While the aim of this paper was not to achieve the state of the art over
+the respective tasks, it is important to concede that our best
+(in-domain) results for \ner, \pos and \chunking are
+slightly worse than the state of the art
+(\tabref{benchmark}). The 2.7\% difference between our \ner system and
+the best performing system is due to the fact that we use a first-order
+instead of a second-order CRF~\cite{Ando:2005}, and for the other tasks,
+there are similarly differences in the learner and the complexity of the
+features used.
+Another difference is that we tuned the hyperparameters with random
+search, to enable replication using the same random seed.
+In contrast, the hyperparameters for the state-of-the-art methods are
+tuned more extensively by experts, making them more difficult to reproduce.
 
 
 
