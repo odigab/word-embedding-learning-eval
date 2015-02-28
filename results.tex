@@ -143,12 +143,10 @@ Another interesting observation is that fine-tuning is likely to harm out-of-dom
 We also isolate performance on out-of-vocabulary (OOV) words 
 in the \textit{in-domain} and \textit{out-of-domain} settings (\figref{OOV}).
 As expected, word embeddings and Brown clustering excel in out-of-domain OOV performance.
-Word embeddings without\nss{[with?]} fine-tuning are more successful for 
+Word embeddings with fine-tuning are more successful for 
 in-domain than out-of-domain datasets, since fine-tuned
-word representations become task-specific\nss{[not only task-specific, but domain-specific?]}. 
+word representations become task-specific and domain-specific. 
 In addition, OOV performance tends to be insensitive to the size of training sets.
-
-
 
 Finally, we address the following question: \textbf{(vi) It has been shown that Brown clusters are useful features for \mwe; is there any additional benefit to word embeddings for this task?} 
 According to our experiments, the word embedding features distilled by fine-tuned CW reached the best results, beating the state-of-the-art performance (see \tabref{benchmark}).
