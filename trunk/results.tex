@@ -14,12 +14,12 @@
 \hline
 \end{tabular}
 \caption{Benchmark results vs.\ our best results for in-domain and
-  out-of-domain test sets (``\accuracy'' = classification accuracy;
-  ``\fscore'' = F1-measure).}
+  out-of-domain test sets.}
 \label{benchmark}
 \end{small}
 \end{center}
 \end{table*}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% HEATMAPS 
@@ -51,14 +51,10 @@
 	\label{mwe}
 \end{subfigure}
 \caption{Best results for each method for \pos, \chunking, \ner and
-  \mwe. The $x$-axis correspond to the different word embeddings methods
-  and the $y$-axis to the 10 training partitions at log scale. Green
-  color stand for high performance, while red color stands for low
-  performance. The methods are in chronological order; wherein the
-  suffix \textit{up} stands for \textit{updated or fine-tuned features},
-  and \textit{noup} stands for \textit{no-updated} features.\nss{[The
-    rightmost axis labels of (c) are cut off. Also, is it possible to
-    enlarge the axis text at all? Difficult to read when printed.]}}
+  \mwe. The $y$-axis indicates the training data
+  sizes (on a log scale). Green = high performance, and red = low
+  performance, based on a linear scale of the best- to worst-result for
+  each task. }
 \label{fig:heatmaps}
 \end{figure*}
 
@@ -66,7 +62,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Vector fields
 % POS
-\begin{figure*}
+\begin{figure*}[t!]
 \centering
 \begin{subfigure}[b]{0.48\textwidth}
 	\centering
@@ -92,14 +88,15 @@
 %	\label{fig:skipmwe}
 %	\subcaption{}	
 %\end{subfigure}
-\caption{Updated vs.\ no-updated word representations for \pos and \chunking using skip-gram\nss{[Arrowheads are too small to see]}}
+\caption{Results for non-updating vs.\ updating (``\withup'') models over \pos and \chunking using \Skipgram[\withup]}
 \label{fig:vectorfield}
 \end{figure*}
 
-We focus on the following questions:
+We structure our evaluation by stepping through each of our five
+research questions (\RQ[1--5]) from the start of the paper.
 
 %\textbf{(i) Are the evaluated word embedding methods better than unigram features?}
-\textbf{(i) Are some word embeddings better than the baseline approaches of one-hot unigram features and Brown clusters?}
+\textbf{\RQ[1]: Are some word embeddings better than the baseline approaches of one-hot unigram features and Brown clusters?}
 To answer this question we systematically compared the usefulness of word embedding versus
 unigram and Brown cluster features for sequence tagging.
 As shown in \tabref{benchmark}, every task has at least one word embedding method that outperforms

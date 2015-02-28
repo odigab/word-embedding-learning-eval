@@ -33,7 +33,7 @@
 \usepackage{xspace}
 
 
-\newcommand{\RQ}[1][1]{RQ#1\xspace}
+\newcommand{\RQ}[1][1]{\textbf{RQ#1}\xspace}
 
 \newcommand{\figref}[2][]{Figure#1~\ref{#2}\xspace}
 \newcommand{\tabref}[2][]{Table#1~\ref{#2}\xspace}
@@ -44,16 +44,16 @@
 \newcommand{\EWT}{\dataset{EWT}}
 \newcommand{\WSJ}{\dataset{WSJ}}
 \newcommand{\Brown}{\dataset{Brown}}
-\newcommand{\CoNLLchunk}{\dataset{CoNLL-2000}}
-\newcommand{\CoNLLner}{\dataset{CoNLL-2003}}
+\newcommand{\Reuters}{\dataset{Reuters}}
 \newcommand{\MUC}{\dataset{MUC7}}
 
-\newcommand{\method}[1]{\textsc{#1}\xspace}
-\newcommand{\brown}{\method{Brown}}
-\newcommand{\CW}{\method{CW}}
-\newcommand{\CBOW}{\method{CBOW}}
-\newcommand{\Skipgram}{\method{Skip-gram}}
-\newcommand{\Glove}{\method{Glove}}
+\newcommand{\method}[2][]{\ensuremath{\textsc{#2#1}\xspace}}
+\newcommand{\brown}[1][]{\method[#1]{Brown}}
+\newcommand{\CW}[1][]{\method[#1]{CW}}
+\newcommand{\CBOW}[1][]{\method[#1]{CBOW}}
+\newcommand{\Skipgram}[1][]{\method[#1]{Skip-gram}}
+\newcommand{\Glove}[1][]{\method[#1]{Glove}}
+\newcommand{\withup}{\method{+UP}}
 
 \newcommand{\task}[1]{\textsf{#1}\xspace}
 \newcommand{\pos}{\task{POS-tagging}}
@@ -74,7 +74,8 @@
 \hyphenation{an-aly-ses}
 \hyphenation{an-aly-ser}
 
-\title{Evaluation of Word Embeddings for Sequence Tagging Tasks}
+\title{Big Data Small Data, In Domain Out-of Domain, Known Word Unknown
+  Word: The Impact of Word Representation on Sequence Labelling Tasks}
 
 \author{A Anonymous 
    \\%NICTA / Locked Bag 8001, \\ Canberra ACT 2601, Australia \\
