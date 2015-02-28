@@ -68,13 +68,14 @@ corpus, based on pre-existing training--dev--test splits where
 available,\footnote{For the \mwe dataset, no such split pre-existed, so
   we constructed our own.} as follows:
 \begin{itemize}
-\item[\textbf{\pos}:] the Wall Street Journal portion of the Penn Treebank (\WSJ)
+\item[\textbf{\pos}:] the Wall Street Journal portion of the Penn
+  Treebank (\newcite{Marcus:1993}: ``\WSJ'')
   with gold-standard Penn POS tags
 \item[\textbf{\chunking}:] the Wall Street Journal portion of the Penn
   Treebank (\WSJ),
   converted into IOB-style full-text chunks using the CoNLL conversion
   scripts for training and dev, and the CoNLL-2000 full text chunking
-  test data for testing
+  test data for testing \cite{TjongKimSang:Buchholz:2000}
 \item[\textbf{\ner}:] the CoNLL 2003 English Named Entity Recognition  Wall Street Journal
 \item[\textbf{\mwe}:] the CoNLL Wall Street Journal
 \end{itemize}
