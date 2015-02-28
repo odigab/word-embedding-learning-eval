@@ -78,7 +78,7 @@ representation, with and without updating (\figref{fig:heatmaps});
 (3) OOV accuracy both in-domain and out-of-domain for each task
 (\figref{OOV}); and (4)  visualization of the impact of
 updating on word embeddings, based on t-SNE
-(\newcite{vanderMaaten:Hinton:2008}; \figref{fig:vectorfield}).
+(\figref{fig:vectorfield}).
 
 %\textbf{(i) Are the evaluated word embedding methods better than unigram features?}
 \paragraph{\RQ[1]: Are word embeddings better than one-hot unigram features
@@ -87,38 +87,57 @@ best-performing method for every task except in-domain \chunking is a
 word embedding method, although the precise method varies
 greatly. \figref{fig:heatmaps}, on the other hand, tells a more subtle
 story: the difference between \unigram and the other word
-representations is relatively modest at comparable amounts of training
-data (with the exception of \pos with the smallest training data
-slice). Additionally, the difference between \brown and the word
+representations is relatively modest, esp.\ as the amount of training
+data increases. Additionally, the difference between \brown and the word
 embedding methods is modest across all tasks. So, the overall answer
-would appear to be: marginally for unigrams, but not really for \brown.
+would appear to be: yes for unigrams when there is little training data, but not really for \brown.
 
 
 
 
 %\textbf{(ii) How does the size of labelled training data affect the experimental results?}
-\paragraph{\RQ[2] Do word embedding features require less training data?}
+\paragraph{\RQ[2]: Do word embedding features require less training data?}
 \figref{fig:heatmaps} shows that for \pos and \ner, with only several hundred training instances, 
-word embedding features are especially helpful relative to unigram features. 
-For example, when trained with 561 instances, the \pos model using skip-gram embeddings with fine-tuning is 5.3\% above
-the one with unigram features; and when trained with 932 instances, the \ner model using skip-gram embeddings without fine-tuning is 11.7\% above the one using unigrams. 
-Similar improvements are also found for other types of word embeddings and Brown clustering, when the training set is small. 
-However, all kinds of word representations perform similarly in \chunking regardless of the size of training set. 
-For \mwe, \Brown performs slightly better than other methods when trained with approximately 25\% of training instances. Therefore, we conjecture that the POS and \ner tasks benefit more from distributional similarity than \chunking and \mwe.
+word embedding features achieve superior results to \unigram. 
+For example, when trained with 561 instances, the \pos model using \Skipgram[\withup] embeddings is 5.3\% above
+\unigram; and when trained with 932 instances, the \ner model using \Skipgram is 11.7\% above \unigram. 
+Similar improvements are also found for other types of word embeddings and \brown, when the training set is small. 
+However, all word representations perform similarly for \chunking
+regardless of training data size.
+For \mwe, \brown performs slightly better than the other methods when
+trained with approximately 25\% of the training instances. 
+Therefore, we conjecture that the \pos and \ner tasks benefit more from
+distributional similarity than \chunking and \mwe.
 
-\textbf{(iii) Is fine-tuning helpful for all kinds of word embeddings and across all tasks?}
-We found that fine-tuning can correct poorly learned word representations, but can harm well pre-trained ones due to overfitting. For example, CW and Glove perform significantly worse than skip-gram in both POS and \ner without fine-tuning, but \emph{with} fine-tuning, the gap between their results and the best performing method becomes smaller. In contrast, skip-gram performs worse on the test set when fine-tuning is applied, though the results on the validation set shows that skip-gram with fine-tuning performs 1\% better, which is a clear sign of overfitting.
-%Across all the methods, fine-tuning is helping POS-Tagging and MWE, where the CW method has been found to be the most sensible to tuning, reaching almost 3 points more, when tuning is performed (Figure \ref{pos}, \ref{mwe}).  For chunking and \ner, the best results are fine-tuned, but the difference across all the methods and updated features versus not-updated ones, is not significant (Figure \ref{chu}, \ref{ner}). 
+\paragraph{\RQ[3]: Does task-specific updating improve all word embeddings across all tasks?}
+Based on \figref{fig:heatmaps}, updating of word representations can
+equally correct poorly-learned word representations, and harm
+pre-trained representations, due to overfitting.
+For example, \CW and \Glove perform significantly worse than \Skipgram
+in both \pos and \ner without updating, but \emph{with} updating, the
+gap between their results and the best performing method becomes
+smaller. In contrast, \Skipgram performs worse over the test data with
+updating, despite the results on the development set improving by 1\%.
 
-To illustrate the effect of fine-tuning, we sampled 60 words and plotted the changes of their word embeddings before and after fine-tuning, by using vector fields. Each arrow points to the direction of change and the size of the arrow indicates the magnitude of change.  Half of the words were chosen manually and include some known word clusters like names of the days and names of countries so that we can observe the changes of word clusters.  The rest of the words were randomly selected (additional plots with 100 randomly sampled words and the top 100 most frequent words, for all the methods and all the tasks, can be found in the supplementary material and at \url{https://123abc123abd.wordpress.com/}).
+To further investigate the effects of updating, we sampled 60 words and
+plotted the changes in their word embeddings under updating, using 2-d
+vector fields generated with t-SNE \cite{vanderMaaten:Hinton:2008}. Half
+of the words were chosen manually to include known word clusters such as
+days of the week and names of countries; the other half were selected
+randomly. Additional plots with 100 randomly-sampled words and the
+top-100 most frequent words, for all the methods and all the tasks, can
+be found in the supplementary material and at
+\url{https://123abc123abd.wordpress.com/}.  In each plot, a single arrow
+signifies one word, pointing from the position of the original word embedding to the updated representation.
 
-In \figref{fig:vectorfield}, we show vector fields plots for \chunking and \ner using skip-gram embeddings.
-As illustrated in \figref{fig:skipChu}, after fine-tuning for \chunking, all the vectors are changed with similar magnitude 
-(except for a few outliers), but their directions of change appear to be random, 
-whether they previously belonged to the same word cluster or not.\nss{[I don't understand how clusters are shown in the plots.]} 
-In contrast, after fine-tuning for \ner, word vectors belonging to the same cluster changed their magnitude and direction homogeneously (\figref{fig:skippos}). This suggests that the information contained in the word cluster is useful for \ner and fine-tuning will keep this information intact for in-domain data.
-%\nss{[Why is this good?]} 
-The different ways of changing word clusters between the two tasks is another piece of evidence that information contained in word embeddings is less beneficial for \chunking than for \ner. 
+In \figref{fig:vectorfield}, we show vector fields plots for \chunking and \ner using \Skipgram embeddings.
+For \chunking, most of the vectors were changed with similar magnitude,
+but in very different directions, including within the clusters of days of
+the week and country names.
+In contrast, for \ner, there was more homogeneous change in word vectors
+belonging to the same cluster.
+This greater consistency is further evidence that semantic homogeneity
+appears to be more beneficial for \ner than \chunking. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -156,27 +175,28 @@ The different ways of changing word clusters between the two tasks is another pi
 
 
 % This also indicates that the graph transformer can identify useful factors in word representations and keep them during training.
-\textbf{(iii) How well do the word embeddings perform when evaluated on \textit{out-of-domain} test sets?}
+\paragraph{\RQ[4]: What is the impact of word embeddings cross-domain
+  and for OOV words?}
 \tabref{benchmark} shows \textit{out-of-domain} performance on all the tasks for which out-of-domain data is available.
 As expected, the performance drops across the board. The difference is most pronounced for \chunking, which loses nearly 30\% absolute for word embedding methods as well as for unigrams, 
 indicating that word embeddings and unigram features provide similar information 
 for \chunking. 
 
 
-Another interesting observation is that fine-tuning is likely to harm out-of-domain performance because the distribution between in-domain and out-of-domain datasets is different. This suggests that word embeddings pre-trained in an unsupervised way capture more common properties across domains. 
+Another interesting observation is that updating is likely to harm out-of-domain performance because the distribution between in-domain and out-of-domain datasets is different. This suggests that word embeddings pre-trained in an unsupervised way capture more common properties across domains. 
 
-\textbf{(iv) How well do the word embeddings perform for unknown words?}
+
 We also isolate performance on out-of-vocabulary (OOV) words 
 in the \textit{in-domain} and \textit{out-of-domain} settings (\figref{OOV}).
 As expected, word embeddings and Brown clustering excel in out-of-domain OOV performance.
-Word embeddings with fine-tuning are more successful for 
-in-domain than out-of-domain datasets, since fine-tuned
+Word embeddings with updating are more successful for 
+in-domain than out-of-domain datasets, since task-updated
 word representations become task-specific and domain-specific. 
 In addition, OOV performance tends to be insensitive to the size of training sets.
 
 Finally, we address the following question: \textbf{(vi) It has been shown that Brown clusters are useful features for \mwe; is there any additional benefit to word embeddings for this task?} 
-According to our experiments, the word embedding features distilled by fine-tuned CW reached the best results, beating the state-of-the-art performance (see \tabref{benchmark}).
-However, the difference between Brown clustering and fine-tuned CW is not impressive, suggesting that distributed word representations and cluster-based representations captures similar features for \mwe. Moreover, we observe that this is the most difficult of the four tasks: it has less training data and achieves the lowest score.
+According to our experiments, the word embedding features distilled by \CW[\withup] reached the best results, beating the state-of-the-art performance (see \tabref{benchmark}).
+However, the difference between \brown and \CW[\withup] is not impressive, suggesting that distributed word representations and cluster-based representations captures similar features for \mwe. Moreover, we observe that this is the most difficult of the four tasks: it has less training data and achieves the lowest score.
 
 
 %\textbf{(ii) How does the size of labelled training data affect the experimental results?}

@@ -28,9 +28,9 @@ including parameter optimization, the size of the training data, and the
 fit with the target application. For example, \newcite{turian2010word}
 showed that the optimal dimensionality for word embeddings is task-specific.  
 One factor which has received relatively little attention in
-NLP is the effect of ``fine-tuning'' the pre-trained word embeddings as
-part of the training of the end task, based on self-taught
-learning~\cite{raina2007self}.  Fine-tuning leads to word
+NLP is the effect of ``updating'' the pre-trained word embeddings as
+part of the task-specific training, based on self-taught
+learning~\cite{raina2007self}.  Updating leads to word
 representations that are task-specific, but often at the cost of
 over-fitting low-frequency and OOV words.
 
@@ -64,11 +64,11 @@ this, we explore the following research questions:
   unigram features and Brown clusters?
 \item do word embeddings require less training data (i.e.\ generalise
   better) than one-hot unigram features?
-\item what is the impact of fine-tuning word embeddings in sequence
+\item what is the impact of updating word embeddings in sequence
   labeling tasks, both empirically over the target task and
   geometrically over the vectors?
 \item what is the impact of word embeddings (with and without
-  fine-tuning) on both OOV items (relative to the training data) and
+  updating) on both OOV items (relative to the training data) and
   out-of-domain data?
 \item overall, are some word embeddings better than others in a sequence
   labelling context?

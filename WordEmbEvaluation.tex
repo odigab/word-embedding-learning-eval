@@ -47,7 +47,7 @@
 \newcommand{\Reuters}{\dataset{Reuters}}
 \newcommand{\MUC}{\dataset{MUC7}}
 
-\newcommand{\method}[2][]{\ensuremath{\textsc{#2#1}\xspace}}
+\newcommand{\method}[2][]{\ensuremath{\textsc{#2#1}}\xspace}
 \newcommand{\unigram}[1][]{\method{Unigram}}
 \newcommand{\brown}[1][]{\method[\ensuremath{_{#1}}]{Brown}}
 \newcommand{\CW}[1][]{\method[#1]{CW}}
@@ -108,14 +108,12 @@
   In this paper, we perform an extrinsic evaluation of five popular word
   embedding methods in the context of four sequence labelling tasks:
   POS-tagging, syntactic chunking, NER and MWE identification.
-  A particular focus of the paper is analysing the effects of fine-tuning word
-  representations to be task-specific.
+  A particular focus of the paper is analysing the effects of task-based
+  updating of word representations.
   We show that when using word embeddings as features, as few as
   several hundred training instances are sufficient to achieve competitive
   results, and that word embeddings lead to improvements in results over
   all tasks.
-  % We also find, however, that fine-tuning can result in over-fitting, in the situation 
-  % where the pre-trained representations were already good.
   Perhaps more surprisingly, our results indicate there is little
   difference between the different word embedding methods, and that simple
   Brown clusters are often competitive with word embeddings across all

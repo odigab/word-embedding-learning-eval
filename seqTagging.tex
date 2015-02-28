@@ -41,7 +41,7 @@ the same type of model -- a first-order graph transformer.
 
 In training the distributed word representations, we consider two
 settings: (1) the word representations are fixed during sequence model
-training; and (2) the graph transformer fine-tunes the token-level word
+training; and (2) the graph transformer updated the token-level word
 representations during training.
 
 
@@ -88,7 +88,7 @@ than \mwe,\footnote{Unfortunately, there is no
   \newcite{mwecorpus} to use as an out-of-domain test corpus.} we
 additionally have an out-of-domain test set, in order to evaluate the
 out-of-domain robustness of the different word representations, with and
-without fine-tuning. These datasets are as follows:
+without updating. These datasets are as follows:
 \begin{compactenum}
 \item[\textbf{\pos}:] the English Web Treebank with Penn POS tags (``\EWT'')
 \item[\textbf{\chunking}:] the Brown Corpus portion of the Penn
