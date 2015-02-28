@@ -35,8 +35,8 @@
 
 \newcommand{\RQ}[1][1]{\textbf{RQ#1}\xspace}
 
-\newcommand{\figref}[2][]{Figure#1~\ref{#2}\xspace}
-\newcommand{\tabref}[2][]{Table#1~\ref{#2}\xspace}
+\newcommand{\figref}[2][]{Fig#1.~\ref{#2}\xspace}
+\newcommand{\tabref}[2][]{Tab#1.~\ref{#2}\xspace}
 
 \newcommand{\lex}[1]{\textit{#1}\xspace}
 
@@ -48,7 +48,8 @@
 \newcommand{\MUC}{\dataset{MUC7}}
 
 \newcommand{\method}[2][]{\ensuremath{\textsc{#2#1}\xspace}}
-\newcommand{\brown}[1][]{\method[#1]{Brown}}
+\newcommand{\unigram}[1][]{\method{Unigram}}
+\newcommand{\brown}[1][]{\method[\ensuremath{_{#1}}]{Brown}}
 \newcommand{\CW}[1][]{\method[#1]{CW}}
 \newcommand{\CBOW}[1][]{\method[#1]{CBOW}}
 \newcommand{\Skipgram}[1][]{\method[#1]{Skip-gram}}
@@ -66,6 +67,7 @@
 \newcommand{\fscore}{\evmeasure{F1}}
 
 
+\newcommand{\best}[1]{\textbf{#1}}
 
 \newcommand{\ctx}{\ensuremath{\text{ctx}}}
 
