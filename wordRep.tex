@@ -65,7 +65,7 @@ based on averaging over the context words. That is, it estimates the
 probability of each $w$ given its local
 context. In contrast, \Skipgram applies softmax to each context word of
 a given occurrence of word $w$. In this case, $\mathbf{v}_{\ctx(w)}$ corresponds to the
-representation of one of its context words. This model can be characterized as
+representation of one of its context words. This model can be characterised as
 predicting context words based on $w$. In practice, softmax is
 too expensive to compute over large corpora, and thus~\newcite{Mikolov13NIPS} use
 hierarchical softmax and negative sampling to scale up the training.
@@ -118,7 +118,7 @@ partition of word classes, the method uses only a bigram class model, and utilis
 For a fair comparison, we train \brown, \CBOW, \Skipgram, and \Glove on
 a fixed corpus, comprised of freely available corpora, as detailed in
 \tabref{wordEmbedCorpora}. The joint corpus was preprocessed with the
-Stanford CoreNLP sentence splitter and tokenizer. All consecutive digit
+Stanford CoreNLP sentence splitter and tokeniser. All consecutive digit
 substrings were replaced by NUM\textit{f}, where \textit{f} is the
 length of the digit substring (e.g., \lex{10.20} is replaced by
 \lex{NUM2.NUM2}. Due to the computational complexity of the
