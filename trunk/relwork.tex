@@ -4,27 +4,40 @@
 
 \newcite{collobert2011natural} proposed a neural network architecture
 that learns word embeddings and uses them in POS-tagging, chunking, NER and semantic role labelling. 
-Without specializing their architecture for the task, they achieve close to state-of-the-art performance. After including specialized features (e.g., word suffixes for POS-tagging;  gazetteers for NER, etc.) and other tricks like cascading and ensembling classifiers, they achieve competitive state-of-the-art performance.
+Without specialising their architecture to the task, they achieve close
+to state-of-the-art performance. After including specialised features
+(e.g., word suffixes for POS-tagging;  gazetteers for NER) and other
+tricks like cascading and classifier combination, they achieve state-of-the-art performance.
 % they system is very fast too.
-Similarly, \newcite{turian2010word} explored the impact for NER and chunking 
+Similarly, \newcite{turian2010word} explored the impact on NER and chunking 
 of %using word
 features derived from word clusters and embeddings. 
-They conclude that unsupervised word representations improve NER and chunking, and that combining different word representations can further improve the performance.
-Brown clusters have been also shown to enhance
-Twitter POS tagging \newcite{owoputi2013improved}. 
+They conclude that unsupervised word representations improve NER and chunking, and that combining different word representations can further improve performance.
+Brown clusters have been also shown to enhance Twitter POS tagging
+\cite{owoputi2013improved}.
 
 \newcite{Schneider+:2014} presented an MWE analyser that, among other features, used Brown clusters. 
-They observed that the clusters were useful for identifying words that usually belong to multiword proper names, which are considered MWEs in the dataset used. Nevertheless, they mentioned that it is difficult to ascertain the impact of the word embedding features, since other features may capture the same information. 
+They observed that the clusters were useful for identifying words that
+usually belong to multiword proper names, which are considered MWEs in
+the dataset used.
+Nevertheless, they observed that it is difficult to ascertain the impact of the word embedding features, since other features may capture the same information. 
 %Further feature engineering should be carry out in order to find out the impact 
 
 Word embeddings have been also used as features for syntactic dependency parsing and constituency parsing. 
-\newcite{Bansal+:2014} used word embeddings as features for dependency parsing, which used the syntactic dependency context instead of the linear context in raw text. They found that simple attempts based on discretization of individual word vector dimensions do not improve parsing. Only when performing hierarchical clustering of the continuous word vectors, then using features based on the hierarchy, do they see an improvement. They also found that an ensemble of different word embeddings improved performance.
+\newcite{Bansal+:2014} used word embeddings as features for dependency parsing, using syntactic dependency context instead of the linear context in raw text. They found that simple attempts based on discretisation of individual word vector dimensions did not improve parsing. Only when performing hierarchical clustering of the continuous word vectors, then using features based on the hierarchy, did they see an improvement. They also found that an ensemble of different word embeddings improved performance.
 In a similar vein, \newcite{Andreas:Klein:2014} explored the used of word embeddings for constituency parsing and concluded that the
-information they provide might be redundant with that acquired by a syntactic parser trained with a small amount of data. Other syntactic parsing studies reporting improvements from word embeddings include \cite{Koo:2008,Koo:2010,Haffari:2011,Tratz:2011}.
+information they provide might duplicate that acquired by a
+syntactic parser trained with a small amount of data.
+Other syntactic parsing studies that have reported improvements from
+word embeddings include \newcite{Koo:2008}, \newcite{Koo:2010},
+\newcite{Haffari:2011} and \newcite{Tratz:2011}.
 
-Word embeddings have also been applied to other (non-sequential NLP) tasks like grammar induction \cite{Spitkovsky:2011} and semantic tasks such as semantic relatedness, synonymy detection, concept categorization, selectional preferences and analogy \cite{baroni:2014}.
+Word embeddings have also been applied to other (non-sequential NLP)
+tasks like grammar induction \cite{Spitkovsky:2011}, and semantic tasks
+such as semantic relatedness, synonymy detection, concept
+categorisation, selectional preference learning and analogy \cite{baroni:2014}.
 
-\nss{[Guo et al. 2014?]}
+%\nss{[Guo et al. 2014?]}
 
 % such as super-sense tagging \cite{Grave:2013};
 
@@ -35,3 +48,8 @@ Word embeddings have also been applied to other (non-sequential NLP) tasks like 
 
 % Supersense tagger (Grave et al., 2013) https://hal.inria.fr/hal-00833288/PDF/final-version.pdf
 
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t 
+%%% TeX-master: "WordEmbEvaluation"
+%%% End: 
