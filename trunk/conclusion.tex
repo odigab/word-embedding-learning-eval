@@ -4,9 +4,16 @@ under fixed experimental conditions, and evaluated their applicability to four s
 We found that word embedding features always outperformed unigram features, especially with limited training data, but no embedding method was consistently superior across the different tasks and settings.
 Word representations were also found useful for improving accuracy on OOV words.
 
-We expected a performance gap between the fixed and fine-tuned embeddings, but the observed difference was marginal.
-Indeed, we found that fine-tuning can result in overfitting\nss{[to the task and domain?]}.
+We expected a performance gap between the fixed and task-updated embeddings, but the observed difference was marginal.
+Indeed, we found that updating can result in overfitting\nss{[to the task and domain?]}.
 Finally, by using word embeddings as features for MWE identification, we outperformed 
 the state-of-the-art system on that task.
 %We could not find any trend that suggest that a word embedding method is better than other.
 We hope to build on this in future work by learning representations directly over multiword units.\nss{[Has there been any research into this issue?]}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t 
+%%% TeX-master: "WordEmbEvaluation"
+%%% End: 
