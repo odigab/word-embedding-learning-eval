@@ -27,26 +27,26 @@
 \centering
 \begin{subfigure}{7cm}
 	\centering
-    \includegraphics[scale=0.39]{plots/map-pos-color-invert}    	
+    \includegraphics[scale=0.38]{plots/map-pos-color-invert}    	
 	\subcaption{\pos (\accuracy)}	
 	\label{pos}
 \end{subfigure}
 \begin{subfigure}{7cm}
 	\centering
-    \includegraphics[scale=0.39]{plots/map-chunk-color-invert}
+    \includegraphics[scale=0.38]{plots/map-chunk-color-invert}
 	\subcaption{\chunking (\fscore)}	
 	\label{chu}
 \end{subfigure}
 %\\[-.5ex]  %%<-- in this line
 \begin{subfigure}{7cm}
 	\centering
-    \includegraphics[scale=0.39]{plots/map-ner-color-invert}    	
+    \includegraphics[scale=0.38]{plots/map-ner-color-invert}    	
 	\subcaption{\ner (\fscore)}	
 	\label{ner}
 \end{subfigure}
 \begin{subfigure}{7cm}
 	\centering
-    \includegraphics[scale=0.39]{plots/map-mwe-color-invert}
+    \includegraphics[scale=0.38]{plots/map-mwe-color-invert}
 	\subcaption{\mwe (\fscore)}		
 	\label{mwe}
 \end{subfigure}
@@ -66,6 +66,8 @@
 \caption{\accuracy over out-of-vocabulary (OOV) words for \textit{in-domain} and \textit{out-of-domain} test sets.}
 \label{OOV} 
 \end{figure*}
+
+
 
 We structure our evaluation by stepping through each of our five
 research questions (\RQ[1--5]) from the start of the paper. In this, we
@@ -202,9 +204,9 @@ However, the difference between \brown and \CW[\withup] is not impressive, sugge
 
 
 In this paper, we do not aim to maximise the absolute performance of the tasks under 
-study, but rather to study the impact of word embeddings for sequence tagging tasks under controlled settings. Thus the performance of our systems in \ner, \pos and \chunking are slightly worse than the best ones in benchmarks (\tabref{benchmark}). The 2.7\% difference between our \ner system and the best performing system is due to the fact that we use a first-order instead of a second-order CRF~\cite{Ando:2005}. 
+study, but rather to study the impact of word embeddings for sequence labelling tasks under controlled settings. Thus the performance of our systems in \ner, \pos and \chunking are slightly worse than the best ones in benchmarks (\tabref{benchmark}). The 2.7\% difference between our \ner system and the best performing system is due to the fact that we use a first-order instead of a second-order CRF~\cite{Ando:2005}. 
 %\nss{[In the following sentences, should ``baselines'' be ``benchmarks''?:]}
-Another difference between our implementation and the benchmarks is that we tuned the hyperparameters with random search, so that the experiments can be easily replicated by using the same random seed. In contrast, the hyper-parameters of the baselines are tuned by experts, which are difficult to reproduce. For the task of \mwe, our implementation and settings beat the baseline.
+Another difference between our implementation and the benchmarks is that we tuned the hyperparameters with random search, so that the experiments can be easily replicated by using the same random seed. In contrast, the hyperparameters of the baselines are tuned by experts, which are difficult to reproduce. For the task of \mwe, our implementation and settings beat the baseline.
 
 
 
