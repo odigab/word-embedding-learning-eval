@@ -2,7 +2,7 @@
 \label{sec:SeqTagging}
 
 We evaluate the different word representations over four sequence
-labelling tasks: POS-tagging (\pos), full-text chunking (\chunking) ,
+labelling tasks: POS-tagging (\pos), full-text chunking (\chunking),
 NER (\ner) and MWE identification (\mwe). For
 each task, we fed features into a first order linear-chain graph
 transformer~\cite{collobert2011natural} made up of two layers: the upper
@@ -47,7 +47,7 @@ representations during training.
 
 \begin{table*}
 \begin{small}
-\begin{tabular}{cccccc}
+\begin{tabular}{@{}c@{~~}c@{~~}c@{~~}c@{~~}c@{~~}c@{}}
 \hline
 			& \textbf{Training} & \textbf{Development} & \textbf{\textit{In-domain} Test} & \textbf{\textit{Out-of-domain} Test} \\ \hline
 \textbf{\pos} & \WSJ Sec.\ 0-18  & \WSJ Sec.\ 19--21 & \WSJ Sec.\ 22--24 & \EWT  \\
