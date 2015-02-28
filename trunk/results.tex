@@ -124,7 +124,8 @@ In \figref{fig:vectorfield}, we show vector fields plots for \chunking and \ner 
 As illustrated in \figref{fig:skipChu}, after fine-tuning for \chunking, all the vectors are changed with similar magnitude 
 (except for a few outliers), but their directions of change appear to be random, 
 whether they previously belonged to the same word cluster or not.\nss{[I don't understand how clusters are shown in the plots.]} 
-In contrast, after fine-tuning for \ner, word vectors belonging to the same cluster changed their magnitude and direction homogeneously (\figref{fig:skippos}).\nss{[Why is this good?]} 
+In contrast, after fine-tuning for \ner, word vectors belonging to the same cluster changed their magnitude and direction homogeneously (\figref{fig:skippos}). This suggests that the information contained in the word cluster is useful for \ner and fine-tuning will keep this information intact for in-domain data.
+%\nss{[Why is this good?]} 
 The different ways of changing word clusters between the two tasks is another piece of evidence that information contained in word embeddings is less beneficial for \chunking than for \ner. 
 
 
