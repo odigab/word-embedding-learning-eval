@@ -1,0 +1,58 @@
+\section{Introduction}
+
+Recently, distributed word representations have grown to become a
+mainstay of natural language processing (NLP), and been show to have
+empirical utility in a myriad of tasks
+\cite{Collobert2008,turian2010word,baroni:2014,Andreas:Klein:2014}.  The
+underlying idea behind distributed word representations is simple: to
+map each word $w$ in our vocabulary $V$ onto a continuous-valued vector
+of dimensionality $d \ll |V|$.  Words that are similar
+(e.g., with respect to syntax or lexical semantics) will ideally be mapped to
+similar regions of the vector space, implicitly supporting both
+generalisation across in-vocabulary (IV) items, and countering the
+effects of data sparsity for low-frequency and out-of-vocabulary (OOV)
+items.
+
+Without some means of automatically deriving the vector representations
+without reliance on labelled data, however, word embeddings would have
+little practical utility. Fortunately, it has been shown that they can
+be ``pre-trained'' from unlabelled text data using various algorithms 
+to model the distributional hypothesis (i.e., that
+words which occur in similar contexts tend to be semantically
+similar). Pre-training methods have been refined considerably in recent
+years, and scaled up to increasingly large corpora.
+
+As with other machine learning methods, it is well known that the
+quality of the pre-trained word embeddings depends heavily on factors
+including parameter optimisation, the size of the training data, and the
+fit with the target application. For example, \newcite{turian2010word}
+showed that the optimal dimensionality for word embeddings is task-specific.  
+One factor which has received relatively little attention in
+NLP is the effect of ``updating'' the pre-trained word embeddings as
+part of the task-specific training, based on self-taught
+learning~\cite{raina2007self}.  Updating leads to word
+representations that are task-specific, but often at the cost of
+over-fitting low-frequency and OOV words.
+
+
+In this paper, we perform an extensive evaluation of five word embedding
+approaches under fixed experimental conditions, applied to four sequence
+labelling tasks: POS-tagging, full-text chunking, named entity
+recognition (NER), and multiword expression (MWE) identification. In
+this, we explore the following research questions:
+\begin{compactenum}[\bf RQ1:]
+\item are word embeddings better than baseline approaches of one-hot
+  unigram features and Brown clusters?
+\item do word embeddings require less training data (i.e.\ generalise
+  better) than one-hot unigram features?
+\item what is the impact of updating word embeddings in sequence
+  labeling tasks, both empirically over the target task and
+  geometrically over the vectors?
+\item what is the impact of word embeddings (with and without
+  updating) on both OOV items (relative to the training data) and
+  out-of-domain data?
+\item overall, are some word embeddings better than others in a sequence
+  labelling context?
+\end{compactenum}
+
+
