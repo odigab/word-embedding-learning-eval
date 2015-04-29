@@ -43,10 +43,11 @@ scl_sns = [
     [1, "#8B0000"]   # color of maximum level (from 'zmax') dark red 
 ]
 
-pos = numpy.genfromtxt(sys.argv[1],dtype='float',delimiter =',',skip_header=1, skip_footer=0,usemask=True)
-chu = numpy.genfromtxt(sys.argv[2],dtype='float',delimiter =',',skip_header=1, skip_footer=0,usemask=True)
-ner = numpy.genfromtxt(sys.argv[3],dtype='float',delimiter =',',skip_header=1, skip_footer=0,usemask=True)
-mwe = numpy.genfromtxt(sys.argv[4],dtype='float',delimiter =',',skip_header=1, skip_footer=0,usemask=True)
+# Note that Im skipping columns 2 and 3, where CW results are, since we drop them for the conll 2015 submission
+pos = numpy.genfromtxt(sys.argv[1],dtype='float',delimiter =',',skip_header=1, skip_footer=0,usemask=True, usecols=(0 1, 4, 5, 6, 7, 8, 9))
+chu = numpy.genfromtxt(sys.argv[2],dtype='float',delimiter =',',skip_header=1, skip_footer=0,usemask=True, usecols=(0 1, 4, 5, 6, 7, 8, 9))
+ner = numpy.genfromtxt(sys.argv[3],dtype='float',delimiter =',',skip_header=1, skip_footer=0,usemask=True, usecols=(0 1, 4, 5, 6, 7, 8, 9))
+mwe = numpy.genfromtxt(sys.argv[4],dtype='float',delimiter =',',skip_header=1, skip_footer=0,usemask=True, usecols=(0 1, 4, 5, 6, 7, 8, 9))
 
 table = []
 for x,y,m,n in zip(pos,chu,ner,mwe):
@@ -61,13 +62,10 @@ matrix= Data([
 	Heatmap(	
 #		dy = 2,	
 		z = table,
-		x = ['unigram','brown','cw+noup','cw+up','cbow+negs+noup','cbow+negsam+up','skip+negsam+noup','skip+negsam+up','glove+noup','glove+up'],
+#		x = ['unigram','brown','cw+noup','cw+up','cbow+negs+noup','cbow+negsam+up','skip+negsam+noup','skip+negsam+up','glove+noup','glove+up'],
+		x = ['unigram','brown','cbow+negs+noup','cbow+negsam+up','skip+negsam+noup','skip+negsam+up','glove+noup','glove+up'],
 		# y = [38,113,262,561,1159,2354,4745,9527,19091,38219],
-#		zauto=False,		# (!) overwrite Plotly's default color levels
-#		zmin=0.6293,    	# (!) set value of min color level
-#		zmax=0.9592,    	# (!) set value of max color level		
 		 colorscale=scl_sns,	# (!) custom color scales list of lists		
-		# colorscale = 'Greys',
 		reversescale=True,	# inverse colormap order
 		ytype = 'scaled',
 		line=Line(

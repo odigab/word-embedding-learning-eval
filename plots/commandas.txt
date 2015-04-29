@@ -13,13 +13,16 @@ python norm.py ../eval_results/key_results/NER/CONLL_F1Measure.csv /home/gferrar
 ############
 # HEAT MAP
 ############
-python getHeatMaps2.py ..eval_results/key_results/chunking/NormalizedF1Measure.csv ../eval_results/key_results/MWEs/NormalizedF1Measure.csv ../eval_results/key_results/POS/NormalizedAccuracy.csv ../eval_results/key_results/NER/NormalizedCONLL_F1Measure.csv heat-map-color.pdf
+python getHeatMaps2.py ../../eval_results/key_results/chunking/NormalizedF1Measure.csv ../../eval_results/key_results/MWEs/NormalizedF1Measure.csv ../../eval_results/key_results/POS/NormalizedAccuracy.csv ../../eval_results/key_results/NER/NormalizedCONLL_F1Measure.csv heat-map-colorHHHHHHHHHHHHHHH.pdf
+
+
+python getHeatMaps3.py ../../eval_results/key_results/chunking/chunks_F1Measure.csv ../../eval_results/key_results/MWEs/mwe_F1Measure.csv ../../eval_results/key_results/POS/Accuracy.csv ../../eval_results/key_results/NER/CONLL_F1Measure.csv
 
 ############
 # OOV Plots
 ############
 
-python OOV-plots.py ../eval_results/results/POS ../eval_results/results/NER ../eval_results/results/chunking ../eval_results/results/chunking_brown ../eval_results/results/MWE OOV-plotsHHHHHHHHHHHHHH.pdf 
+python OOV-plots.py ../../eval_results/results/POS ../../eval_results/results/NER ../../eval_results/results/chunking ../../eval_results/results/chunking_brown ../../eval_results/results/MWE OOV-plots.pdf 
 
 
 
