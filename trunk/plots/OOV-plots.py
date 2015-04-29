@@ -72,8 +72,8 @@ def sortedWalk(top, topdown=True, onerror=None):
 alist_filter = ['brown_cluster_v4000_best.txt', 
 	'cbow_negsam_noupdated_best.txt', 
 	'cbow_negsam_updated_incretuneparam.txt', 
-	'cw_noupdated_best.txt', 
-	'cw_updated_incretuneparam.txt', 
+	#'cw_noupdated_best.txt', 
+	#'cw_updated_incretuneparam.txt', 
 	'unigram_best.txt', 
 	'glove_noupdated_best.txt', 
 	'glove_updated_incretuneparam.txt', 
@@ -111,13 +111,13 @@ for root, subdirs, files in sortedWalk(walkDirPos):
 			elif re.match("skip_gram_negsam_updated_incretuneparam.txt", filename): 
 				color='y'
 				label = "skip_gram_negsam_up"
-			elif re.match("cw_updated_incretuneparam.txt", filename): 
-				color='k'
-				label =  "cw_up"
-			elif re.match("cw_noupdated_best.txt", filename):
-				color='k'
-				marker = noupMarker
-				label = "cw_noup"
+			# elif re.match("cw_updated_incretuneparam.txt", filename): 
+			# 	color='k'
+			# 	label =  "cw_up"
+			# elif re.match("cw_noupdated_best.txt", filename):
+			# 	color='k'
+			# 	marker = noupMarker
+			# 	label = "cw_noup"
 			elif re.match("brown_cluster_v4000_best.txt", filename): 
 				color='m'
 				label = "brown_cluster"		
@@ -378,8 +378,8 @@ for root, subdirs, files in sortedWalk(walkDirNer):
 alist_filter = ['brown_cluster_v2000_best.txt', 
 	'cbow_negsam_noupdated_best.txt', 
 	'cbow_negsam_updated_incretuneparam.txt', 
-	'cw_noupdated_best.txt', 
-	'cw_updated_incretuneparam.txt', 
+	#'cw_noupdated_best.txt', 
+	#'cw_updated_incretuneparam.txt', 
 	'unigram_best.txt', 
 	'glove_noupdated_best.txt', 
 	'glove_updated_incretuneparam.txt', 
@@ -461,8 +461,8 @@ for root, subdirs, files in sortedWalk(walkDirChu):
 alist_filter = ['brown_cluster_v2000_best.txt', 
 	'cbow_negsam_noupdated_best.txt', 
 	'cbow_negsam_updated_incretuneparam.txt', 
-	'cw_noupdated_best.txt', 
-	'cw_updated_incretuneparam.txt', 
+	#'cw_noupdated_best.txt', 
+	#'cw_updated_incretuneparam.txt', 
 	'unigram_best.txt', 
 	'glove_noupdated_best.txt', 
 	'glove_updated_incretuneparam.txt', 
@@ -545,8 +545,8 @@ for root, subdirs, files in sortedWalk(walkDirChuB):
 alist_filter = ['brown_cluster_v4000_best.txt', 
 	'cbow_updated_best.txt', 
 	'cbow_noupdated_best.txt', 
-	'cw_noupdated_best.txt', 
-	'cw_updated_best.txt', 
+	#'cw_noupdated_best.txt', 
+	#'cw_updated_best.txt', 
 	'unigram_best.txt', 
 	'glove_noupdated_best.txt', 
 	'glove_updated_best.txt',  
