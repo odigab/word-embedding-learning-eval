@@ -1,0 +1,45 @@
+\section{Related Work}
+%Word embedding learning methods have been applied to several 
+%NLP tasks that we summaries in this section.
+
+\newcite{collobert2011natural} proposed a unified neural network framework
+that learns word embeddings and applied it for \pos, \chunking, \ner and semantic role labelling. 
+When they combined word embeddings with hand crafted features
+(e.g., word suffixes for \pos;  gazetteers for \ner) and applied other
+tricks like cascading and classifier combination, they achieved state-of-the-art performance.
+% they system is very fast too.
+Similarly, \newcite{turian2010word} evaluated three different word representations on \ner and \chunking, and concluded that unsupervised word representations improved \ner and \chunking. They also found that combining different word representations can further improve performance. \newcite{guo2014revisiting} also explored different ways of using word embeddings for \ner.  \newcite{owoputi2013improved} and \newcite{Schneider+:2014} found that \brown clustering enhances Twitter POS tagging and \mwe, respectively. Compared to previous work, we consider \textit{more} word representations including the most recent work and evaluate them on \textit{more} sequence labelling tasks, wherein the models are trained with training sets of varying size.
+
+\newcite{Bansal+:2014} reported that direct use of word embeddings in dependency parsing did not show improvement. They achieved an improvement only when they performed hierarchical clustering of the word embeddings, and used features extracted from the cluster hierarchy.
+In a similar vein, \newcite{Andreas:Klein:2014} explored the use of word embeddings for constituency parsing and concluded that the
+information contained in word embeddings might duplicate the one acquired by a
+syntactic parser, unless the training set is extremely small.
+Other syntactic parsing studies that reported improvements by using
+word embeddings include \newcite{Koo:2008}, \newcite{Koo:2010},
+\newcite{Haffari:2011}, \newcite{Tratz:2011} and \newcite{chen:2014}.
+
+Word embeddings have also been applied to other (non-sequential NLP)
+tasks like grammar induction \cite{Spitkovsky:2011}, and semantic tasks
+such as semantic relatedness, synonymy detection, concept
+categorisation, selectional preference learning and analogy \cite{baroni:2014}.
+
+\newcite{Huang:2009} demonstrated that using distributional word representations methods (like TF-IDF and LSA) as features, improves the labelling of OOV, when test for \pos and \chunking. In our study, we evaluate the labelling performance of OOV words for updated vs. not updated word embeddings representations, relative to the training set and with out-of-domain data.
+
+
+
+%\nss{[Guo et al. 2014?]}
+
+% such as super-sense tagging \cite{Grave:2013};
+
+% Koo, T., Carreras, X., & Collins, M. (2008). Simple semi-supervised dependency parsing. ACL (pp. 595?603).
+% Koo et al., 2008; http://cs.nyu.edu/~dsontag/papers/KooEtAl_emnlp10.pdf Dual Decomposition for Parsing with Non-Projective Head Automata - Dependency parsing.
+
+%Haffari et al., 2011; http://www.aclweb.org/anthology/P11-2125 Ensemble of different dependency parsing models, each model corresponding to a different syntactic/semantic word clustering annotation.
+
+% Supersense tagger (Grave et al., 2013) https://hal.inria.fr/hal-00833288/PDF/final-version.pdf
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t 
+%%% TeX-master: "WordEmbEvaluation"
+%%% End: 
