@@ -1,0 +1,32 @@
+################################
+# Normalized performance by task
+################################
+
+python norm.py ../eval_results/key_results/chunking/chunks_F1Measure.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/chunking/NormalizedF1Measure.csv
+
+python norm.py ../eval_results/key_results/MWEs/mwe_F1Measure.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/MWEs/NormalizedF1Measure.csv
+
+python norm.py ../eval_results/key_results/POS/Accuracy.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/POS/NormalizedAccuracy.csv
+
+python norm.py ../eval_results/key_results/NER/CONLL_F1Measure.csv /home/gferraro/Documents/Gaby/doc/2014/word-embedding-learning-eval/eval_results/key_results/NER/NormalizedCONLL_F1Measure.csv
+
+############
+# HEAT MAP
+############
+
+python getHeatMaps.py
+
+# merge all the results into one heatmap (this is too messy, we dont use it)
+python getHeatMaps2.py ..eval_results/key_results/chunking/NormalizedF1Measure.csv ../eval_results/key_results/MWEs/NormalizedF1Measure.csv ../eval_results/key_results/POS/NormalizedAccuracy.csv ../eval_results/key_results/NER/NormalizedCONLL_F1Measure.csv heat-map-color.pdf
+
+
+
+############
+# OOV Plots
+############
+
+python OOV-plots.py ../eval_results/results/POS ../eval_results/results/NER ../eval_results/results/chunking ../eval_results/results/chunking_brown ../eval_results/results/MWE OOV-plots.pdf 
+
+
+
+
