@@ -12,15 +12,15 @@ features. If we treat word representations as fixed, the graph
 transformer is a simple linear-chain CRF. On the other hand, if we can
 treat the word representations as model parameters, the model is
 equivalent to a neural network with word embeddings as the input
-layer. We trained all models using AdaGrad~\cite{duchi2011adaptive}.
+layer, as shown in Figure \ref{fig:graph_transformer}. We trained all models using AdaGrad~\cite{duchi2011adaptive}.
 
 
-% \begin{figure}[t]
-%   \centering
-%   \includegraphics[scale = 0.3]{images/graph_transformer.png}
-%   \caption{Architecture of linear-chain graph transformer}
-%   \label{fig:graph_transformer}
-% \end{figure}
+\begin{figure}[t]
+   \centering
+      \includegraphics[scale = 0.3]{graph_transformer.png}
+   \caption{Linear-chain graph transformer}
+   \label{fig:graph_transformer}
+\end{figure}
 
 
 As in~\newcite{turian2010word}, at each word position, we construct word
