@@ -54,20 +54,22 @@ over-fitting low-frequency and OOV words.
 %I believe there is always a better way of doing this, empirical methods as in Guo’s paper or deep sequence neural networks are the ways to go. However, all of them treat the word embeddings trained with different methods in the same way. I conjecture that we should treat them differently based on how they are trained.
 
 
-In this paper, we perform an extensive evaluation of four word embedding
+
+In this paper, we perform an extensive evaluation of four recently proposed word embedding
 approaches under fixed experimental conditions, applied to four sequence
 labelling tasks: POS-tagging, full-text chunking, named entity
-recognition (NER), and multiword expression (MWE) identification. In
-this, we explore the following research questions:
+recognition (NER), and multiword expression (MWE) identification. 
+Compared to previous empirical studies~\cite{collobert2011natural,turian2010word,pennington2014glove}, we fill their gaps by considering more word embedding approaches 
+and evaluating them with more sequence labelling tasks. In addition, we explore the following research questions:
 \begin{compactenum}[\bf RQ1:]
-\item are word embeddings better than baseline approaches of one-hot
+\item are these word embeddings better than baseline approaches of one-hot
   unigram features and Brown clusters?
 \item do word embeddings require less training data (i.e.\ generalise
-  better) than one-hot unigram features?
+  better) than one-hot unigram features? If so, to what degree can word embeddings reduce the amount of labelled data?
 \item what is the impact of updating word embeddings in sequence
-  labeling tasks, both empirically over the target task and
+  labelling tasks, both empirically over the target task and
   geometrically over the vectors?
-\item what is the impact of word embeddings (with and without
+\item what is the impact of these word embeddings (with and without
   updating) on both OOV items (relative to the training data) and
   out-of-domain data?
 \item overall, are some word embeddings better than others in a sequence
