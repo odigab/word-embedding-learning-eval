@@ -1,0 +1,333 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citename{Ando and Zhang}2005]{Ando:2005}
+Rie~Kubota Ando and Tong Zhang.
+\newblock 2005.
+\newblock A framework for learning predictive structures from multiple tasks
+  and unlabeled data.
+\newblock {\em Journal of Machine Learning Research}, 6:1817--1853, December.
+
+\bibitem[\protect\citename{Andreas and Klein}2014]{Andreas:Klein:2014}
+Jacob Andreas and Dan Klein.
+\newblock 2014.
+\newblock How much do word embeddings encode about syntax?
+\newblock In {\em Proceedings of the 52nd Annual Meeting of the Association for
+  Computational Linguistics (Volume 2: Short Papers)}, pages 822--827,
+  Baltimore, USA.
+
+\bibitem[\protect\citename{Bansal \bgroup et al.\egroup }2014]{Bansal+:2014}
+Mohit Bansal, Kevin Gimpel, and Karen Livescu.
+\newblock 2014.
+\newblock Tailoring continuous word representations for dependency parsing.
+\newblock In {\em Proceedings of the 52nd Annual Meeting of the Association for
+  Computational Linguistics (Volume 2: Short Papers)}, pages 809--815,
+  Baltimore, USA.
+
+\bibitem[\protect\citename{Baroni \bgroup et al.\egroup }2014]{baroni:2014}
+Marco Baroni, Georgiana Dinu, and Germ\'{a}n Kruszewski.
+\newblock 2014.
+\newblock Don't count, predict! a systematic comparison of context-counting vs.
+  context-predicting semantic vectors.
+\newblock In {\em Proceedings of the 52nd Annual Meeting of the Association for
+  Computational Linguistics (Volume 1: Long Papers)}, pages 238--247,
+  Baltimore, USA, June.
+
+\bibitem[\protect\citename{Bergstra and Bengio}2012]{bergstra2012random}
+James Bergstra and Yoshua Bengio.
+\newblock 2012.
+\newblock Random search for hyper-parameter optimization.
+\newblock {\em Journal of Machine Learning Research}, 13(1):281--305.
+
+\bibitem[\protect\citename{Blei \bgroup et al.\egroup }2003]{blei2003latent}
+David~M Blei, Andrew~Y Ng, and Michael~I Jordan.
+\newblock 2003.
+\newblock Latent dirichlet allocation.
+\newblock {\em Journal of Machine Learning Research}, 3:993--1022.
+
+\bibitem[\protect\citename{Brown \bgroup et al.\egroup
+  }1992]{Brown92class-basedn-gram}
+Peter~F. Brown, Peter~V. deSouza, Robert~L. Mercer, Vincent J.~Della Pietra,
+  and Jenifer~C. Lai.
+\newblock 1992.
+\newblock Class-based n-gram models of natural language.
+\newblock {\em Computational Linguistics}, 18:467--479.
+
+\bibitem[\protect\citename{Chen and Manning}2014]{chen:2014}
+Danqi Chen and Christopher~D Manning.
+\newblock 2014.
+\newblock A fast and accurate dependency parser using neural networks.
+\newblock In {\em Empirical Methods in Natural Language Processing (EMNLP)}.
+
+\bibitem[\protect\citename{Collobert and Weston}2008]{Collobert2008}
+Ronan Collobert and Jason Weston.
+\newblock 2008.
+\newblock A unified architecture for natural language processing: Deep neural
+  networks with multitask learning.
+\newblock In {\em Proceedings of the 25th International Conference on Machine
+  Learning}, ICML '08, pages 160--167, Helsinki, Finland.
+
+\bibitem[\protect\citename{Collobert \bgroup et al.\egroup
+  }2011]{collobert2011natural}
+Ronan Collobert, Jason Weston, L{\'e}on Bottou, Michael Karlen, Koray
+  Kavukcuoglu, and Pavel Kuksa.
+\newblock 2011.
+\newblock Natural language processing (almost) from scratch.
+\newblock {\em Journal of Machine Learning Research}, 12:2493--2537.
+
+\bibitem[\protect\citename{Duchi \bgroup et al.\egroup
+  }2011]{duchi2011adaptive}
+John Duchi, Elad Hazan, and Yoram Singer.
+\newblock 2011.
+\newblock Adaptive subgradient methods for online learning and stochastic
+  optimization.
+\newblock {\em Journal of Machine Learning Research}, 12:2121--2159.
+
+\bibitem[\protect\citename{Dumais \bgroup et al.\egroup }1988]{dumais1988using}
+Susan~T Dumais, George~W Furnas, Thomas~K Landauer, Scott Deerwester, and
+  Richard Harshman.
+\newblock 1988.
+\newblock Using latent semantic analysis to improve access to textual
+  information.
+\newblock In {\em Proceedings of the SIGCHI conference on Human factors in
+  computing systems}, pages 281--285. ACM.
+
+\bibitem[\protect\citename{Guo \bgroup et al.\egroup }2014]{guo2014revisiting}
+Jiang Guo, Wanxiang Che, Haifeng Wang, and Ting Liu.
+\newblock 2014.
+\newblock Revisiting embedding features for simple semi-supervised learning.
+\newblock In {\em Proceedings of the 2014 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 110--120.
+
+\bibitem[\protect\citename{Haffari \bgroup et al.\egroup }2011]{Haffari:2011}
+Gholamreza Haffari, Marzieh Razavi, and Anoop Sarkar.
+\newblock 2011.
+\newblock An ensemble model that combines syntactic and semantic clustering for
+  discriminative dependency parsing.
+\newblock In {\em ACL 2011 (Short Papers)}, pages 710--714.
+
+\bibitem[\protect\citename{Honkela}1997]{honkela1997self}
+Timo Honkela.
+\newblock 1997.
+\newblock Self-organizing maps of words for natural language processing
+  applications.
+\newblock In {\em Proceedings of the International ICSC Symposium on Soft
+  Computing}, pages 401--407.
+
+\bibitem[\protect\citename{Huang and Yates}2009]{Huang:2009}
+Fei Huang and Alexander Yates.
+\newblock 2009.
+\newblock Distributional representations for handling sparsity in supervised
+  sequence-labeling.
+\newblock In {\em Proceedings of the Joint Conference of the 47th Annual
+  Meeting of the ACL and the 4th International Joint Conference on Natural
+  Language Processing of the AFNLP: Volume 1 - Volume 1}, ACL '09, pages
+  495--503, Stroudsburg, PA, USA. Association for Computational Linguistics.
+
+\bibitem[\protect\citename{Koo \bgroup et al.\egroup }2008]{Koo:2008}
+Terry Koo, Xavier Carreras, and Michael Collins.
+\newblock 2008.
+\newblock Simple semi-supervised dependency parsing.
+\newblock In {\em Proceedings of ACL-08: HLT}, pages 595--603, Columbus, USA.
+
+\bibitem[\protect\citename{Koo \bgroup et al.\egroup }2010]{Koo:2010}
+Terry Koo, Alexander~M. Rush, Michael Collins, Tommi Jaakkola, and David
+  Sontag.
+\newblock 2010.
+\newblock Dual decomposition for parsing with non-projective head automata.
+\newblock In {\em Proceedings of the 2010 Conference on Empirical Methods in
+  Natural Language Processing}, EMNLP '10, pages 1288--1298, Cambridge, UK.
+
+\bibitem[\protect\citename{Lafferty \bgroup et al.\egroup
+  }2001]{lafferty2001conditional}
+John Lafferty, Andrew McCallum, and Fernando Pereira.
+\newblock 2001.
+\newblock Conditional random fields: Probabilistic models for segmenting and
+  labeling sequence data.
+\newblock In {\em Proceedings of the 18th International Conference on Machine
+  Learning}, pages 282--289, Williamstown, USA.
+
+\bibitem[\protect\citename{Li and McCallum}2005]{li2005semi}
+Wei Li and Andrew McCallum.
+\newblock 2005.
+\newblock Semi-supervised sequence modeling with syntactic topic models.
+\newblock In {\em Proceedings of the National Conference on Artificial
+  Intelligence}, Pittsburgh, USA.
+
+\bibitem[\protect\citename{Lin and Wu}2009]{lin2009phrase}
+Dekang Lin and Xiaoyun Wu.
+\newblock 2009.
+\newblock Phrase clustering for discriminative learning.
+\newblock In {\em Proceedings of the Joint Conference of the 47th Annual
+  Meeting of the ACL and the 4th International Joint Conference on Natural
+  Language Processing of the AFNLP}, pages 1030--1038.
+
+\bibitem[\protect\citename{Lund and Burgess}1996]{lund1996producing}
+Kevin Lund and Curt Burgess.
+\newblock 1996.
+\newblock Producing high-dimensional semantic spaces from lexical
+  co-occurrence.
+\newblock {\em Behavior Research Methods, Instruments, \& Computers},
+  28(2):203--208.
+
+\bibitem[\protect\citename{Marcus \bgroup et al.\egroup }1993]{Marcus:1993}
+Mitchell~P. Marcus, Beatrice Santorini, and Mary~Ann Marcinkiewicz.
+\newblock 1993.
+\newblock Building a large annotated corpus of {English}: the {Penn} treebank.
+\newblock {\em Computational Linguistics}, 19(2):313--330.
+
+\bibitem[\protect\citename{Mikolov \bgroup et al.\egroup }2013a]{Mikolov13}
+Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean.
+\newblock 2013a.
+\newblock Efficient estimation of word representations in vector space.
+\newblock {\em CoRR}, abs/1301.3781.
+
+\bibitem[\protect\citename{Mikolov \bgroup et al.\egroup }2013b]{Mikolov13NIPS}
+Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg~S Corrado, and Jeff Dean.
+\newblock 2013b.
+\newblock Distributed representations of words and phrases and their
+  compositionality.
+\newblock In C.J.C. Burges, L.~Bottou, M.~Welling, Z.~Ghahramani, and K.Q.
+  Weinberger, editors, {\em Advances in Neural Information Processing Systems
+  26}, pages 3111--3119. Curran Associates, Inc.
+
+\bibitem[\protect\citename{Owoputi \bgroup et al.\egroup
+  }2013]{owoputi2013improved}
+Olutobi Owoputi, Brendan O'Connor, Chris Dyer, Kevin Gimpel, Nathan Schneider,
+  and Noah~A Smith.
+\newblock 2013.
+\newblock Improved part-of-speech tagging for online conversational text with
+  word clusters.
+\newblock In {\em HLT-NAACL}, pages 380--390.
+
+\bibitem[\protect\citename{Pennington \bgroup et al.\egroup
+  }2014]{pennington2014glove}
+Jeffrey Pennington, Richard Socher, and Christopher~D. Manning.
+\newblock 2014.
+\newblock Glove: Global vectors for word representation.
+\newblock In {\em Proceedings of EMNLP}.
+
+\bibitem[\protect\citename{Pereira \bgroup et al.\egroup
+  }1993]{pereira1993distributional}
+Fernando Pereira, Naftali Tishby, and Lillian Lee.
+\newblock 1993.
+\newblock Distributional clustering of {English} words.
+\newblock In {\em Proceedings of the 31st Annual Meeting of the Association for
+  Computational Linguistics}, pages 183--190.
+
+\bibitem[\protect\citename{Raina \bgroup et al.\egroup }2007]{raina2007self}
+Rajat Raina, Alexis Battle, Honglak Lee, Benjamin Packer, and Andrew~Y Ng.
+\newblock 2007.
+\newblock Self-taught learning: transfer learning from unlabeled data.
+\newblock In {\em Proceedings of the 24th international conference on Machine
+  learning}, pages 759--766. ACM.
+
+\bibitem[\protect\citename{{\v{R}}eh{\r{u}}{\v{r}}ek and
+  Sojka}2010]{vrehuuvrek2010software}
+Radim {\v{R}}eh{\r{u}}{\v{r}}ek and Petr Sojka.
+\newblock 2010.
+\newblock Software framework for topic modelling with large corpora.
+\newblock In {\em Proceedings of the LREC 2010 Workshop on New Challenges for
+  NLP Frameworks}, pages 51--55, Valetta, Malta.
+
+\bibitem[\protect\citename{Sahlgren}2006]{sahlgren2006word}
+Magnus Sahlgren.
+\newblock 2006.
+\newblock {\em The Word-Space Model: Using distributional analysis to represent
+  syntagmatic and paradigmatic relations between words in high-dimensional
+  vector spaces}.
+\newblock {Ph.D.} thesis, Institutionen f{\"o}r lingvistik.
+
+\bibitem[\protect\citename{Schneider \bgroup et al.\egroup
+  }2014a]{Schneider+:2014}
+Nathan Schneider, Emily Danchik, Chris Dyer, and Noah~A. Smith.
+\newblock 2014a.
+\newblock Discriminative lexical semantic segmentation with gaps: Running the
+  mwe gamut.
+\newblock {\em Transactions of the Association of Computational Linguistics},
+  2(1):193--206.
+
+\bibitem[\protect\citename{Schneider \bgroup et al.\egroup }2014b]{mwecorpus}
+Nathan Schneider, Spencer Onuffer, Nora Kazour, Emily Danchik, Michael~T.
+  Mordowanec, Henrietta Conrad, and Noah~A. Smith.
+\newblock 2014b.
+\newblock Comprehensive annotation of multiword expressions in a social web
+  corpus.
+\newblock In Nicoletta Calzolari, Khalid Choukri, Thierry Declerck, Hrafn
+  Loftsson, Bente Maegaard, Joseph Mariani, Asuncion Moreno, Jan Odijk, and
+  Stelios Piperidis, editors, {\em Proceedings of the Ninth International
+  Conference on Language Resources and Evaluation}, pages 455--461,
+  Reykjav\'{i}k, Iceland.
+
+\bibitem[\protect\citename{Sha and Pereira}2003]{Sha:2003}
+Fei Sha and Fernando Pereira.
+\newblock 2003.
+\newblock Shallow parsing with conditional random fields.
+\newblock In {\em Proceedings of the 2003 Conference of the North American
+  Chapter of the Association for Computational Linguistics on Human Language
+  Technology - Volume 1}, pages 134--141, Edmonton, Canada.
+
+\bibitem[\protect\citename{Spitkovsky \bgroup et al.\egroup
+  }2011]{Spitkovsky:2011}
+Valentin~I. Spitkovsky, Hiyan Alshawi, Angel~X. Chang, and Daniel Jurafsky.
+\newblock 2011.
+\newblock Unsupervised dependency parsing without gold part-of-speech tags.
+\newblock In {\em Proceedings of the Conference on Empirical Methods in Natural
+  Language Processing}, EMNLP '11, pages 1281--1290, Edinburgh, UK.
+
+\bibitem[\protect\citename{{Tjong Kim Sang} and
+  Buchholz}2000]{TjongKimSang:Buchholz:2000}
+Erik~F. {Tjong Kim Sang} and Sabine Buchholz.
+\newblock 2000.
+\newblock Introduction to the {CoNLL-2000} shared task: Chunking.
+\newblock In {\em Proceedings of the 4th Conference on Computational Natural
+  Language Learning (CoNLL-2000)}, Lisbon, Portugal.
+
+\bibitem[\protect\citename{Tjong Kim~Sang and
+  De~Meulder}2003]{TjongKimSang:DeMeulder:2003}
+Erik~F. Tjong Kim~Sang and Fien De~Meulder.
+\newblock 2003.
+\newblock Introduction to the conll-2003 shared task: Language-independent
+  named entity recognition.
+\newblock In {\em Proceedings of the 7th Conference on Natural Language
+  Learning (CoNLL-2003)}, pages 142--147, Edmonton, Canada.
+
+\bibitem[\protect\citename{Toutanova \bgroup et al.\egroup
+  }2003]{Toutanova:2003}
+Kristina Toutanova, Dan Klein, Christopher~D. Manning, and Yoram Singer.
+\newblock 2003.
+\newblock Feature-rich part-of-speech tagging with a cyclic dependency network.
+\newblock In {\em Proceedings of the 2003 Conference of the North American
+  Chapter of the Association for Computational Linguistics on Human Language
+  Technology - Volume 1}, pages 173--180, Stroudsburg, PA, USA.
+
+\bibitem[\protect\citename{Tratz and Hovy}2011]{Tratz:2011}
+Stephen Tratz and Eduard Hovy.
+\newblock 2011.
+\newblock A fast, accurate, non-projective, semantically-enriched parser.
+\newblock In {\em Proceedings of the Conference on Empirical Methods in Natural
+  Language Processing}, EMNLP '11, pages 1257--1268, Edinburgh, UK.
+
+\bibitem[\protect\citename{Turian \bgroup et al.\egroup }2010]{turian2010word}
+Joseph Turian, Lev Ratinov, and Yoshua Bengio.
+\newblock 2010.
+\newblock Word representations: a simple and general method for semi-supervised
+  learning.
+\newblock In {\em Proceedings of the 48th Annual Meeting of the Association for
+  Computational Linguistics}, pages 384--394. Association for Computational
+  Linguistics.
+
+\bibitem[\protect\citename{Turney \bgroup et al.\egroup
+  }2010]{turney2010frequency}
+Peter~D Turney, Patrick Pantel, et~al.
+\newblock 2010.
+\newblock From frequency to meaning: Vector space models of semantics.
+\newblock {\em Journal of Artificial Intelligence Research}, 37(1):141--188.
+
+\bibitem[\protect\citename{{van der Maaten} and
+  Hinton}2008]{vanderMaaten:Hinton:2008}
+Laurens~J.P. {van der Maaten} and Geoffrey Hinton.
+\newblock 2008.
+\newblock Visualizing high-dimensional data using t-sne.
+\newblock {\em Journal of Machine Learning Research}, 9:2579--2605.
+
+\end{thebibliography}
