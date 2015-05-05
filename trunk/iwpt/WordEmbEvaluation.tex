@@ -1,0 +1,156 @@
+%
+% File acl2013.tex
+%
+% Contact  navigli@di.uniroma1.it
+%%
+%% Based on the style files for ACL-2012, which were, in turn,
+%% based on the style files for ACL-2011, which were, in turn, 
+%% based on the style files for ACL-2010, which were, in turn, 
+%% based on the style files for ACL-IJCNLP-2009, which were, in turn,
+%% based on the style files for EACL-2009 and IJCNLP-2008...
+
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt]{article}
+\usepackage{acl2015}
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[skip=0pt]{caption}
+\usepackage{subcaption}
+\usepackage{subfig}
+\usepackage{pgfplotstable}
+\usepackage{adjustbox}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{paralist}
+\usepackage{xspace}
+
+
+\newcommand{\RQ}[1][1]{\textbf{RQ#1}\xspace}
+
+\newcommand{\figref}[2][]{Fig#1.~\ref{#2}\xspace}
+\newcommand{\tabref}[2][]{Tab#1.~\ref{#2}\xspace}
+
+\newcommand{\lex}[1]{\textit{#1}\xspace}
+
+\newcommand{\dataset}[1]{\texttt{#1}\xspace}
+\newcommand{\EWT}{\dataset{EWT}}
+\newcommand{\WSJ}{\dataset{WSJ}}
+\newcommand{\Brown}{\dataset{Brown}}
+\newcommand{\Reuters}{\dataset{Reuters}}
+\newcommand{\MUC}{\dataset{MUC7}}
+
+\newcommand{\method}[2][]{\ensuremath{\textsc{#2#1}}\xspace}
+\newcommand{\unigram}[1][]{\method{Unigram}}
+\newcommand{\brown}[1][]{\method[\ensuremath{_{#1}}]{Brown}}
+\newcommand{\CW}[1][]{\method[#1]{CW}}
+\newcommand{\CBOW}[1][]{\method[#1]{CBOW}}
+\newcommand{\Skipgram}[1][]{\method[#1]{Skip-gram}}
+\newcommand{\Glove}[1][]{\method[#1]{Glove}}
+\newcommand{\withup}{\method{+UP}}
+
+\newcommand{\task}[1]{\textsf{#1}\xspace}
+\newcommand{\pos}{\task{POS-tagging}}
+\newcommand{\chunking}{\task{Chunking}}
+\newcommand{\ner}{\task{NER}}
+\newcommand{\mwe}{\task{MWE}}
+
+\newcommand{\evmeasure}[1]{\textsc{#1}\xspace}
+\newcommand{\accuracy}{\evmeasure{Acc}}
+\newcommand{\fscore}{\evmeasure{F1}}
+
+
+\newcommand{\best}[1]{\textbf{#1}}
+
+\newcommand{\ctx}{\ensuremath{\text{ctx}}}
+
+
+\hyphenation{an-aly-sis}
+\hyphenation{an-aly-ses}
+\hyphenation{an-aly-ser}
+
+\title{Big Data Small Data, In Domain Out-of Domain, Known Word Unknown
+  Word: The Impact of Word Representation on Sequence Labelling Tasks}
+
+\author{A Anonymous 
+   \\%NICTA / Locked Bag 8001, \\ Canberra ACT 2601, Australia \\
+   \\ %The Australian National University\\
+   \\ %University of Canberra \\
+  \\ % {\tt \small{@nicta.com.au}} \\
+\And
+  B Anonymous
+   \\%NICTA / Locked Bag 8001, \\ Canberra ACT 2601, Australia \\
+   \\%The Australian National University\\ \\
+   \\ %{\tt \small{@nicta.com.au}} \\
+}
+
+\date{}
+
+% Max 8 pp.
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract} 
+  Word embeddings -- distributed word representations that can be
+  learned from unlabelled data -- have been shown to have high utility
+  in many natural language processing applications. 
+  In this paper, we perform an extrinsic evaluation of four popular word
+  embedding methods in the context of four sequence labelling tasks:
+  POS-tagging, syntactic chunking, NER and MWE identification.
+  A particular focus of the paper is analysing the effects of task-based
+  updating of word representations.
+  We show that when using word embeddings as features, as few as
+  several hundred training instances are sufficient to achieve competitive
+  results, and that word embeddings lead to improvements over OOV words
+  and out of domain.
+  Perhaps more surprisingly, our results indicate there is little
+  difference between the different word embedding methods, and that simple
+  Brown clusters are often competitive with word embeddings across all
+  tasks we consider. 
+\end{abstract}
+
+\newcommand{\gabi}[1]{\textcolor{blue}{#1}}
+\newcommand{\tim}[1]{\textcolor{red}{#1}}
+\newcommand{\lizhen}[1]{\textcolor{green}{#1}}
+\newcommand{\nss}[1]{\textcolor{magenta}{#1}}
+
+\input{intro}
+\input{wordRep}
+\input{seqTagging}
+\input{results}
+\input{relwork}
+\input{conclusion}
+
+% \section*{Acknowledgments}
+
+% Anonymised\\
+% Anonymised\\
+% Anonymised\\
+% Anonymised\\
+% Anonymised\\
+% Anonymised\\
+
+%NICTA is funded by the Australian Government as represented by the Department of Broadband, Communications and the Digital Economy and the Australian Research Council through the ICT Centre of Excellence program.
+
+\bibliographystyle{acl}
+\bibliography{biblio}
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t 
+%%% TeX-master: t
+%%% End: 
