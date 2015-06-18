@@ -1,7 +1,7 @@
 \section{Introduction}
 
 Recently, distributed word representations have grown to become a
-mainstay of natural language processing (NLP), and been show to have
+mainstay of natural language processing (NLP), and has been shown to have
 empirical utility in a myriad of tasks
 \cite{Collobert2008,turian2010word,baroni:2014,Andreas:Klein:2014}.  The
 underlying idea behind distributed word representations is simple: to
@@ -58,13 +58,15 @@ over-fitting low-frequency and OOV words.
 In this paper, we perform an extensive evaluation of four recently proposed word embedding
 approaches under fixed experimental conditions, applied to four sequence
 labelling tasks: POS-tagging, full-text chunking, named entity
-recognition (NER), and multiword expression (MWE) identification. 
+recognition (NER), and multiword expression (MWE) identification.\footnote{MWE are lexicalized combinations of two or more
+words that are exceptional enough to be considered
+as single units in the lexicon \cite{Schneider+:2014}, e.g., \textit{pick up} and \textit{dry out}.}
 Compared to previous empirical studies~\cite{collobert2011natural,turian2010word,pennington2014glove}, we fill their gaps by considering more word embedding approaches 
 and evaluating them with more sequence labelling tasks. In addition, we explore the following research questions:
 \begin{compactenum}[\bf RQ1:]
 \item are these word embeddings better than baseline approaches of one-hot
-  unigram features and Brown clusters?
-\item do word embeddings require less training data (i.e.\ generalise
+  unigram\footnote{Word vectors with one-hot representation has the same length as the size of the vocabulary, and  only  one  dimension  is  on.} features and Brown clusters?
+\item do word embeddings require less training data (i.e.,\ generalise
   better) than one-hot unigram features? If so, to what degree can word embeddings reduce the amount of labelled data?
 \item what is the impact of updating word embeddings in sequence
   labelling tasks, both empirically over the target task and

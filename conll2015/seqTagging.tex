@@ -101,9 +101,9 @@ without updating. These datasets are as follows:
 For reproducibility, we tuned the hyperparameters with random search
 over the development data for each task~\cite{bergstra2012random}. 
 In this, we randomly sampled 50 distinct hyperparameter sets with the
-same random seed for the non-updating models (i.e.\ the models that
+same random seed for the non-updating models (i.e.,\ the models that
 don't update the word representation), and
-sampled 100 distinct hyperparameter sets for the updating models (i.e.\
+sampled 100 distinct hyperparameter sets for the updating models (i.e.,\
 the models that do). 
 For each set of hyperparameters and task, we train a model over its
 training set and choose the best one based on its performance on development data~\cite{turian2010word}. 
@@ -114,7 +114,7 @@ representations), and in the case of \Brown, the number of clusters.
 For the updating models, we found that the results over the test data
 were always inferior to those that do not update the word
 representations, due to the higher number of hyperparameters and small
-sample size (i.e.\ 100).
+sample size (i.e.,\ 100).
 Since the two-layer model of the graph transformer contains a distinct
 set of hyperparameters for each layer, we reuse the best-performing
 hyperparameter settings from the non-updating models, and only tune the
@@ -136,8 +136,9 @@ chunk/entity/expression-level F1-measure (``\fscore'') for all tasks except \pos
 for which we use token-level accuracy (``\accuracy'').
 To test performance over OOV (unknown) tokens -- i.e., the words that do
 not occur in the training set -- we use token-level accuracy for all
-tasks (e.g.\ for \chunking, we evaluate whether the full IOB tag is
-correct or not), due to the sparsity of all-OOV chunks/NEs/MWEs.
+tasks (e.g.,\ for \chunking, we evaluate whether the full IOB tag is
+correct or not), because chunks/NEs/MWEs can consist of a mixture of in-vocabulary and OOV tokens, which makes the use of chunk-based evaluation measures inappropriate.
+ 
 
 %\subsection{POS-tagging} We could choose one of the options. \subsubsection{Option 1} Almost the same setting as~\cite{collobert2011natural}, except adding one more test set.
 % \noindent Training set: 0-18 of WSJ.
