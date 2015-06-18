@@ -42,10 +42,10 @@ predict occurrence of words in the neighbouring context. Their training
 objectives share the same form, which is a sum of local training factors
 $J(w, \text{ctx}(w))$,  
 \begin{displaymath}
-  L = \sum_{w \in V} J(w, \ctx(w))
+  L = \sum_{w \in T} J(w, \ctx(w))
 \end{displaymath}
 
-where $V$ is the vocabulary of a given corpus, and $\ctx(w)$ denotes the
+where $T$ is the set of tokens in a given corpus, and $\ctx(w)$ denotes the
 local context of word $w$.
 The local context of a word can either be its previous $k$ words, or the
 $k$ words surrounding it. 
@@ -60,7 +60,7 @@ The starting point for \CBOW and \Skipgram is to employ softmax to predict word 
   J(w, \ctx(w)) = - \log \left( \frac{\exp(\mathbf{v}_w^{\text{T}} \mathbf{v}_{\ctx(w)})}{ \sum_{j \in V} \exp(\mathbf{v}_j^{\text{T}} \mathbf{v}_{\ctx(w)})} \right)
 \end{displaymath}
 where $\mathbf{v}_{\ctx(w)}$ denotes the distributed representation of
-the local context of word $w$. \CBOW derives $\mathbf{v}_{\ctx(w)}$
+the local context of word $w$, and $V$ is the vocabulary of a given corpus. \CBOW derives $\mathbf{v}_{\ctx(w)}$
 based on averaging over the context words. That is, it estimates the
 probability of each $w$ given its local
 context. In contrast, \Skipgram applies softmax to each context word of
@@ -118,16 +118,18 @@ length of the digit substring (e.g., \lex{10.20} is replaced by
 % Due to the computational complexity of the pre-training, for \CW, we simply downloaded the pre-compiled embeddings from:  \url{http://metaoptimize.com/projects/wordreprs}.
 
 \begin{table}[t]
+\begin{small}
 \centering
 \begin{tabular}{lrr}
 \hline
 \textbf{Data set} & \multicolumn{1}{c}{\textbf{Size}} & \multicolumn{1}{c}{\textbf{Words}} \\ \hline
-UMBC 	& 48.1GB & 3G \\
-One Billion 	& 4.1GB & 1G  \\
+UMBC \cite{UMBC:2013}	& 48.1GB & 3G \\
+One Billion \cite{OneBillion:2013} & 4.1GB & 1G  \\
 English Wikipedia & 49.6GB & 3G \\ \hline
 \end{tabular}
 \caption{Corpora used to pre-train the word embeddings}
 \label{wordEmbedCorpora}
+\end{small}
 \end{table}
 
 The dimensionality of the word embeddings and the size of the context
