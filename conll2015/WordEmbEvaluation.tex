@@ -31,12 +31,14 @@
 \usepackage{enumerate}
 \usepackage{paralist}
 \usepackage{xspace}
+\usepackage{relsize}
 
+\setlength\titlebox{5.5cm}
 
 \newcommand{\RQ}[1][1]{\textbf{RQ#1}\xspace}
 
-\newcommand{\figref}[2][]{Fig#1.~\ref{#2}\xspace}
-\newcommand{\tabref}[2][]{Tab#1.~\ref{#2}\xspace}
+\newcommand{\figref}[2][]{Figure~\ref{#2}\xspace}
+\newcommand{\tabref}[2][]{Table~\ref{#2}\xspace}
 
 \newcommand{\lex}[1]{\textit{#1}\xspace}
 
@@ -57,7 +59,7 @@
 \newcommand{\withup}{\method{+UP}}
 
 \newcommand{\task}[1]{\textsf{#1}\xspace}
-\newcommand{\pos}{\task{POS-tagging}}
+\newcommand{\pos}{\task{POS tagging}}
 \newcommand{\chunking}{\task{Chunking}}
 \newcommand{\ner}{\task{NER}}
 \newcommand{\mwe}{\task{MWE}}
@@ -77,17 +79,17 @@
 \hyphenation{an-aly-ser}
 
 \title{Big Data Small Data, In Domain Out-of Domain, Known Word Unknown
-  Word: The Impact of Word Representation on Sequence Labelling Tasks}
+  Word: The Impact of Word Representations on Sequence Labelling Tasks}
 
 \author{
-Lizhen Qu$^{1,2}$, Gabriela Ferraro$^{1,2}$, Liyuan Zhou$^1$, Weiwei Hou$^1$, Nathan Schneider$^3$ and Timothy Baldwin$^4$ \\
+Lizhen Qu$^{1,2}$, Gabriela Ferraro$^{1,2}$, Liyuan Zhou$^1$, Weiwei Hou$^1$, Nathan Schneider$^3$ and Timothy Baldwin$^{1,4}$ \\
 $^1$ NICTA, Australia \\
 $^2$ The Australian National University\\
-$^3$ The University of Melbourne \\
-$^4$ University of Edinburgh\\
-{\tt \{lizhen.qu,gabriela.ferraro,liyuan.zho,weiwei.hou\}@nicta.com.au}\\
-{\tt nschneid@cs.cmu.edu}\\
-{\tt tb@ldwin.net}\\ 
+$^3$ University of Edinburgh\\
+$^4$ The University of Melbourne \\
+{\smaller{\tt \{lizhen.qu,gabriela.ferraro,liyuan.zho,weiwei.hou\}@nicta.com.au}}\\
+{\smaller{\tt nschneid@cs.cmu.edu}}\\
+{\smaller{\tt tb@ldwin.net}}\\
 ~~\\
 }
 
@@ -102,18 +104,18 @@ $^4$ University of Edinburgh\\
 
 
 \begin{abstract} 
-  Word embeddings -- distributed word representations that can be
-  learned from unlabelled data -- have been shown to have high utility
+  Word embeddings --- distributed word representations that can be
+  learned from unlabelled data --- have been shown to have high utility
   in many natural language processing applications. 
   In this paper, we perform an extrinsic evaluation of four popular word
   embedding methods in the context of four sequence labelling tasks:
-  Part-of-Speech-Tagging, syntactic chunking, Named Entity Recognition and    Multi Word Expression identification.
+  part-of-speech tagging, syntactic chunking, named entity recognition, and  multiword expression identification.
   A particular focus of the paper is analysing the effects of task-based
   updating of word representations.
   We show that when using word embeddings as features, as few as
   several hundred training instances are sufficient to achieve competitive
   results, and that word embeddings lead to improvements over out-of-vocabulary words
-  and out of domain.
+  and also out of domain.
   Perhaps more surprisingly, our results indicate there is little
   difference between the different word embedding methods, and that simple
   Brown clusters are often competitive with word embeddings across all

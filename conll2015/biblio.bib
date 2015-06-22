@@ -6,7 +6,30 @@
 
 @String{+CL = "Computational Linguistics"}
 
+@String{+EMNLP2010 = ++Proceedings # "of the 2010 Conference on Empirical Methods in
+                  Natural Language Processing (EMNLP 2010)"}
+
+@String{+EMNLP2014 = ++Proceedings # "of the 2014 Conference on Empirical Methods in
+                  Natural Language Processing (EMNLP 2014)"}
+
 @String{+ICML2001 = ++Proceedings # "of the 18th International Conference on Machine Learning"}
+                  
+@String{+NAACL2013 = ++Proceedings # "of the 2013 Conference of the North American Chapter of the 
+Association for Computational Linguistics: Human Language Technologies (NAACL HLT 2013)"}
+
+
+
+@article{Levy:2015,
+  author = {Omer Levy and Yoav Goldberg and Ido Dagan},
+  title = {Improving Distributional Similarity with Lessons Learned from Word
+Embeddings},
+  year = 2015,
+  number = 	 {1},
+  journal = {Transactions of the Association for Computational Linguistics},
+  volume = 	 3,
+  pages="211-225",
+}
+
 
 @techreport{OneBillion:2013,
 title = {One Billion Word Benchmark for Measuring Progress in Statistical Language Modeling},
@@ -16,35 +39,24 @@ URL = {http://arxiv.org/abs/1312.3005},
 institution = {Google}
 }
 
-@InProceedings{Levy:2015,
-  author = {Omer Levy and Yoav Goldberg and Ido Dagan},
-  title = {Improving Distributional Similarity with Lessons Learned from Word
-Embeddings},
-  year = {2015},
-  organization = {Association for Computational Linguistics},
-  booktitle = {Transactions of the Association for Computational Linguistics
- 2015}
-}
-
-
 @incollection{Levy:2014,
 title = {Neural Word Embedding as Implicit Matrix Factorization},
 author = {Levy, Omer and Goldberg, Yoav},
 booktitle = {Advances in Neural Information Processing Systems 27},
-editor = {Z. Ghahramani and M. Welling and C. Cortes and N.D. Lawrence and K.Q. Weinberger},
+editor = 	 {Z. Ghahramani and M. Welling and C. Cortes and N.D. Lawrence and K.Q. Weinberger},
 pages = {2177--2185},
+publisher = {Curran Associates, Inc.},
 year = {2014},
-publisher = {Curran Associates, Inc.}
 }
 
 
 
 @InProceedings{UMBC:2013,
   author = {Lushan  Han and Abhay L. Kashyap and Tim  Finin and James  Mayfield and Johnathan  Weese},
-  title = {\uppercase{UMBC EBIQUITY CORE}: Semantic Textual Similarity Systems},
-  month = {June},
+  title = {{UMBC EBIQUITY CORE}: Semantic Textual Similarity Systems},
   year = {2013},
-  organization = {Association for Computational Linguistics},
+  pages="44--52",
+  address="Atlanta, USA",
   booktitle = {Proceedings of the Second Joint Conference on Lexical and Computational Semantics}
 }
 
@@ -53,22 +65,21 @@ publisher = {Curran Associates, Inc.}
  author = {Huang, Fei and Yates, Alexander},
  title = {Distributional Representations for Handling Sparsity in Supervised Sequence-labeling},
  booktitle = {Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP: Volume 1 - Volume 1},
- series = {ACL '09},
  year = {2009},
  isbn = {978-1-932432-45-9},
- location = {Suntec, Singapore},
+ address = {Suntec, Singapore},
  pages = {495--503},
  numpages = {9},
  url = {http://dl.acm.org/citation.cfm?id=1687878.1687948},
  acmid = {1687948},
- publisher = {Association for Computational Linguistics},
- address = {Stroudsburg, PA, USA}
 } 
 
 @inproceedings{chen:2014,
       title={A Fast and Accurate Dependency Parser using Neural Networks},
       author={Chen, Danqi and Manning, Christopher D},
-      booktitle={Empirical Methods in Natural Language Processing (EMNLP)},
+      pages="740--750",
+      address="Doha, Qatar",
+      booktitle=+EMNLP2014,
       year={2014}
 }
                  
@@ -78,13 +89,12 @@ publisher = {Curran Associates, Inc.}
  title = {Feature-rich Part-of-speech Tagging with a Cyclic Dependency Network},
  booktitle = {Proceedings of the 2003 Conference of the North American Chapter of the Association for Computational Linguistics on Human Language Technology - Volume 1},
  year = {2003},
- location = {Edmonton, Canada},
+ address = {Edmonton, Canada},
  pages = {173--180},
  numpages = {8},
  url = {http://dx.doi.org/10.3115/1073445.1073478},
  doi = {10.3115/1073445.1073478},
  acmid = {1073478},
- address = {Stroudsburg, PA, USA}
 } 
 
 
@@ -108,7 +118,6 @@ publisher = {Curran Associates, Inc.}
  journal = {Journal of Machine Learning Research},
  issue_date = {12/1/2005},
  volume = {6},
- month = dec,
  year = {2005},
  issn = {1532-4435},
  pages = {1817--1853},
@@ -121,7 +130,6 @@ publisher = {Curran Associates, Inc.}
   author    = {Baroni, Marco  and  Dinu, Georgiana  and  Kruszewski, Germ\'{a}n},
   title     = {Don't count, predict! A systematic comparison of context-counting vs. context-predicting semantic vectors},
   booktitle = {Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
-  month     = {June},
   year      = {2014},
   address   = {Baltimore, USA},
   pages     = {238--247},
@@ -133,7 +141,6 @@ publisher = {Curran Associates, Inc.}
  author = {Tratz, Stephen and Hovy, Eduard},
  title = {A Fast, Accurate, Non-projective, Semantically-enriched Parser},
  booktitle = {Proceedings of the Conference on Empirical Methods in Natural Language Processing},
- series = {EMNLP '11},
  year = {2011},
  isbn = {978-1-937284-11-4},
  address = {Edinburgh, UK},
@@ -147,7 +154,6 @@ publisher = {Curran Associates, Inc.}
  author = {Spitkovsky, Valentin I. and Alshawi, Hiyan and Chang, Angel X. and Jurafsky, Daniel},
  title = {Unsupervised Dependency Parsing Without Gold Part-of-speech Tags},
  booktitle = {Proceedings of the Conference on Empirical Methods in Natural Language Processing},
- series = {EMNLP '11},
  year = {2011},
  isbn = {978-1-937284-11-4},
  address = {Edinburgh, UK},
@@ -180,10 +186,9 @@ Bach},
 @inproceedings{Koo:2010,
  author = {Koo, Terry and Rush, Alexander M. and Collins, Michael and Jaakkola, Tommi and Sontag, David},
  title = {Dual Decomposition for Parsing with Non-projective Head Automata},
- booktitle = {Proceedings of the 2010 Conference on Empirical Methods in Natural Language Processing},
- series = {EMNLP '10},
+ booktitle = +EMNLP2010,
  year = {2010},
- address = {Cambridge, UK},
+ address = {Cambridge, USA},
  pages = {1288--1298},
  numpages = {11},
  url = {http://dl.acm.org/citation.cfm?id=1870658.1870783},
@@ -202,6 +207,7 @@ Bach},
   isbn = {978-1-932432-88-6},
   keywords = {dblp},
   pages = {710-714},
+  address = 	 {Portland, USA},
   timestamp = {2011-06-21T00:00:00.000+0200},
   title = {An Ensemble Model that Combines Syntactic and Semantic Clustering for Discriminative Dependency Parsing},
   url = {http://dblp.uni-trier.de/db/conf/acl/acl2011s.html#HaffariRS11},
@@ -212,15 +218,14 @@ Bach},
 @inproceedings{turian2010word,
   title={Word representations: a simple and general method for semi-supervised learning},
   author={Turian, Joseph and Ratinov, Lev and Bengio, Yoshua},
+  address   = {Uppsala, Sweden},
   booktitle={Proceedings of the 48th Annual Meeting of the Association for Computational Linguistics},
   pages={384--394},
   year={2010},
-  organization={Association for Computational Linguistics}
 }
 
 @article{LeM14,
   author    = {Quoc V. Le and
-
                Tomas Mikolov},
   title     = {Distributed Representations of Sentences and Documents},
   journal   = {CoRR},
@@ -243,7 +248,7 @@ Bach},
 
 @Article{Schneider+:2014,
   author = 	 {Nathan Schneider and Emily Danchik and Chris Dyer and Noah A. Smith},
-  title = 	 {Discriminative Lexical Semantic Segmentation with Gaps: Running the MWE Gamut},
+  title = 	 {Discriminative Lexical Semantic Segmentation with Gaps: Running the {MWE} Gamut},
   journal = 	 {Transactions of the Association of Computational Linguistics},
   year = 	 2014,
   volume = 	 2,
@@ -259,10 +264,10 @@ Bach},
 @inproceedings{raina2007self,
   title={Self-taught learning: transfer learning from unlabeled data},
   author={Raina, Rajat and Battle, Alexis and Lee, Honglak and Packer, Benjamin and Ng, Andrew Y},
-  booktitle={Proceedings of the 24th international conference on Machine learning},
+  booktitle={Proceedings of the 24th International Conference on Machine Learning},
   pages={759--766},
+  address = 	 {Corvallis, USA},
   year={2007},
-  organization={ACM}
 }
 
 %skip-gram
@@ -286,7 +291,6 @@ Bach},
 title = {Distributed Representations of Words and Phrases and their Compositionality},
 author = {Mikolov, Tomas and Sutskever, Ilya and Chen, Kai and Corrado, Greg S and Dean, Jeff},
 booktitle = {Advances in Neural Information Processing Systems 26},
-editor = {C.J.C. Burges and L. Bottou and M. Welling and Z. Ghahramani and K.Q. Weinberger},
 pages = {3111--3119},
 year = {2013},
 publisher = {Curran Associates, Inc.},
@@ -298,8 +302,10 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
     
 @inproceedings{pennington2014glove,
   author = {Jeffrey Pennington and Richard Socher and Christopher D. Manning},
-  booktitle = {Proceedings of EMNLP},
-  title = {GloVe: Global Vectors for Word Representation},
+  booktitle = +EMNLP2014,
+  address="Doha, Qatar",
+  pages="1532--1543",
+  title = {{GloVe}: Global Vectors for Word Representation},
   year = {2014},
 }
 
@@ -308,7 +314,6 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
 	title = {Comprehensive Annotation of Multiword Expressions in a Social Web Corpus},
 	booktitle = {Proceedings of the Ninth International Conference on Language Resources and Evaluation},
 	author = {Schneider, Nathan and Onuffer, Spencer and Kazour, Nora and Danchik, Emily and Mordowanec, Michael T. and Conrad, Henrietta and Smith, Noah A.},
-	editor = {Calzolari, Nicoletta and Choukri, Khalid and Declerck, Thierry and Loftsson, Hrafn and Maegaard, Bente and Mariani, Joseph and Moreno, Asuncion and Odijk, Jan and Piperidis, Stelios},
 	year = {2014},
 	pages = {455--461},
 	url = {http://www.lrec-conf.org/proceedings/lrec2014/pdf/521_Paper.pdf}
@@ -318,7 +323,8 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
 @inproceedings{owoputi2013improved,
   title={Improved Part-of-Speech Tagging for Online Conversational Text with Word Clusters.},
   author={Owoputi, Olutobi and O'Connor, Brendan and Dyer, Chris and Gimpel, Kevin and Schneider, Nathan and Smith, Noah A},
-  booktitle={HLT-NAACL},
+  booktitle=+NAACL2013,
+  address= {Atlanta, USA},
   pages={380--390},
   year={2013}
 }
@@ -329,7 +335,6 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
  author = {Collobert, Ronan and Weston, Jason},
  title = {A Unified Architecture for Natural Language Processing: Deep Neural Networks with Multitask Learning},
  booktitle = {Proceedings of the 25th International Conference on Machine Learning},
- series = {ICML '08},
  year = {2008},
  isbn = {978-1-60558-205-4},
  address = {Helsinki, Finland},
@@ -429,7 +434,7 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
 
 @article{turney2010frequency,
   title={From frequency to meaning: Vector space models of semantics},
-  author={Turney, Peter D and Pantel, Patrick and others},
+  author={Turney, Peter D. and Pantel, Patrick},
   journal={Journal of Artificial Intelligence Research},
   volume={37},
   number={1},
@@ -441,6 +446,7 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
   title={Self-organizing maps of words for natural language processing applications},
   author={Honkela, Timo},
   booktitle={Proceedings of the International ICSC Symposium on Soft Computing},
+  address = 	 {Nimes, France},
   pages={401--407},
   year={1997},
 }
@@ -448,10 +454,9 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
 @inproceedings{dumais1988using,
   title={Using latent semantic analysis to improve access to textual information},
   author={Dumais, Susan T and Furnas, George W and Landauer, Thomas K and Deerwester, Scott and Harshman, Richard},
-  booktitle={Proceedings of the SIGCHI conference on Human factors in computing systems},
+  booktitle={Proceedings of the SIGCHI conference on Human Factors in Computing Systems},
   pages={281--285},
   year={1988},
-  organization={ACM}
 }
 
 @article{blei2003latent,
@@ -486,6 +491,7 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
   title={Phrase clustering for discriminative learning},
   author={Lin, Dekang and Wu, Xiaoyun},
   booktitle={Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP},
+  address = {Suntec, Singapore},
   pages={1030--1038},
   year={2009},
 }
@@ -494,6 +500,7 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
   title={Distributional clustering of {English} words},
   author={Pereira, Fernando and Tishby, Naftali and Lee, Lillian},
   booktitle={Proceedings of the 31st Annual Meeting of the Association for Computational Linguistics},
+  address   = {Columbus, USA},
   pages={183--190},
   year={1993},
 }
@@ -524,7 +531,8 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
                   Chunking",
   booktitle =	 +CoNLL2000,
   year =	 2000,
-  address =	 "Lisbon, Portugal"
+  address =	 "Lisbon, Portugal",
+  pages = 	 {127--132}
 }
 
 @phdthesis{sahlgren2006word,
@@ -545,7 +553,7 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
 
 @inproceedings{TjongKimSang:DeMeulder:2003,
   author = {Tjong Kim Sang, Erik F.  and  De Meulder, Fien},
-  title  = {Introduction to the CoNLL-2003 Shared Task: Language-Independent Named Entity Recognition},
+  title  = {Introduction to the {CoNLL-2003} Shared Task: Language-Independent Named Entity Recognition},
   booktitle = +CoNLL2003,
   url    = {http://www.aclweb.org/anthology/W03-0419.pdf},
   year   = 2003,
@@ -563,7 +571,22 @@ url = {http://papers.nips.cc/paper/5021-distributed-representations-of-words-and
 @inproceedings{guo2014revisiting,
   title={Revisiting embedding features for simple semi-supervised learning},
   author={Guo, Jiang and Che, Wanxiang and Wang, Haifeng and Liu, Ting},
-  booktitle={Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  booktitle=+EMNLP2014,
+  address="Doha, Qatar",
   pages={110--120},
   year={2014}
 }
+
+@InCollection{Baldwin:Kim:2009a,
+  author = 	 {Timothy Baldwin and Kim, Su Nam},
+  title = 	 {Multiword Expressions},
+  crossref =  {_HandbookNLP:2009}}
+
+@Book{_HandbookNLP:2009,
+  editor = 	 {Nitin Indurkhya and Fred J. Damerau},
+  title = 	 {Handbook of Natural Language Processing},
+  booktitle = 	 {Handbook of Natural Language Processing},
+  publisher = 	 {CRC Press},
+  year = 	 2010,
+  address = 	 {Boca Raton, USA},
+  edition = 	 {2nd}}
