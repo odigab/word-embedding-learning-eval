@@ -1,11 +1,11 @@
 \section{Introduction}
 
 Recently, distributed word representations have grown to become a
-mainstay of natural language processing (NLP), and has been shown to have
+mainstay of natural language processing (NLP), and have been shown to have
 empirical utility in a myriad of tasks
 \cite{Collobert2008,turian2010word,baroni:2014,Andreas:Klein:2014}.  The
 underlying idea behind distributed word representations is simple: to
-map each word $w$ in our vocabulary $V$ onto a continuous-valued vector
+map each word $w$ in vocabulary $V$ onto a continuous-valued vector
 of dimensionality $d \ll |V|$.  Words that are similar
 (e.g., with respect to syntax or lexical semantics) will ideally be mapped to
 similar regions of the vector space, implicitly supporting both
@@ -57,15 +57,22 @@ over-fitting low-frequency and OOV words.
 
 In this paper, we perform an extensive evaluation of four recently proposed word embedding
 approaches under fixed experimental conditions, applied to four sequence
-labelling tasks: POS-tagging, full-text chunking, named entity
-recognition (NER), and multiword expression (MWE) identification.\footnote{MWE are lexicalized combinations of two or more
-words that are exceptional enough to be considered
-as single units in the lexicon \cite{Schneider+:2014}, e.g., \textit{pick up} and \textit{dry out}.}
-Compared to previous empirical studies~\cite{collobert2011natural,turian2010word,pennington2014glove}, we fill their gaps by considering more word embedding approaches 
-and evaluating them with more sequence labelling tasks. In addition, we explore the following research questions:
+labelling tasks: part-of-speech (POS) tagging, full-text chunking, named entity
+recognition (NER), and multiword expression (MWE) identification.\footnote{MWEs are lexicalized combinations of two or more
+simplex words that are exceptional enough to be considered
+as single units in the lexicon \cite{Baldwin:Kim:2009a,Schneider+:2014}, e.g.,
+\textit{pick up} or \textit{part of speech}.}
+We build on previous empirical
+studies~\cite{collobert2011natural,turian2010word,pennington2014glove}
+in considering a broader range of word embedding approaches 
+and evaluating them over more sequence labelling tasks. In addition, we explore the following research questions:
 \begin{compactenum}[\bf RQ1:]
-\item are these word embeddings better than baseline approaches of one-hot
-  unigram\footnote{Word vectors with one-hot representation has the same length as the size of the vocabulary, and  only  one  dimension  is  on.} features and Brown clusters?
+\item are word embeddings better than baseline approaches of one-hot
+  unigram\footnote{Word vectors with one-hot representation are binary
+    vectors with a
+    single dimension per word in the vocabulary (i.e., $d = |V|$), with
+    the single dimension corresponding to the target word set to 1 and
+    all other dimensions set to 0.} features and Brown clusters?
 \item do word embeddings require less training data (i.e.,\ generalise
   better) than one-hot unigram features? If so, to what degree can word embeddings reduce the amount of labelled data?
 \item what is the impact of updating word embeddings in sequence

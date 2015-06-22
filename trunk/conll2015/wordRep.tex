@@ -15,14 +15,14 @@ $i$ directly in
 $C_{wi}$~\cite{sahlgren2006word,turney2010frequency,honkela1997self} or
 project the concurrence counts between words into a lower dimensional
 space~\cite{vrehuuvrek2010software,lund1996producing}, using
-dimensionality reduction techniques such as SVD~\cite{dumais1988using} and
+dimensionality reduction techniques such as SVD~\cite{dumais1988using} or
 LDA~\cite{blei2003latent}.
 
 \textit{Cluster-based representation} methods build clusters of words by applying either soft or hard clustering algorithms~\cite{lin2009phrase,li2005semi}. Some of them also rely on a co-occurrence matrix of words~\cite{pereira1993distributional}. The Brown clustering algorithm~\cite{Brown92class-basedn-gram} is the best-known method in this category.
 
 \textit{Distributed representation} methods usually map words into dense,
 low-dimensional, continuous-valued vectors, with $\mathbf{x} \in
-R^d$, where $d$ is referred to as the word dimension.
+\mathbb{R}^d$, where $d$ is referred to as the word dimension.
 
 \subsection{Selected Word Representations}
 
@@ -34,21 +34,21 @@ skip-gram model (``\Skipgram'')~\cite{Mikolov13NIPS}, and Global vectors
 (``\Glove'')~\cite{pennington2014glove}. All have
 have been shown to be at or near state-of-the-art in recent empirical
 studies~\cite{turian2010word,pennington2014glove}.\footnote{
-The word embedding approach proposed in~\cite{collobert2011natural} is not considered because
-it shows inferior performance than the selected methods in previous work.}
+The word embedding approach proposed in~\newcite{collobert2011natural} is not considered because
+it was found to be inferior to our four target word embedding approaches in previous work.}
 The training of these word
 representations is unsupervised: the common underlying idea is to
-predict occurrence of words in the neighbouring context. Their training
+predict the occurrence of words in the neighbouring context. Their training
 objectives share the same form, which is a sum of local training factors
-$J(w, \text{ctx}(w))$,  
+$J(w, \ctx(w))$,  
 \begin{displaymath}
   L = \sum_{w \in T} J(w, \ctx(w))
 \end{displaymath}
-
 where $T$ is the set of tokens in a given corpus, and $\ctx(w)$ denotes the
 local context of word $w$.
-The local context of a word can either be its previous $k$ words, or the
-$k$ words surrounding it. 
+The local context of a word is conventionally its preceding $m$ words,
+or alternatively the
+$m$ words surrounding it. 
 Local training factors are designed to capture the relationship between
 $w$ and its local contexts of use, either by predicting $w$
 based on its local context, or using $w$ to predict the
@@ -87,7 +87,7 @@ respectively, and $g(X_{ij})$ is a weighting function based on the
 co-occurrence count. This weighting function controls the degree of
 agreement between the parametric function $\mathbf{v}_i^{\text{T}}
 \mathbf{v}_j + b_i + b_j $ and $\log(X_{ij})$. Frequently co-occurring
-word pairs will be larger weight
+word pairs will have larger weight
 %\nss{i think you mean the weight  will be larger? or there will be more parameters?} 
 than infrequent
 pairs, up to a threshold.
@@ -98,8 +98,8 @@ conditional probability of seeing the next word is defined to be:
 p(w_k | w_{k - m}^{k -1}) = p(w_k | h_k) p(h_k | h_{k - m}^{k -1})
 \end{displaymath}
 where $h_k$ denotes the word class of the word $w_k$, $w_{k - m}^{k -1}$
-are the previous $m$ words and $h_{k - m}^{k -1}$ are their respective
-word classes. Then $J(w, \text{ctx}(w)) = - \log p(w_k | w_{k - m}^{k
+are the previous $m$ words, and $h_{k - m}^{k -1}$ are their respective
+word classes. Then $J(w, \ctx(w)) = - \log p(w_k | w_{k - m}^{k
   -1}) $. Since there is no tractable method to find an optimal
 partition of word classes, the method uses only a bigram class model, and utilises hierarchical clustering as an approximation method to find a sufficiently good partition of words. 
 
@@ -108,7 +108,7 @@ partition of word classes, the method uses only a bigram class model, and utilis
 \subsection{Building Word Representations}
 \label{buildingWordRep}
 
-For a fair comparison, we train \brown, \CBOW, \Skipgram, and \Glove on
+To ensure the comparison of different word representations is fair, we train \brown, \CBOW, \Skipgram, and \Glove on
 a fixed corpus, comprised of freely available corpora, as detailed in
 \tabref{wordEmbedCorpora}. The joint corpus was preprocessed with the
 Stanford CoreNLP sentence splitter and tokeniser. All consecutive digit
@@ -118,9 +118,9 @@ length of the digit substring (e.g., \lex{10.20} is replaced by
 % Due to the computational complexity of the pre-training, for \CW, we simply downloaded the pre-compiled embeddings from:  \url{http://metaoptimize.com/projects/wordreprs}.
 
 \begin{table}[t]
-\begin{small}
 \centering
-\begin{tabular}{lrr}
+\smaller
+\begin{tabular}{lrc}
 \hline
 \textbf{Data set} & \multicolumn{1}{c}{\textbf{Size}} & \multicolumn{1}{c}{\textbf{Words}} \\ \hline
 UMBC \cite{UMBC:2013}	& 48.1GB & 3G \\
@@ -129,7 +129,6 @@ English Wikipedia & 49.6GB & 3G \\ \hline
 \end{tabular}
 \caption{Corpora used to pre-train the word embeddings}
 \label{wordEmbedCorpora}
-\end{small}
 \end{table}
 
 The dimensionality of the word embeddings and the size of the context
@@ -140,7 +139,8 @@ train word embeddings on the combined corpus:
 \item \textbf{Embedding dim.\ $d \in \{25, 50, 100, 200\}$}
 \item \textbf{Context window size $m \in \{1, 5, 10\}$}
 \end{itemize}
-\brown requires only the number of clusters as a hyperparameter. We
+
+\brown requires only the number of clusters as a hyperparameter. Here, we
 perform clustering with $b \in \{250, 500, 1000, 2000, 4000\}$ clusters.
 %
 %

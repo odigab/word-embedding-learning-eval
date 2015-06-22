@@ -2,9 +2,9 @@
 \label{sec:SeqTagging}
 
 We evaluate the different word representations over four sequence
-labelling tasks: POS-tagging (\pos), full-text chunking (\chunking),
-NER (\ner) and MWE identification (\mwe). For
-each task, we fed features into a first order linear-chain graph
+labelling tasks: POS tagging (\pos), full-text chunking (\chunking),
+NER (\ner), and MWE identification (\mwe). For
+each task, we fed features into a first-order linear-chain graph
 transformer~\cite{collobert2011natural} made up of two layers: the upper
 layer is identical to a linear-chain CRF~\cite{lafferty2001conditional},
 and the lower layer consists of word representation and hand-crafted
@@ -37,7 +37,7 @@ by \newcite{collobert2011natural}, \newcite{turian2010word}
 and~\newcite{mwecorpus}, respectively. For \ner, we use the same feature
 space as \newcite{turian2010word}, except for the previous two
 predictions, because we want to evaluate all word representations with
-the same type of model -- a first-order graph transformer.
+the same type of model --- a first-order graph transformer.
 
 In training the distributed word representations, we consider two
 settings: (1) the word representations are fixed during sequence model
@@ -95,7 +95,7 @@ without updating. These datasets are as follows:
   Treebank (``\Brown''), 
   converted into IOB-style full-text chunks using the CoNLL conversion
   scripts
-\item[\textbf{\ner}:] the MUC-7 named entity recognition corpus\footnote{https://catalog.ldc.upenn.edu/LDC2001T02} (``\MUC'')
+\item[\textbf{\ner}:] the MUC-7 named entity recognition corpus\footnote{\url{https://catalog.ldc.upenn.edu/LDC2001T02}} (``\MUC'')
 \end{compactenum}
 
 For reproducibility, we tuned the hyperparameters with random search
@@ -107,7 +107,7 @@ sampled 100 distinct hyperparameter sets for the updating models (i.e.,\
 the models that do). 
 For each set of hyperparameters and task, we train a model over its
 training set and choose the best one based on its performance on development data~\cite{turian2010word}. 
-We also tune the word representation hyperparameters -- namely, the word
+We also tune the word representation hyperparameters --- namely, the word
 vector size $d$ and context window size $m$ (distributed
 representations), and in the case of \Brown, the number of clusters.
 
@@ -134,8 +134,8 @@ For ease of comparison with previous results, we evaluate both
 in- and out-of-domain using 
 chunk/entity/expression-level F1-measure (``\fscore'') for all tasks except \pos,
 for which we use token-level accuracy (``\accuracy'').
-To test performance over OOV (unknown) tokens -- i.e., the words that do
-not occur in the training set -- we use token-level accuracy for all
+To test performance over OOV (unknown) tokens --- i.e., the words that do
+not occur in the training set --- we use token-level accuracy for all
 tasks (e.g.,\ for \chunking, we evaluate whether the full IOB tag is
 correct or not), because chunks/NEs/MWEs can consist of a mixture of in-vocabulary and OOV tokens, which makes the use of chunk-based evaluation measures inappropriate.
  
