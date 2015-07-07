@@ -1,0 +1,92 @@
+NICTA Beamer Presentation Template
+https://forge.nicta.com.au/projects/nictabeamer/
+
+Installation:
+------------- 
+The Beamer templates and support files need to be in the path that LaTeX will
+search when compiling your slides.  If in doubt, consult your IT support group
+for further guidance.
+
+Unix (tested under Linux only):
+A Makefile will install all the files for you. A simple invocation of "make
+install" will install the files in /usr/local/share/texmf/, in the subtree
+tex/latex/beamer. You can modify the destination by specifying the texmf tree
+into which you want to install the files e.g., "make install
+TEXMFHOME=/usr/share/texmf-site" or "make TEXMFHOME=~/.texmf install". The first two
+commands will install the template globally an are likely to require superuser
+rights. The latter will install the files in your user's texmf tree. For LaTeX
+to properly find it afterwards, you need to set the environment variable
+TEXMFHOME to point to this directory (or any other you may have chosen).
+
+Mac OS X
+  * using fink teTeX/LaTeX or TeXshop: The Makefile _should_ work. Just issue
+    a "make TEXMFHOME=~/Library/texmf install".
+  * texlive-latex from MacPorts: same as for Unix above (thanks to Fabien
+    Tricoire for reporting this).
+Please report any issue to Olivier (see below). Contributions are welcome for other methods to integrate this with other
+versions of latex for OSX.
+
+Windows: 
+Put the contents of the current directory in the directory you are working
+in (or make soft links). Any MiKTeX users who would like to contribute
+directions here would be welcome to do so.
+
+Instructions for using the NICTA beamer template:
+-------------------------------------------------
+The template file is called NICTACorporatePresentation.tex and it can be
+compiled by "pdflatex NICTACorporatePresentation.tex" and then use xpdf or
+acroread to view. There is also an example file called beamerexample1.tex which
+can be compiled similarly.
+
+If the template does not compile, you can read the beginning of the file
+NICTACorporatePresentation.tex to see what latex packages versions you need to
+have on your system for beamer to work. There is a counter called
+bannerverticalscale inside NICTACorporatePresentation.tex which can be modified
+to change the width of the NICTA banner bars. You can also use latex and then
+dvips (instead of pdflatex) to compile but it will create larger resulting
+presentation file since the much larger ps image files will be used instead of
+png image files. 
+
+As of 2010, a new Nicta theme (“grey bars”) has been added, to match the
+posters. The previous theme (“green curves”) is still available. The 'oldtheme'
+option can be specified to use it.
+
+As of June 2011 (though it took until early 2012 for the template to be
+updated), a new members and partners list with updated logos is in place. For
+backward compatibility, it is not activated by default. The 'partners20110620'
+option can be specified to activate this new banner.
+
+Further info:
+-------------
+The beamer class files and other related files and the beamer user guide can be
+downloaded from 
+	http://latex-beamer.sourceforge.net/
+
+Authors:
+--------
+ - Anthony. anthony.mak@nicta.com.au. March 2005.
+ - Olivier, olivier.mehani@nicta.com.au, October 2008
+	new Nicta artwork and layout
+	a bit of code cleanup
+	adaptation to TeXlive
+ - Olivier, October 2010
+        *really* use Nicta green for titles
+        new Nicta theme, added 'oldtheme' option
+ - Olivier, January 2011
+	new partners list and logos ('partners20110620' option)
+ - William Uther, December 2010
+	theme closer to Comm's template
+ - Olivier, August 2012
+	merge styles
+	option 'partners20110620' now default (and removed), option
+		'partners2008ish' enables old partners logos
+	option 'pagenum' can be used to (dis)able the page numbering
+	option 'sidebar' can be used to (dis)able the sidebar
+	2008(ish) theme now obtainable through option 'theme2008'
+	2010 (TechFest) theme now obtainable through option 'techfest2010'
+
+Special Thanks (from Anthony):
+------------------------------
+Much helps received from Andrew Slater and Michael Norrish for giving
+suggestions, Olivier Buffet for teaching me latex, and Douglas Aberdeen for
+putting the title in the green bar.

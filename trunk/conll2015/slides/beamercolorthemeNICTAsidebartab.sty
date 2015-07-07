@@ -1,0 +1,17 @@
+% Copyright 2010 by William.Uther@nicta.com.au
+
+\ProvidesPackage{beamercolorthemeNICTAsidebartab}
+
+\mode<presentation>
+
+\setbeamercolor*{section in sidebar shaded}{parent=palette sidebar secondary,fg=NICTA green!50!black!40!white}
+\setbeamercolor*{section in sidebar}
+  {parent=section in sidebar shaded,use={sidebar,section in sidebar shaded},%
+   fg=NICTA green!25!black,bg=NICTA purple!25}
+
+\setbeamercolor*{subsection in sidebar shaded}{parent=palette sidebar primary,fg=NICTA green!40!white}
+\setbeamercolor*{subsection in sidebar}
+  {parent=subsection in sidebar shaded,use=section in sidebar,%
+   fg=section in sidebar.fg,bg=section in sidebar.bg}
+
+\mode<all>
