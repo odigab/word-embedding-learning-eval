@@ -1,0 +1,45 @@
+% Theme Copyright 2007 by Till Tantau
+% Theme Copyright National ICT Australia 2005-2012
+%	Author : Anthony Mak
+%		     Olivier Mehani
+%		     William Uther
+%
+% This file may be distributed and/or modified
+% under the LaTeX Project Public License
+
+\ProvidesPackage{beamerinnerthemeNICTA}
+
+\newif\ifNICTA@innerShadow
+
+\DeclareOptionBeamer{shadow}[true]{\csname NICTA@innerShadow#1\endcsname}
+
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\ifNICTA@innerShadow
+\useinnertheme[shadow]{rounded}
+\else
+\useinnertheme{rounded}
+\fi
+
+\useinnertheme{circles}
+
+\renewcommand\emph[1]{{\bf #1}}
+
+% turn off section numbers in TOC
+\setbeamertemplate{section in toc}
+{\leavevmode\leftskip=2ex\hbox{\Large\textbullet}\kern1.2ex%
+  \inserttocsection\par}
+
+\setbeamertemplate{subsection in toc}
+{\leavevmode\leftskip=2.5em\raise0.5pt\hbox{\textbullet}\kern1.25ex%
+  \inserttocsubsection\par}
+
+\setbeamertemplate{subsubsection in toc}
+{\leavevmode\normalsize\usebeamerfont{subsection in
+    toc}\leftskip=3.5em\raise0.5pt\hbox{\textbullet}\kern1.25ex%
+  \usebeamerfont{subsubsection in toc}%
+  \inserttocsubsubsection\par}
+
+\mode<all>

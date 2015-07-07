@@ -1,0 +1,93 @@
+% Theme Copyright 2007 by Till Tantau
+% Theme Copyright National ICT Australia 2005-2012
+%	Author : Anthony Mak
+%		     Olivier Mehani
+
+%
+% This file may be distributed and/or modified
+% under the LaTeX Project Public License
+
+\ProvidesPackage{beamerouterthemeNICTA2008}
+
+\usepackage{pgf}
+\usepackage{calc}
+
+\useoutertheme{default}
+
+% This remove the navigation bar from the default outer theme
+\setbeamertemplate{navigation symbols}{}
+% Undo some other things the current theme does
+\setbeamercolor{frametitle}{fg=white,bg=}
+\logo{}
+
+%%%%%%% Define Headlines %%%%%%%%%
+
+\setbeamercolor{footline}{fg=black}
+
+% Calculate height of banners
+\newlength{\topbannerheight}\setlength{\topbannerheight}{19mm}
+\newlength{\topbannertitlespace}\setlength{\topbannertitlespace}{2mm}
+\newlength{\topbannertitleskip}\setlength{\topbannertitleskip}{\topbannertitlespace-\topbannerheight}
+\newlength{\topbannersubtitleskip}\setlength{\topbannersubtitleskip}{0em}
+\newlength{\bottombannerheight}\setlength{\bottombannerheight}{17mm}
+
+% Declare images
+\pgfdeclareimage[width=\paperwidth,height=\topbannerheight]{header}{header}
+\pgfdeclareimage[width=\paperwidth,height=\bottombannerheight]{footer}{footer}
+
+\setbeamertemplate{headline} 
+{% 
+\begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\topbannerheight}
+	\pgfputat{\pgfpoint{0mm}{0mm}}{\pgfbox[left,bottom]{\pgfuseimage{header}}}
+\end{pgfpicture}
+
+}
+
+%%%%%%% Define Footline %%%%%%%%%
+
+\setbeamertemplate{footline} 
+{% 
+\ifnum\thepage=1\relax%
+	\begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\bottombannerheight}
+		\pgfputat{\pgfpoint{0mm}{0mm}}{
+		\pgfbox[left,bottom]{\pgfuseimage{footer}}}
+	\end{pgfpicture}	
+	\pgfputat{\pgfpoint{0pt}{0pt}}{\pgfbox[left,bottom]{
+	\begin{beamercolorbox}[wd=\paperwidth,leftskip=5pt,rightskip=5pt]{white}%
+		\usebeamerfont{title footline}\usebeamercolor[fg]{title footline}{\textbf\nictacontact}\hfill\nictanotes%
+		\vskip1pt%
+	\end{beamercolorbox}
+	}}%
+\else%
+	\hfill\insertframenumber/\inserttotalframenumber%
+	\kern1em\vskip2pt%
+\fi% 
+}
+
+%% Correctly place frame (sub)titles
+
+\defbeamertemplate*{frametitle}{NICTA}[1][left]
+{
+\vspace{\topbannertitleskip}%
+\ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+\@tempdima=\textwidth%
+\advance\@tempdima by\beamer@leftmargin%
+\advance\@tempdima by\beamer@rightmargin%
+\begin{beamercolorbox}[sep=0.15cm,#1,wd=\the\@tempdima]{frametitle}
+	\if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+	{\usebeamerfont{frametitle}\insertframetitle\par}%
+	{%
+	\vspace{\topbannersubtitleskip}%
+	\ifx\insertframesubtitle\@empty%
+	\usebeamerfont{framesubtitle}\vskip1.1em % FIXME should be the line height instead
+	\else%
+	{\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par}%
+	\fi
+	}%
+	% omehani 2012-05-18; not sure what this is for, but it add a useless
+	% space at the top of the new template.
+	\if@tempswa\else\vskip5mm\fi
+\end{beamercolorbox}%
+}
+
+\mode<all>

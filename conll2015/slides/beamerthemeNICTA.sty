@@ -1,0 +1,193 @@
+% Theme Copyright 2007 by Till Tantau
+% Theme Copyright National ICT Australia 2005-2012
+%	Author : Anthony Mak
+%		     Olivier Mehani
+%		     William Uther
+%
+% This file may be distributed and/or modified
+% under the LaTeX Project Public License
+
+\ProvidesPackage{beamerthemeNICTA}
+
+\newif\ifbeamer@partnerstwooeight
+
+\newif\ifbeamer@themetwooeight
+\newif\ifbeamer@themetwooten
+
+\DeclareOptionBeamer{partners2008ish}{\beamer@partnerstwooeighttrue}
+\DeclareOptionBeamer{theme2008}{\beamer@themetwooeighttrue}
+\DeclareOptionBeamer{techfest2010}{\beamer@themetwootentrue}
+
+\DeclareOptionBeamer{hideothersubsections}{\PassOptionsToPackage{hideothersubsections}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{hideallsubsections}{\PassOptionsToPackage{hideallsubsections}{beamerouterthemesidebar}}
+
+\PassOptionsToPackage{sidebar}{beamerouterthemeNICTA}
+\PassOptionsToPackage{right}{beamerouterthemesidebar}
+\PassOptionsToPackage{width=2cm}{beamerouterthemesidebar}
+\PassOptionsToPackage{greenline=false}{beamercolorthemeNICTA}
+\PassOptionsToPackage{pagenum=true}{beamerouterthemeNICTA}
+
+\DeclareOptionBeamer{width}{\PassOptionsToPackage{width=#1}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{left}{\PassOptionsToPackage{left}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{right}{\PassOptionsToPackage{right}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{sidebar}[true]{\PassOptionsToPackage{sidebar=#1}{beamerouterthemeNICTA}}
+\DeclareOptionBeamer{shadow}[true]{\PassOptionsToPackage{shadow=#1}{beamerinnerthemeNICTA}}
+\DeclareOptionBeamer{greenline}[true]{\PassOptionsToPackage{greenline=#1}{beamercolorthemeNICTA}}
+\DeclareOptionBeamer{pagenum}[true]{\PassOptionsToPackage{pagenum=#1}{beamerouterthemeNICTA}}
+
+\ProcessOptionsBeamer
+
+\usepackage[english,australian]{babel}
+
+\newdimen\NICTA@logoheight
+\newdimen\NICTA@logowidth
+\NICTA@logowidth=15mm
+\NICTA@logoheight=1.19\NICTA@logowidth
+
+%% Nicta logo
+\pgfdeclareimage[width=1cm]{NICTA-logo}{logoNICTA}
+%\logo{\pgfuseimage{NICTA-logo}}
+
+%% Nicta partners and members
+\ifbeamer@partnerstwooeight%
+ \newlength{\partnerswidth}\setlength{\partnerswidth}{110mm}
+ \newlength{\partnersheight}\setlength{\partnersheight}{12mm}
+ \newlength{\membersspacing}\setlength{\membersspacing}{11mm}
+ \newlength{\partnersspacing}\setlength{\partnersspacing}{.9mm}
+\else
+ \newlength{\partnerswidth}\setlength{\partnerswidth}{110mm}
+ \newlength{\partnersheight}\setlength{\partnersheight}{12mm}
+ \newlength{\membersspacing}\setlength{\membersspacing}{4mm}
+ \newlength{\partnersspacing}\setlength{\partnersspacing}{3.9mm}
+\fi
+
+%\pgfdeclareimage[width=.34\partnerswidth]{logoDBCDE-ARC}{logoDBCDE-ARC}
+% Members
+%\pgfdeclareimage[height=.32\partnersheight]{logoANU}{logoANU}
+\pgfdeclareimage[height=.62\partnersheight]{logoANU2011}{logoANU2011}
+\pgfdeclareimage[height=1.0\partnersheight]{logo-MelbUni}
+{logo-MelbUni}
+\pgfdeclareimage[height=1.0\partnersheight]{logo-EdinburghUni}
+{logo-EdinburghUni}
+%\pgfdeclareimage[height=.32\partnersheight]{logoUNSW}{logoUNSW}
+%\pgfdeclareimage[height=.32\partnersheight]{logoUNSW2011}{logoUNSW2011}
+%\pgfdeclareimage[height=.32\partnersheight]{logoNSWDSRD}{logoNSWDSRD}
+%\pgfdeclareimage[height=.32\partnersheight]{logoNSWGovernment}{logoNSWGovernment}
+%\pgfdeclareimage[height=.32\partnersheight]{logoACTGovernment}{logoACTGovernment}
+% Partners
+%\pgfdeclareimage[height=.32\partnersheight]{logoVictoriaGovernment}{logoVictoriaGovernment}
+%\pgfdeclareimage[height=.32\partnersheight]{logoVictoriaGovernment2011}{logoVictoriaGovernment2011}
+
+%\pgfdeclareimage[height=.30\partnersheight]{logoSydneyUni}{logoSydneyUni}
+%\pgfdeclareimage[height=.30\partnersheight]{logoSydneyUni2011}%{logoSydneyUni2011}
+%\pgfdeclareimage[height=.32\partnersheight]{logoQueenslandGovernment}{logoQueenslandGovernment}
+%\pgfdeclareimage[height=.30\partnersheight]{logoGriffithUniversity}{logoGriffithUniversity}
+%\pgfdeclareimage[height=.32\partnersheight]{logoQUT}{logoQUT}
+%\pgfdeclareimage[height=.28\partnersheight]{logoQueenslandUniversity}{logoQueenslandUniversity}
+
+\titlegraphic{%
+\ifbeamer@partnerstwooeight%
+\begin{pgfpicture}{0pt}{0pt}{\partnerswidth}{\partnersheight}
+  \pgfputat{\pgfpoint{0pt}{0pt}}{\pgfbox[left,bottom]{
+  \pgfuseimage{}
+  }}
+  \pgfline{\pgfpoint{.36\partnerswidth}{0pt}}{\pgfpoint{.36\partnerswidth}{\partnersheight}}
+  \pgfputat{\pgfpoint{.38\partnerswidth}{\partnersheight}}{\pgfbox[left,top]{\Tiny\color{NICTA green} NICTA Members}}
+  \pgfputat{\pgfpoint{.37\partnerswidth}{.70\partnersheight}}{\pgfbox[left,center]{
+  % \pgfuseimage{logoNICTA}
+  \hspace\membersspacing
+  \pgfuseimage{logoANU}
+  \hspace\membersspacing
+  \pgfuseimage{logoMelbourneUni}
+   \hspace\membersspacing
+  \pgfuseimage{logo-EdinburghUni}
+%  \hspace\membersspacing
+%  \pgfuseimage{logoNSWDSRD}
+%  \hspace\membersspacing
+%  \pgfuseimage{logoACTGovernment}
+  }}
+  \pgfline{\pgfpoint{.38\partnerswidth}{.5\partnersheight}}{\pgfpoint{\partnerswidth}{.5\partnersheight}}
+  \pgfputat{\pgfpoint{.37\partnerswidth}{.30\partnersheight}}{\pgfbox[left,center]{
+%  \pgfuseimage{logoVictoriaGovernment}
+%  \hspace\partnersspacing
+%  \pgfuseimage{logoMelbourneUni}
+%  \hspace\partnersspacing
+%  \pgfuseimage{logo-EdinburghUni}
+  %\hspace\partnersspacing
+ % \pgfuseimage{logoSydneyUni}
+  %\hspace\partnersspacing
+  %\pgfuseimage{logoQueenslandGovernment}
+  %\hspace\partnersspacing
+  %\pgfuseimage{logoGriffithUniversity}
+  %\hspace\partnersspacing
+  %\pgfuseimage{logoQUT}
+  %\hspace\partnersspacing
+  %\pgfuseimage{logoQueenslandUniversity}
+  }}
+  \pgfputat{\pgfpoint{.38\partnerswidth}{0pt}}{\pgfbox[left,bottom]{\Tiny\color{NICTA green} NICTA Partners}}
+\end{pgfpicture}%
+\else%
+\begin{pgfpicture}{0pt}{0pt}{\partnerswidth}{\partnersheight}
+  \pgfputat{\pgfpoint{.2\partnerswidth}{.4\partnersheight}}{\pgfbox[left,center]{
+% \pgfuseimage{NICTA-logo}
+  }}
+  %\pgfline{\pgfpoint{.36\partnerswidth}{0pt}}{\pgfpoint{.36\partnerswidth}{\partnersheight}}
+ % \pgfputat{\pgfpoint{.38\partnerswidth}{.98\partnersheight}}{\pgfbox[left,top]{\Tiny\color{NICTA green} NICTA Funding and Supporting Members and Partners}}
+  \pgfputat{\pgfpoint{.15\partnerswidth}{.4\partnersheight}}{\pgfbox[left,center]{
+   \pgfuseimage{NICTA-logo}
+  \hspace\membersspacing
+  \hspace\membersspacing
+   \pgfuseimage{logoANU2011}
+  \hspace\membersspacing
+  \hspace\membersspacing
+   \pgfuseimage{logo-MelbUni}
+  \hspace\membersspacing  
+  \hspace\membersspacing
+  \pgfuseimage{logo-EdinburghUni}  
+  %\pgfuseimage{logoUNSW2011}
+  %\hspace\membersspacing
+  %\pgfuseimage{logoNSWGovernment}
+  %%\hspace\membersspacing
+  %\pgfuseimage{logoACTGovernment}
+  %\hspace\membersspacing
+  %\pgfuseimage{logoVictoriaGovernment2011}
+  %\hspace\membersspacing
+    }}
+%  \pgfputat{\pgfpoint{.37\partnerswidth}{.20\partnersheight}}{\pgfbox[left,center]{
+%  \pgfuseimage{logoSydneyUni2011}
+ % \hspace\partnersspacing
+ % \pgfuseimage{logoQueenslandGovernment}
+ % \hspace\partnersspacing
+ % \pgfuseimage{logoGriffithUniversity}
+ % \hspace\partnersspacing
+ % \pgfuseimage{logoQUT}
+ % \hspace\partnersspacing
+ % \pgfuseimage{logoQueenslandUniversity}
+% }}
+\end{pgfpicture}%
+\fi%
+}
+
+\newcommand{\nictanotes}{From imagination to impact}
+\ifbeamer@themetwooeight%
+  \newcommand{\nictacontact}{www.nicta.com.au}
+\else%
+  \newcommand{\nictacontact}{}
+\fi%
+
+\mode<presentation>
+
+\usefonttheme{NICTA}
+\usecolortheme{NICTA}
+\usecolortheme{NICTAsidebartab}
+\useinnertheme{NICTA}
+
+\ifbeamer@themetwooeight
+  \useoutertheme{NICTA2008}
+\else\ifbeamer@themetwooten
+  \useoutertheme{NICTAtechfest2010}
+\else
+  \useoutertheme{NICTA}
+\fi\fi
+
+\mode<all>

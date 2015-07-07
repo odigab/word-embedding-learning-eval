@@ -1,0 +1,52 @@
+% Copyright 2010 by William.Uther@nicta.com.au
+
+\ProvidesPackage{beamercolorthemeNICTA}
+
+\definecolor{NICTA green}{RGB}{109,179,63}
+%\definecolor{NICTA green}{cmyk}{0.65,0,1,0}	% CMYK uncoated
+%\definecolor{NICTA green}{cmyk}{0.6,0,1,0.07}	% CMYK coated
+\definecolor{NICTA blue}{RGB}{0,157,217}
+\definecolor{NICTA purple}{RGB}{141,101,210}
+\definecolor{NICTA yellow}{RGB}{255,115,0}
+
+% From [0], p. 24.
+% [0] http://wiki.inside.nicta.com.au/download/attachments/10059799/20080510NICTA_styleguide_Final.pdf
+\definecolor{NICTA secondary purple}{RGB}{183,39,191}
+\definecolor{NICTA secondary blue}{RGB}{0,103,197}
+\definecolor{NICTA secondary green}{RGB}{185,211,0}
+\definecolor{NICTA secondary dark gray}{RGB}{65,75,86}
+\definecolor{NICTA secondary light gray}{RGB}{204,204,204}
+\definecolor{NICTA secondary pink}{RGB}{214,0,119}
+
+\newif\ifNICTA@greenline
+
+\DeclareOptionBeamer{greenline}[false]{\csname NICTA@greenline#1\endcsname}
+
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\setbeamercolor{structure}{fg=NICTA green}
+
+\setbeamercolor{frametitle}{fg=black,bg=structure.bg}
+\ifNICTA@greenline
+\setbeamercolor{fine separation line}{fg=structure.fg,bg=structure.fg}
+\else
+\setbeamercolor{fine separation line}{fg=black,bg=black}
+\fi
+
+\setbeamercolor{copyright in head/foot}{parent=navigation symbols}
+\setbeamercolor{title in head/foot}{parent=author in head/foot}
+
+\setbeamercolor{block title}{fg=black,bg=NICTA yellow!65}
+\setbeamercolor{block body}{parent=normal text,bg=NICTA yellow!25}
+
+\setbeamercolor{alerted text}{fg=NICTA purple}
+\setbeamercolor{block title alerted}{fg=black,bg=NICTA purple!65}
+\setbeamercolor{block body alerted}{parent=normal text,bg=NICTA purple!25}
+
+\setbeamercolor{example text}{fg=NICTA blue}
+\setbeamercolor{block title example}{fg=black,bg=NICTA blue!65}
+\setbeamercolor{block body example}{parent=normal text,bg=NICTA blue!25}
+
+\mode<all>
