@@ -43,10 +43,15 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage[font={small}]{caption}
-
+\usepackage{xspace}
+\usepackage{relsize}
+\usepackage{authordate1-4}
+\usepackage{pifont}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\setlength\titlebox{6.5cm}
+
 \newcommand{\RQ}[1][1]{\textbf{RQ#1}\xspace}
 
 \newcommand{\figref}[2][]{Figure~\ref{#2}\xspace}
@@ -76,10 +81,17 @@
 \newcommand{\ner}{\task{NER}}
 \newcommand{\mwe}{\task{MWE}}
 
-
 \newcommand{\evmeasure}[1]{\textsc{#1}\xspace}
 \newcommand{\accuracy}{\evmeasure{Acc}}
 \newcommand{\fscore}{\evmeasure{F1}}
+
+\newcommand{\best}[1]{\textbf{#1}}
+
+\newcommand{\ctx}{\ensuremath{\text{ctx}}}
+
+\hyphenation{an-aly-sis}
+\hyphenation{an-aly-ses}
+\hyphenation{an-aly-ser}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% TITLE SLIDE %%%%%
@@ -111,18 +123,53 @@ Nathan Schneider \& Timothy Baldwin }
 
 
 \begin{frame}
+\frametitle{Introduction}
+  \framesubtitle{The Impact of Word Representations for Sequence Labellings Tasks}
+  
+Distributed word representations, pre-trained from unlabelled data 
+have become a mainstay of NLP, but\dots their quality depends on factors including: 
+% becasue, they and have been shown to have empirical utility in a myriad of tasks    
+
+\begin{itemize}
+\item[\ding{224}] parameter optimisation
+\item[\ding{224}] the size of the training data
+\item[\ding{224}] the fit with the target application
+\end{itemize}  
+  
+\textbf{Extrinsic evaluation} on 4 labelling tasks under \textbf{FIX} experiment conditions:
+
+\begin{itemize}
+%\begin{center}
+\item[\ding{51}] \pos 
+\item[\ding{51}] \chunking
+\item[\ding{51}] \ner
+\item[\ding{51}] \mwe (multi-word expressions identification)
+%\end{center}
+\end{itemize}  
+
+
+
+\end{frame}
+
+
+\begin{frame}
 \frametitle{What we want to know about word embeddings}
-  \framesubtitle{Research questions}
+  \framesubtitle{}
 
 \begin{itemize}
 \item[\bf RQ1:] Are word embeddings better than baseline approaches of one-hot unigram features and Brown clusters?
-\item[\bf RQ2:] Do word embeddings require less training data than one-hot unigram features? If so, to what degree can word embeddings reduce the amount of labelled data?
+\item[]
+\item[\bf RQ2:] 
+%Do word embeddings require less training data than one-hot unigram features? If so, 
+To what degree can word embeddings reduce the amount of labelled data?
+\item[]
 \item[\bf RQ3:] What is the impact of updating word embeddings in sequence
-  labelling tasks, both empirically over the target task and
-  geometrically over the vectors?
-\item[\bf RQ4:] What is the impact of these word embeddings (with and without
-  updating) on both OOV items (relative to the training data) and
-  out-of-domain data?
+  labelling tasks
+  %, both empirically over the target task and geometrically over the vectors?
+\item[]
+\item[\bf RQ4:] What is the impact of these word embeddings Out-of-Vocabulary items for \textit{in-domain} and \textit{out-of-domain} data?
+\item[]
+%(with and without updating) on both OOV items (relative to the training data) and  out-of-domain data?
 \item[\bf RQ5:] Are some word embeddings better than others in a sequence labelling context?
 \end{itemize}
 \end{frame}
@@ -135,31 +182,31 @@ Nathan Schneider \& Timothy Baldwin }
 \framesubtitle{Fix the experiments conditions}
   
 \begin{itemize}
-\item[-] \textbf{Pre-trained word embeddings}
+\item[\ding{224}] \textbf{Pre-trained word embeddings}
 	\begin{itemize}			
-		\item[-] Corpora 
+		\item[\ding{111}] Corpora:
 			\begin{itemize}			
 				\item[-] UMBC \cite{UMBC:2013}, 48.1GB 
 				\item[-] One Billion \cite{OneBillion:2013}, 4.1GB 
 				\item[-] English Wikipedia, 49.6GB 		
 			\end{itemize}
-		\item[-] Embedding dimensions: \ $d \in \{25, 50, 100, 200\}$
-		\item[-] Context window size: $m \in \{1, 5, 10\}$	
+		\item[\ding{111}] Embedding dimensions:
+			\begin{itemize}
+				 \item[] $d \in \{25, 50, 100, 200\}$
+			\end{itemize}
+		\item[\ding{111}] Context window size:
+			\begin{itemize}
+				 \item[] $m \in \{1, 5, 10\}$	
+			\end{itemize}
 	\end{itemize}
-\item[-] \textbf{Selected Word Representations} 
+\item[]
+\item[\ding{224}] \textbf{Selected Word Representations} 
 	\begin{itemize}
-		\item[-] Brown clustering \cite{Brown92class-basedn-gram}
-		\item[-] CBOW ~\cite{Mikolov13},
-		\item[-]	 Skipgram \cite{Mikolov13NIPS},
-		\item[-]	 Global vectors \cite{pennington2014glove} 
-	\end{itemize}  	
-\item[-] \textbf{Four sequence labeling tasks}
-	\begin{itemize}
-		\item[-] POS-Tagging,
-		\item[-] Chunking, 
-		\item[-] NER, 
-		\item[-]	 MWE (Multi-word Expressions identification)
-	\end{itemize}  					
+		\item[\ding{76}] Brown clustering \cite{Brown92class-basedn-gram}
+		\item[\ding{76}] CBOW \cite{Mikolov13},
+		\item[\ding{76}]	 Skipgram \cite{Mikolov13NIPS},
+		\item[\ding{76}]	 Global vectors \cite{pennington2014glove} 
+	\end{itemize}  	 					
 \end{itemize}      
 \end{frame}
 
@@ -171,7 +218,7 @@ Nathan Schneider \& Timothy Baldwin }
 \frametitle{Training, development and test data} 
 
 \begin{table}
-\centering
+%\centering
 \begin{tiny}
 \begin{tabular}{@{}c@{~~}c@{~~}c@{~~}c@{~~}c@{~~}c@{}}
 \hline
@@ -185,6 +232,7 @@ Nathan Schneider \& Timothy Baldwin }
 \label{}
 \end{tiny}
 \end{table}
+
 \end{frame}
 
 
@@ -192,13 +240,12 @@ Nathan Schneider \& Timothy Baldwin }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% HEATMAPS 
 \begin{frame}[plain]
-
-\frametitle{Results} 
+%\frametitle{Results} 
 
 \begin{enumerate}
 \begin{small}
 \item[\bf RQ1:] Word embeddings vs. one-hot unigram features vs. Brown clusters?
-\item[\bf RQ2:] Do word embeddings require less training data than one-hot unigram features?
+\item[\bf RQ2:] To what degree can word embeddings reduce the amount of labelled data?
 % If so, to what degree can word embeddings reduce the amount of labelled data?
 \end{small}
 \end{enumerate}
@@ -230,9 +277,13 @@ Nathan Schneider \& Timothy Baldwin }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Vector fields
 \begin{frame}
-\frametitle{}
+%\frametitle{Results}
 
-\textbf{RQ3}: What is the impact of updating word embeddings geometrically over the vectors?
+\begin{enumerate}
+\begin{small}
+\item[\bf RQ3:]: What is the impact of updating word embeddings geometrically over the vectors?
+\end{small}
+\end{enumerate}
 
 \begin{columns}	
 	\column{.55\textwidth}
@@ -252,7 +303,7 @@ Nathan Schneider \& Timothy Baldwin }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Plots
-\begin{frame}
+\begin{frame}[plain]
 \frametitle{}
 
 \begin{itemize}
@@ -265,16 +316,30 @@ Nathan Schneider \& Timothy Baldwin }
 \end{itemize}
 
 \begin{figure}
-\includegraphics[scale=0.55]{../plots/OOV-plots}
+\includegraphics[scale=0.25]{../plots/OOV-plots}
 \end{figure}	    	
-
-
-
-
 \end{frame}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Last slide
+\begin{frame}
+\frametitle{}
+
+\centering
+\textbf{Find us!}
+
+\begin{itemize}
+\item[-] github
+\item[-] wordpress
+\end{itemize}
+
+\textbf{Thanks!}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%
+%%% Add bibliography 
+
 \bibliographystyle{acl2013}
 \bibliography{../biblio}
 
