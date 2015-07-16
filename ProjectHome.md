@@ -1,0 +1,1 @@
+Extensive evaluation of three word embedding approaches under the same experiment conditions, and evaluate them in different sequence tagging tasks.
