@@ -123,54 +123,49 @@ Nathan Schneider \& Timothy Baldwin }
 
 
 \begin{frame}
-\frametitle{Introduction}
+\frametitle{\textbf{Introduction}}
   \framesubtitle{The Impact of Word Representations for Sequence Labellings Tasks}
-  
+
+\vspace{-1.5cm}
 Distributed word representations, pre-trained from unlabelled data 
-have become a mainstay of NLP, but\dots their quality depends on factors including: 
-% becasue, they and have been shown to have empirical utility in a myriad of tasks    
+have become a mainstay of NLP\ldots but
+
+\vspace{0.5cm}
+\textbf{What we know about word embeddings?}
+\vspace{0.5cm}
 
 \begin{itemize}
-\item[\ding{224}] parameter optimisation
-\item[\ding{224}] the size of the training data
-\item[\ding{224}] the fit with the target application
+
+\item[\ding{224}] Encode syntactic and semantic properties
+\item[\ding{224}] Parameter optimisation is task specific
+	\begin{itemize}
+	\item[\ding{51}] vector dimension % or word embedding dimention
+	\item[\ding{51}] context window size
+	\item[\ding{51}] size of the training data
+	\end{itemize}
 \end{itemize}  
-  
-\textbf{Extrinsic evaluation} on 4 labelling tasks under \textbf{FIX} experiment conditions:
-
-\begin{itemize}
-%\begin{center}
-\item[\ding{51}] \pos 
-\item[\ding{51}] \chunking
-\item[\ding{51}] \ner
-\item[\ding{51}] \mwe (multi-word expressions identification)
-%\end{center}
-\end{itemize}  
-
-
-
 \end{frame}
 
 
+
 \begin{frame}
-\frametitle{What we want to know about word embeddings}
-  \framesubtitle{}
+\frametitle{\textbf{What we want to know about word embeddings}}
 
 \begin{itemize}
-\item[\bf RQ1:] Are word embeddings better than baseline approaches of one-hot unigram features and Brown clusters?
+\item[\bf RQ1:] What is the impact of updating word embeddings in sequence
+  labelling tasks
+  %, both empirically over the target task and geometrically over the vectors?
 \item[]
 \item[\bf RQ2:] 
 %Do word embeddings require less training data than one-hot unigram features? If so, 
 To what degree can word embeddings reduce the amount of labelled data?
 \item[]
-\item[\bf RQ3:] What is the impact of updating word embeddings in sequence
-  labelling tasks
-  %, both empirically over the target task and geometrically over the vectors?
-\item[]
-\item[\bf RQ4:] What is the impact of these word embeddings Out-of-Vocabulary items for \textit{in-domain} and \textit{out-of-domain} data?
+\item[\bf RQ3:] What is the impact of word embeddings on \textit{out-of-vocabulary} and \textit{out-of-domain data}?
 \item[]
 %(with and without updating) on both OOV items (relative to the training data) and  out-of-domain data?
-\item[\bf RQ5:] Are some word embeddings better than others in a sequence labelling context?
+\item[\bf RQ4:] Are some word embeddings better than others in a sequence labelling context?
+\item[]
+%\item[\bf RQ5:] Are word embeddings better than baseline approaches of one-hot unigram features and Brown clusters?
 \end{itemize}
 \end{frame}
 
@@ -178,11 +173,19 @@ To what degree can word embeddings reduce the amount of labelled data?
 
 
 \begin{frame}
-\frametitle{Experiments Setup}
+\frametitle{\textbf{Extrinsic Evaluation}}
 \framesubtitle{Fix the experiments conditions}
   
 \begin{itemize}
-\item[\ding{224}] \textbf{Pre-trained word embeddings}
+\item[\ding{224}] \textbf{Selected Word Representations} 
+	\begin{itemize}
+		\item[\ding{76}] Brown clustering \cite{Brown92class-basedn-gram}
+		\item[\ding{76}] CBOW \cite{Mikolov13},
+		\item[\ding{76}]	 Skip-gram \cite{Mikolov13NIPS},
+		\item[\ding{76}]	 Glove vectors \cite{pennington2014glove} 
+	\end{itemize} 
+\item[]
+\item[\ding{224}] \textbf{In-house pre-trained word embeddings}
 	\begin{itemize}			
 		\item[\ding{111}] Corpora:
 			\begin{itemize}			
@@ -198,15 +201,7 @@ To what degree can word embeddings reduce the amount of labelled data?
 			\begin{itemize}
 				 \item[] $m \in \{1, 5, 10\}$	
 			\end{itemize}
-	\end{itemize}
-\item[]
-\item[\ding{224}] \textbf{Selected Word Representations} 
-	\begin{itemize}
-		\item[\ding{76}] Brown clustering \cite{Brown92class-basedn-gram}
-		\item[\ding{76}] CBOW \cite{Mikolov13},
-		\item[\ding{76}]	 Skipgram \cite{Mikolov13NIPS},
-		\item[\ding{76}]	 Global vectors \cite{pennington2014glove} 
-	\end{itemize}  	 					
+	\end{itemize} 					
 \end{itemize}      
 \end{frame}
 
@@ -215,7 +210,16 @@ To what degree can word embeddings reduce the amount of labelled data?
 
 
 \begin{frame}
-\frametitle{Training, development and test data} 
+\frametitle{\textbf{Experiments Setup}} 
+
+Four labelling tasks under \textbf{FIX} experiment conditions:
+
+\begin{itemize}
+\item[\ding{51}] \pos 
+\item[\ding{51}] \chunking
+\item[\ding{51}] \ner 
+\item[\ding{51}] \mwe (multi-word expressions identification)
+\end{itemize}  
 
 \begin{table}
 %\centering
@@ -242,15 +246,29 @@ To what degree can word embeddings reduce the amount of labelled data?
 \begin{frame}[plain]
 %\frametitle{Results} 
 
+
+\vspace{0.7cm}
 \begin{enumerate}
 \begin{small}
-\item[\bf RQ1:] Word embeddings vs. one-hot unigram features vs. Brown clusters?
 \item[\bf RQ2:] To what degree can word embeddings reduce the amount of labelled data?
 % If so, to what degree can word embeddings reduce the amount of labelled data?
+\item[\bf RQ5:] Word embeddings vs. one-hot unigram features vs. Brown clusters?
 \end{small}
 \end{enumerate}
 
 \vspace{-0.7cm}
+
+\begin{figure}
+    \includegraphics[scale=0.48]{../plots/map-ner-color-invert}    	
+	\caption{\ner (\fscore)}	
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}[plain]
+%\frametitle{Results} 
+%\vspace{-0.7cm}
 
 \begin{columns}
   \column{.55\textwidth}
@@ -306,6 +324,8 @@ To what degree can word embeddings reduce the amount of labelled data?
 \begin{frame}[plain]
 \frametitle{}
 
+\vspace{0.7cm}
+
 \begin{itemize}
 \begin{small}
 \item[\bf RQ4:] What is the impact of these word embeddings (with and without
@@ -315,9 +335,49 @@ To what degree can word embeddings reduce the amount of labelled data?
 \end{small}
 \end{itemize}
 
-\begin{figure}
-\includegraphics[scale=0.25]{../plots/OOV-plots}
-\end{figure}	    	
+\includegraphics[scale=0.3]{eval1}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{}
+
+\vspace{-0.7cm}
+
+\begin{itemize}
+\begin{small}
+\item[\bf RQ4:] What is the impact of these word embeddings on both OOV items and out-of-domain data?
+\item[\bf RQ5:] Are some word embeddings better than others in a sequence labelling context?
+\end{small}
+\end{itemize}
+
+\includegraphics[scale=0.3]{eval2}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{\textbf{Conclusions}}
+
+% We have performed an extensive extrinsic evaluation on four different word embedding methods under fized conditions, and evaluated their applicability to 4 sequence labelling task.
+\begin{itemize}
+\item[\ding{51}] In domain: little difference between updating and not-updating word embeddings.
+% and updating can result in overfitting
+\item[]
+\item[\ding{51}] Both word embeddings and Brown clusters capture distributional similarity.
+\item[] 
+\item[\ding{51}] Both word embeddings and Brown clusters improve cross-domain performance.
+\item[]
+\item[\ding{51}] Word embeddings and Brown clusters perform well on small amounts of
+training data.
+\item[]
+\item[\ding{51}] No significant differences among word embeddings and Brown clusters.
+%Word embeddings outperformed unigram, especially with limited training data, but there is little difference with Brown clusters
+%\item[]
+%\item[\ding{51}] No one of the word embeddings methods is consistently superior across the different tasks and settings
+%\item[]
+%\item[\ding{51}] Word embeddings and Brown clusters improve out-of-domain and OOV words
+\end{itemize}
 \end{frame}
 
 
@@ -326,22 +386,36 @@ To what degree can word embeddings reduce the amount of labelled data?
 \begin{frame}
 \frametitle{}
 
-\centering
-\textbf{Find us!}
-
 \begin{itemize}
-\item[-] github
-\item[-] wordpress
+\centering
+%\item[] \uppercase{\textbf{on demand!}}
+\item[] Deep Learning Tool Kit for Information Extraction 
+\includegraphics[scale=0.3]{dl}
+\item[] Pre-trained word embeddings 
+\item[\ding{224}]  \url{lizhen.qu@nicta.com.au}
+\item[]
+\item[] Additional supplementary material 
+%(plots and tables)
+\item[\ding{224}] \url{https://goo.gl/Y8bk2w}
+\item[]
 \end{itemize}
 
-\textbf{Thanks!}
+\centering \textbf{{\LARGE Thanks!}}
+
 \end{frame}
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%% Add bibliography 
+%%%  splitting the references up into several slides, use the [allowframebreaks]
+\begin{frame}[allowframebreaks]
+\frametitle{\textbf{References}}
+	\bibliographystyle{acl2013}
+	\bibliography{../biblio}
+\end{frame}
 
-\bibliographystyle{acl2013}
-\bibliography{../biblio}
 
 \end{document}
 
